@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 const CirclesBackground: FC = () => (
   <svg
@@ -8,7 +8,7 @@ const CirclesBackground: FC = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="37" cy="389" r="37" fill="#202020" />{" "}
+    <circle cx="37" cy="389" r="37" fill="#202020" />{' '}
     <circle cx="1173" cy="699" r="37" fill="#202020" />
     <circle cx="915" cy="158" r="37" fill="#202020" />
     <circle cx="386" cy="1077" r="37" fill="#202020" />

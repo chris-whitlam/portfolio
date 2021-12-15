@@ -1,5 +1,5 @@
 export { 
-    CirclesBackground, 
-    CodeBackground, 
-    NodesBackground 
+  CirclesBackground, 
+  CodeBackground, 
+  NodesBackground 
 } from './img/index';

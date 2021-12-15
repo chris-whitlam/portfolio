@@ -1,25 +1,57 @@
 import { FC } from 'react';
-import { NodesBackground, CirclesBackground, CodeBackground } from '../assets';
+import styled from 'styled-components';
+// import { NodesBackground, CirclesBackground, CodeBackground } from '../assets';
+
+import NodesBackground from '../assets/img/nodes_background.svg';
+import CirclesBackground from '../assets/img/circle_background.svg';
+import CodeBackground from '../assets/img/code_background.svg';
+
+import Introduction from './Introduction';
 
 import ParallaxGroup from './ParallaxGroup';
+import Header from './Header';
+
+const Parallax = styled.div`
+  perspective: 1px;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
+
+const Body = styled.div`
+  background-color: ${({ theme: { colors } }) => colors.background};
+  color: ${({ theme: { colors } }) => colors.text};
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Page: FC = () => (
-  <div className="body">
-    <div className="parallax">
-      <ParallaxGroup background={<NodesBackground />} className="first_group">
-        Hi I'm Chris Whitlam
+  <>
+    <Header />
+    <Body>
+      <Introduction />
+      {/* <Parallax>
+      <ParallaxGroup
+        backgroundStyle={{ backgroundImage: `url(${NodesBackground})` }}
+      >
+        <Introduction />
       </ParallaxGroup>
       <ParallaxGroup
-        background={<CirclesBackground />}
-        className="second_group"
+        backgroundStyle={{ backgroundImage: `url(${CirclesBackground})` }}
       >
         My Timeline
       </ParallaxGroup>
-      <ParallaxGroup background={<CodeBackground />} className="third_group">
+      <ParallaxGroup
+        backgroundStyle={{ backgroundImage: `url(${CodeBackground})` }}
+      >
         Skills
       </ParallaxGroup>
-    </div>
-  </div>
+    </Parallax> */}
+    </Body>
+  </>
 );
 
 export default Page;

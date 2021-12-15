@@ -1,12 +1,19 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-const NodesBackground: FC = () => (
+interface NodeBackgroundProps {
+  width?: number | string;
+  height?: number | string;
+}
+
+const NodesBackground: FC<NodeBackgroundProps> = ({
+  width = 1314,
+  height = 728,
+}) => (
   <svg
-    width="1314"
-    height="728"
-    viewBox="0 0 1314 728"
+    width={width}
+    height={height}
+    viewBox={`0 0 ${width} ${height}`}
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
   >
     <path
       d="M1313.83 316.852L1295.85 307.175L1286.17 325.148L1304.15 334.825L1313.83 316.852ZM1166.17 361.148L1184.15 370.825L1193.83 352.852L1175.85 343.175L1166.17 361.148ZM1299.28 318.605L1179.28 354.605L1180.72 359.395L1300.72 323.395L1299.28 318.605Z"
