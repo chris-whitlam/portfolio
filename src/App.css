@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+:root {
+  --color-text: white;
+  --color-background: #1b1b1b;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* https://keithclark.co.uk/articles/pure-css-parallax-websites/ */
+
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+}
+
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+
+.parallax__layer--back {
+  transform: translateZ(-1px) scale(2);
+  height: 100%;
+}
+
+.parallax__group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+.first_group {
+  height: 80vh;
+}
+
+.second_group {
+  margin-top: 120vh;
+}
+
+.third_group {
+  margin-top: 100vh;
 }
