@@ -9,6 +9,11 @@ const theme = {
     small: '10px',
     medium: '20px',
     large: '3rem',
+  },
+  breakpoints: {
+    small: '480px',
+    medium: '768px',
+    large: '1200px'
   }
 };
 

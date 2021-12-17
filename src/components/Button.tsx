@@ -1,13 +1,18 @@
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
+import { device } from '../device';
 
 const baseButtonStyle = css`
   border-radius: 40px;
   padding: ${({ theme: { spacing } }) => spacing.medium};
-  font-weight: 'bold';
-  font-size: 30px;
+  font-weight: 800;
   font-family: 'Roboto Mono', 'Courier New', monospace;
   cursor: pointer;
+  font-size: 15px;
+
+  @media ${device.laptop} {
+    font-size: 20px;
+  }
 `;
 
 const PrimaryButton = styled.button`

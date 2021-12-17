@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 import PortraitImage from '../assets/img/me.png';
+import { device } from '../device';
 import Button from './Button';
 
 const H1 = styled.h1`
@@ -26,9 +27,15 @@ const H3 = styled.h3`
 const IntroductionContainer = styled.div`
   width: 80vw;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const Image = styled.img`
+  display: none;
+  @media ${device.laptop} {
+    display: block;
+  }
 `;
 
 const Introduction: FC = () => (
@@ -40,7 +47,7 @@ const Introduction: FC = () => (
       <Button style={{ marginRight: '50px' }}>Contact Me</Button>
       <Button variant="secondary">Download CV</Button>
     </div>
-    <img src={PortraitImage} alt="Chris Whitlam" />
+    <Image src={PortraitImage} alt="Chris Whitlam" />
   </IntroductionContainer>
 );
 
