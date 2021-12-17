@@ -26,15 +26,15 @@ const EmailIcon: FC<EmailIconProps> = ({
         height="52"
         rx="4.5"
         stroke={color}
-        stroke-width="5"
+        strokeWidth="5"
       />
       <path
         d="M8.11865 4.86584C51.3644 41.7073 39.0085 41.0122 80.8814 4.86584"
         stroke={color}
-        stroke-width="5"
+        strokeWidth="5"
       />
-      <path d="M8.11865 53.5244L34.8898 28.5" stroke={color} stroke-width="5" />
-      <path d="M81.5678 52.1341L55.4831 28.5" stroke={color} stroke-width="5" />
+      <path d="M8.11865 53.5244L34.8898 28.5" stroke={color} strokeWidth="5" />
+      <path d="M81.5678 52.1341L55.4831 28.5" stroke={color} strokeWidth="5" />
       <path
         d="M35.5763 28.5L10.178 5.56097L19.1017 3.47561L47.9322 2.78049L76.7627 3.47561V9.03658L68.5254 18.7683L54.1102 28.5L46.5593 31.9756L35.5763 28.5Z"
         fill={color}
@@ -48,9 +48,9 @@ const EmailIcon: FC<EmailIconProps> = ({
         width="89"
         height="65"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"

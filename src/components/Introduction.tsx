@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 import PortraitImage from '../assets/img/me.png';
+import Button from './Button';
 
 const H1 = styled.h1`
   font-family: 'Roboto Mono', 'Courier New', monospace;
@@ -36,6 +37,8 @@ const Introduction: FC = () => (
       <H3>Hi, I'm </H3>
       <H1>Chris Whitlam</H1>
       <H2>{'<FULL-STACK DEVELOPER>'}</H2>
+      <Button style={{ marginRight: '50px' }}>Contact Me</Button>
+      <Button variant="secondary">Download CV</Button>
     </div>
     <img src={PortraitImage} alt="Chris Whitlam" />
   </IntroductionContainer>
