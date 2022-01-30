@@ -2,22 +2,22 @@ import { FC } from 'react';
 import styled from 'styled-components';
 // import { NodesBackground, CirclesBackground, CodeBackground } from '../assets';
 
-import NodesBackground from '../assets/img/nodes_background.svg';
-import CirclesBackground from '../assets/img/circle_background.svg';
-import CodeBackground from '../assets/img/code_background.svg';
+// import NodesBackground from '../assets/img/nodes_background.svg';
+// import CirclesBackground from '../assets/img/circle_background.svg';
+// import CodeBackground from '../assets/img/code_background.svg';
 
 import Hero from './Hero';
 
-import ParallaxGroup from './ParallaxGroup';
+// import ParallaxGroup from './ParallaxGroup';
 import Header from './Header';
 
-const Parallax = styled.div`
-  perspective: 1px;
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
-`;
+// const Parallax = styled.div`
+//   perspective: 1px;
+//   height: 100vh;
+//   width: 100vw;
+//   overflow-x: hidden;
+//   overflow-y: auto;
+// `;
 
 const Body = styled.div`
   background-color: ${({ theme: { colors } }) => colors.background};
