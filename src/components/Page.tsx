@@ -6,7 +6,7 @@ import NodesBackground from '../assets/img/nodes_background.svg';
 import CirclesBackground from '../assets/img/circle_background.svg';
 import CodeBackground from '../assets/img/code_background.svg';
 
-import Introduction from './Introduction';
+import Hero from './Hero';
 
 import ParallaxGroup from './ParallaxGroup';
 import Header from './Header';
@@ -22,7 +22,6 @@ const Parallax = styled.div`
 const Body = styled.div`
   background-color: ${({ theme: { colors } }) => colors.background};
   color: ${({ theme: { colors } }) => colors.text};
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +31,7 @@ const Page: FC = () => (
   <>
     <Header />
     <Body>
-      <Introduction />
+      <Hero />
       {/* <Parallax>
       <ParallaxGroup
         backgroundStyle={{ backgroundImage: `url(${NodesBackground})` }}

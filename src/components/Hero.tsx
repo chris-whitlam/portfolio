@@ -29,6 +29,10 @@ const IntroductionContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding: 10vh 10vh;
+  @media ${device.laptop} {
+    height: 45vh;
+  }
 `;
 
 const Image = styled.img`
