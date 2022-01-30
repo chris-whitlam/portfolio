@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import EmailIcon from '../assets/img/EmailIcon';
-import GithubIcon from '../assets/img/GithubIcon';
-import LinkedInIcon from '../assets/img/LinkedInIcon';
-import MenuIcon from '../assets/img/MenuIcon';
+import { FiMenu } from 'react-icons/fi';
+import { ImGithub } from 'react-icons/im';
+import { HiOutlineMail } from 'react-icons/hi';
+import { FaLinkedin } from 'react-icons/fa';
 
 const HeaderContainer = styled.div`
   display: flex;
   min-width: 100vw;
   position: fixed;
+  color: ${({ theme: { colors } }) => colors.primary};
 `;
 
 const LeftSide = styled.div`
@@ -29,12 +30,12 @@ const Header: FC = () => {
   return (
     <HeaderContainer>
       <LeftSide>
-        <MenuIcon height={45} width={45} />
+        <FiMenu style={{ height: '100%' }} />
       </LeftSide>
       <RightSide>
-        <EmailIcon height={45} width={45} />
-        <GithubIcon height={45} width={45} />
-        <LinkedInIcon height={45} width={45} />
+        <HiOutlineMail height={45} width={45} />
+        <ImGithub height={45} width={45} />
+        <FaLinkedin height={45} width={45} />
       </RightSide>
     </HeaderContainer>
   );

@@ -1,8 +1,29 @@
-const theme = {
+import { DefaultTheme } from 'styled-components';
+
+export interface Theme extends DefaultTheme {
   colors: {
-    text: 'white',
+    text: string;
+    background: string;
+    primary: string;
+    secondary: string;
+  },
+  spacing: {
+    small: string;
+    medium: string;
+    large: string;
+  },
+  breakpoints: {
+    small: string;
+    medium: string;
+    large: string;
+  }
+}
+
+const theme: Theme = {
+  colors: {
+    text: '#e7e1e1',
     background: '#1d1d1d',
-    primary: '#0F6DC3',
+    primary: '#295951',
     secondary: '#FFB800'
   },
   spacing: {

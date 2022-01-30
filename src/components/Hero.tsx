@@ -1,9 +1,11 @@
 import { FC } from 'react';
+import { HiDocumentDownload, HiOutlineMail } from 'react-icons/hi';
+
 import styled from 'styled-components';
 
-import PortraitImage from '../assets/img/me.png';
+import PortraitImage from '../assets/img/hero_image.png';
 import { device } from '../device';
-import Button from './Button';
+import Button from './Button2';
 
 const H1 = styled.h1`
   font-family: 'Roboto Mono', 'Courier New', monospace;
@@ -48,8 +50,14 @@ const Introduction: FC = () => (
       <H3>Hi, I'm </H3>
       <H1>Chris Whitlam</H1>
       <H2>{'<FULL-STACK DEVELOPER>'}</H2>
-      <Button style={{ marginRight: '50px' }}>Contact Me</Button>
-      <Button variant="secondary">Download CV</Button>
+      <Button
+        variant="secondary"
+        style={{ marginRight: '50px' }}
+        icon={<HiDocumentDownload />}
+      >
+        Download CV
+      </Button>
+      <Button icon={<HiOutlineMail />}>Contact Me</Button>
     </div>
     <Image src={PortraitImage} alt="Chris Whitlam" />
   </IntroductionContainer>
