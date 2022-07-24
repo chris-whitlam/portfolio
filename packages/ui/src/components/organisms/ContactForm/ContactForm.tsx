@@ -1,6 +1,6 @@
 import { FC, useState, useCallback, ForwardedRef } from "react";
 
-import { Box, Theme, Grid } from "@mui/material";
+import { Box, Theme, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import SendIcon from '@mui/icons-material/Send';
 
@@ -37,12 +37,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxSizing: 'content-box',
     width: 'fit-content',
     paddingX: theme.spacing(4)
+  },
+  errorMessage: {
+    textAlign: 'right',
+    color: theme.palette.danger.main
+  },
+  successMessage: {
+    textAlign: 'right',
+    color: theme.palette.primary.main
   }
 }), { name: 'ContactForm' });
 
 const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>) => {
   const styles = useStyles();
-  const [submit, { loading }] = useSubmitContactForm();
+  const [submit, { loading, data, error }] = useSubmitContactForm();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -103,6 +111,16 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
             }}
           />
         </Grid>
+        {error &&
+          <Grid item xs={4}>
+            <Typography variant="body2" className={styles.errorMessage}>{error}</Typography>
+          </Grid>
+        }
+        {data &&
+          <Grid item xs={4}>
+            <Typography variant="body2" className={styles.successMessage}>Message sent</Typography>
+          </Grid>
+        }
         <Grid item xs={4}>
           <Box className={styles.buttonsContainer} sx={{ gridColumn: 'span 4' }}>
             <Button

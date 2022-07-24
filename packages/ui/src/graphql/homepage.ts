@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 import { transformPosts, transformProjects, transformProfile } from '@utils/transformers';
 
 const fetchHomepageData = async ({ numOfFeaturesProjects }: { numOfFeaturesProjects: number }) => {
-  const { data } = await apolloClient.query({
+  const { data, error } = await apolloClient.query({
     query: gql`
       query {
         profiles {

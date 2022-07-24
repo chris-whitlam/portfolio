@@ -34,6 +34,10 @@ interface ProjectsProps {
 const Projects: FC<ProjectsProps> = ({ projects }) => {
   const styles = useStyles()
 
+  if (!projects) {
+    return null;
+  }
+
   return (
     <Box className={styles.container}>
       <SectionHeading href='/projects'>Projects</SectionHeading>

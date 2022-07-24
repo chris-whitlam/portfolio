@@ -26,6 +26,10 @@ interface PostsProps {
 const Posts: FC<PostsProps> = ({ posts }) => {
   const styles = useStyles();
 
+  if (!posts) {
+    return null;
+  }
+
   return (
     <Box className={styles.container}>
       <SectionHeading href='/blog'>Recent Posts</SectionHeading>

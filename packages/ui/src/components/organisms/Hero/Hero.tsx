@@ -85,6 +85,10 @@ interface HeroProps {
 const Hero: FC<HeroProps> = ({ profile, scrollToContactForm }) => {
   const styles = useStyles();
 
+  if (!profile) {
+    return null
+  }
+
   const {
     image,
     roles,

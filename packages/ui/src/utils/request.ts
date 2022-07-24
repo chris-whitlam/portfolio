@@ -11,13 +11,10 @@ export const makeRequest = async (
       url, 
       { 
         method, 
-        body: JSON.stringify(body),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        body: JSON.stringify(body)
       }
     ).then(response => {
-      const contentType = `${response.headers.get('content-type')}`;
+      const contentType = `${response.headers.get('Content-Type')}`;
 
       if (response.ok) {
         if (contentType.includes('/json')) {

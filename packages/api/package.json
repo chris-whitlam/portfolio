@@ -1,0 +1,18 @@
+{
+  "name": "@portfolio/api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "netlify functions:serve --port 3001",
+    "build": "netlify functions:build"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.4",
+    "netlify-cli": "^10.11.1"
+  },
+  "dependencies": {
+    "@netlify/functions": "^1.0.0",
+    "joi": "^17.6.0",
+    "nodemailer": "^6.7.7"
+  }
+}

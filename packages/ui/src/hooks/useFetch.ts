@@ -5,7 +5,7 @@ import { RequestBody, RequestMethod, makeRequest } from '@utils';
 export interface RequestState {
   loading: boolean;
   data?: any;
-  error?: Error
+  error?: string;
 }
 
 export type RequestCallback = (body: RequestBody) => Promise<RequestState>;
@@ -20,7 +20,7 @@ const useLazyRequest = (url: string, method: RequestMethod): LazyRequestHookRetu
   });
 
   const callback = useCallback(
-    async (body: RequestBody) => {
+    async (body?: RequestBody) => {
       console.log('Making request', {
         url,
         body
@@ -45,7 +45,7 @@ const useLazyRequest = (url: string, method: RequestMethod): LazyRequestHookRetu
           body,
           data
         })
-      } catch (err) {
+      } catch (err: any) {
         console.error('Request failed', {
           url,
           body,
@@ -54,7 +54,7 @@ const useLazyRequest = (url: string, method: RequestMethod): LazyRequestHookRetu
         setState({
           data: undefined, 
           loading: false, 
-          error: new Error('Something went wrong')
+          error: err.error
         })
       }
 
