@@ -1,8 +1,8 @@
 [build]
   base = "."
-  publish = "out"
+  publish = "packages/ui/out"
 
-  command = "yarn export"
+  command = "yarn --cwd packages/ui export"
 
 [functions]
   directory = "packages/api/src/functions"

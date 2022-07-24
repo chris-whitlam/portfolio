@@ -8,6 +8,7 @@ interface TextAreaProps {
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
   placeholder?: string;
+  error?: string;
   sx?: SxProps<Theme>;
 }
 
@@ -17,6 +18,7 @@ const TextArea: FC<TextAreaProps> = ({
   value,
   onChange,
   placeholder,
+  error,
   sx
 }) =>
   <MUITextField
@@ -28,6 +30,8 @@ const TextArea: FC<TextAreaProps> = ({
     name={name}
     value={value}
     onChange={onChange}
+    error={!!error}
+    helperText={error}
     multiline
     rows={5}
     sx={{

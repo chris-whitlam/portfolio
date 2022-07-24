@@ -1,5 +1,5 @@
-import { ChangeEventHandler, FC, ForwardedRef } from "react"
-import { FormControl, Input, InputLabel, SxProps, TextField as MUITextField, Theme } from "@mui/material";
+import { ChangeEventHandler, ForwardedRef } from "react"
+import { SxProps, TextField as MUITextField, Theme } from "@mui/material";
 import React from "react";
 
 interface TextFieldProps {
@@ -7,6 +7,7 @@ interface TextFieldProps {
   placeholder?: string;
   name: string;
   value: string;
+  error?: string;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
   sx?: SxProps<Theme>;
 }
@@ -18,6 +19,7 @@ const TextField = React.forwardRef((
     value,
     onChange,
     placeholder,
+    error,
     sx
   }: TextFieldProps,
   ref: ForwardedRef<HTMLInputElement>) =>
@@ -31,6 +33,8 @@ const TextField = React.forwardRef((
     name={name}
     value={value}
     onChange={onChange}
+    error={!!error}
+    helperText={error}
     sx={sx}
   />
 )

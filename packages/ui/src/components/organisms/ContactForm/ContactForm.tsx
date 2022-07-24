@@ -1,12 +1,17 @@
-import { FC, useState, useCallback, ForwardedRef } from "react";
+import { ForwardedRef } from "react";
 
-import { Box, Theme, Grid, Typography } from "@mui/material";
+import { Box, Theme, Grid, Typography, Collapse } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import SendIcon from '@mui/icons-material/Send';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import { Button, SectionHeading, TextArea, TextField } from "@atoms";
 import useSubmitContactForm from "./hooks/useSubmitContactForm";
 import React from "react";
+import { useFormik } from "formik";
+
+import * as Yup from 'yup';
+import { theme } from "@styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -43,32 +48,45 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.danger.main
   },
   successMessage: {
-    textAlign: 'right',
-    color: theme.palette.primary.main
+    textAlign: 'center',
+    color: theme.palette.primary.main,
+    fontSize: '1.5em',
+    marginRight: theme.spacing(1)
   }
 }), { name: 'ContactForm' });
+
+const schema = Yup.object({
+  name: Yup.string()
+    .min(3, "Please enter a name of at least 3 characters")
+    .max(30, "Please enter a name less than 30 characters")
+    .required('Your name is required'),
+  email: Yup.string()
+    .email('Please enter a valid email')
+    .max(50, "Please enter an email less than 50 characters")
+    .required('An email is required'),
+  message: Yup.string()
+    .required('A message is required')
+    .max(200, "Please enter a message less than 200 characters")
+});
 
 const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>) => {
   const styles = useStyles();
   const [submit, { loading, data, error }] = useSubmitContactForm();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
 
-  const handleSubmit = useCallback(
-    () => {
-      const body = {
-        name,
-        email,
-        message
-      }
-      submit(body)
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      message: ''
     },
-    [name, email, message, submit]
-  );
+    validateOnChange: false,
+    validateOnBlur: false,
+    validationSchema: schema,
+    onSubmit: submit,
+  });
 
   return (
-    <Box className={styles.container}>
+    <form className={styles.container} onSubmit={formik.handleSubmit}>
       <SectionHeading>Contact me</SectionHeading>
       <Grid container columns={{ xs: 1, md: 4 }} spacing={'20px'}>
         <Grid item xs={4} md={2}>
@@ -77,8 +95,9 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
             label="Name"
             name="name"
             placeholder="Jane Doe"
-            onChange={(event) => setName(event.target.value)}
-            value={name}
+            onChange={formik.handleChange}
+            value={formik.values.name}
+            error={formik.errors.name}
             sx={{
               gridColumn: 'span 4',
               gridRow: 'span 1'
@@ -87,12 +106,12 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
         </Grid>
         <Grid item xs={4} md={2}>
           <TextField
-
-            label="Email"
+            label="Your email"
             name="email"
             placeholder="jane.doe@example.com"
-            onChange={(event) => setEmail(event.target.value)}
-            value={email}
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            error={formik.errors.email}
             sx={{
               gridColumn: 'span 4',
               gridRow: 'span 1'
@@ -103,8 +122,9 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
           <TextArea
             placeholder="Enter your message here"
             name="message"
-            onChange={(event) => setMessage(event.target.value)}
-            value={message}
+            onChange={formik.handleChange}
+            value={formik.values.message}
+            error={formik.errors.message}
             sx={{
               gridColumn: 'span 4',
               gridRow: 'span 1'
@@ -116,17 +136,22 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
             <Typography variant="body2" className={styles.errorMessage}>{error}</Typography>
           </Grid>
         }
-        {data &&
-          <Grid item xs={4}>
-            <Typography variant="body2" className={styles.successMessage}>Message sent</Typography>
-          </Grid>
-        }
+
+        <Grid item xs={4} >
+          <Collapse in={!!data}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Typography variant="body2" className={styles.successMessage}>Message sent</Typography>
+              <CheckCircleIcon color='primary' />
+            </Box>
+          </Collapse >
+        </Grid>
+
         <Grid item xs={4}>
           <Box className={styles.buttonsContainer} sx={{ gridColumn: 'span 4' }}>
             <Button
               className={styles.button}
               endIcon={<SendIcon />}
-              onClick={handleSubmit}
+              type="submit"
               isLoading={loading}
             >
               Send
@@ -134,7 +159,7 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
           </Box>
         </Grid>
       </Grid>
-    </Box >
+    </form>
   )
 })
 
