@@ -1,0 +1,31 @@
+[build]
+  base = "."
+  publish = "packages/ui/out"
+
+  command = "yarn --cwd packages/ui export"
+
+[functions]
+  directory = "packages/api/src/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "*.js" # js files should be set this way
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "*.css" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/img/*" # images
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

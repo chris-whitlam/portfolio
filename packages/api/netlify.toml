@@ -1,0 +1,37 @@
+[build]
+  base = "."
+  publish = "/dist"
+
+  command = "yarn build"
+
+[functions]
+  directory = "src/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://localhost:3000, https://chriswhitlam.dev, https://*chriswhitlamdev.netlify.app"
+    Access-Control-Allow-Headers = "content-type"
+    Access-Control-Allow-Methods = "GET, OPTIONS, PUT, POST"
+[[headers]]
+  for = "*.js" # js files should be set this way
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "*.css" # css files too
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/img/*" # images
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
+    "incremental": true,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "module": "commonjs",
+    "outDir": "./dist",
     "noEmit": true,
-    "jsx": "react-jsx"
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src"
+  "exclude": [
+    "packages/**/tests/**",
+    "packages/**/dist/**"
+  ],
+  "references": [
+    {
+      "path": "./packages/api"
+    },
+    {
+      "path": "./packages/ui"
+    }
   ]
 }
