@@ -25,7 +25,7 @@ const globalStyles: GlobalStylesProps['styles'] = {
   },
   h3: {
     fontFamily: `'Bungee Hairline', cursive;`,
-    fontSize: '2rem',
+    fontSize: '1.7rem',
     zIndex: 1
   },
   span: {
