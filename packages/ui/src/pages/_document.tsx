@@ -10,7 +10,8 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg" />
+          <link rel="shortcut icon" type="image/png" href="favicon.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
           <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Bayon&family=Bungee+Hairline&family=Electrolize&family=Iceland&family=K2D:wght@600&family=Megrim&family=Oxanium:wght@300&family=Raleway:wght@800&family=Righteous&family=Turret+Road:wght@700&display=swap" rel="stylesheet" />

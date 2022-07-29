@@ -95,7 +95,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
     <Box className={styles.container} sx={{ ...defaultStyle, ...sx }}>
       <Card className={styles.card}>
         <Box className={styles.link}>
-          <Link passHref href={link} style={{ minHeight: isApp ? '2000px' : '' }}>
+          <Link passHref href={link}>
             <Image
               image={image} sizes='370px'
             />
@@ -106,7 +106,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
             <i>{projectType} Project</i>
           </Typography>
           <Typography variant="h5" component="div">
-            <Link href={link}>
+            <Link passHref href={link}>
               {name}
             </Link>
           </Typography>

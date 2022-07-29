@@ -26,7 +26,14 @@ const globalStyles: GlobalStylesProps['styles'] = {
   h3: {
     fontFamily: `'Bungee Hairline', cursive;`,
     fontSize: '1.7rem',
-    zIndex: 1
+    zIndex: 1,
+    marginBottom: 0
+  },
+  h4: {
+    fontFamily: `'Bungee Hairline', cursive;`,
+    fontSize: '1.2rem',
+    zIndex: 1,
+    marginBottom: 0
   },
   span: {
     zIndex: 1

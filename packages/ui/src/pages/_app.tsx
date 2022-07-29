@@ -1,11 +1,10 @@
-import Head from 'next/head';
 import type { AppProps as NextAppProps } from 'next/app'
-import { GlobalStyles } from '@mui/material'
 
 import { Layout } from '@templates';
 import { createEmotionCache } from '@/utils';
 import { EmotionCache } from '@emotion/react';
 import { CacheProvider } from '@emotion/react';
+import Head from 'next/head';
 
 const clientSideEmotionCache = createEmotionCache();
 
