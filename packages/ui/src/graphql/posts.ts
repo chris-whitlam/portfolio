@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { GraphQLPost, Post } from "@types";
+import { Post } from "@types";
 import { transformPost, transformPosts } from "@utils/transformers";
 import apolloClient from "./apolloClient";
 

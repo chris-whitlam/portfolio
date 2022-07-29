@@ -14,7 +14,6 @@ import { Project } from '@/types';
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     position: 'relative',
-    maxWidth: '370px',
     transition: 'all .1s ease-in-out',
 
     '&:hover': {
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   card: {
     borderRadius: '8px',
-    height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.grey[500]
   },
   content: {
-    flex: '1 0 auto',
+    flex: '0 0 auto',
   },
   buttonsContainer: {
     display: 'flex',
@@ -51,7 +49,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: "hidden"
   },
   link: {
-    minHeight: '220px',
     '&:hover': {
       cursor: 'pointer',
     }
@@ -98,7 +95,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
     <Box className={styles.container} sx={{ ...defaultStyle, ...sx }}>
       <Card className={styles.card}>
         <Box className={styles.link}>
-          <Link passHref href={link} >
+          <Link passHref href={link} style={{ minHeight: isApp ? '2000px' : '' }}>
             <Image
               image={image} sizes='370px'
             />

@@ -4,9 +4,9 @@ import { Box, Theme, Typography, Container, useMediaQuery } from '@mui/material'
 import Card from '@mui/material/Card';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { RichText, NodeRendererType } from '@graphcms/rich-text-react-renderer';
 
-
-import { BackLink, PageTitle, Button, SectionHeading } from '@atoms'
+import { BackLink, PageTitle, Button, SectionHeading, Image } from '@atoms'
 import { Project } from '@types'
 import { getProjectPaths, getProject } from '@graphql/projects';
 import { makeStyles } from '@mui/styles';
@@ -73,6 +73,19 @@ interface ProjectPageProps {
   project: Project
 }
 
+const getComponents = (styles: any): NodeRendererType => ({
+  img: ({ width, height, altText, src, title }) => {
+    const image = {
+      alt: altText || title || '',
+      height,
+      width,
+      url: src || ''
+    }
+    return <Image image={image} style={{ borderRadius: '8px' }} />
+  },
+})
+
+
 const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
   const styles = useStyles();
   const showFixedButtons = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
@@ -84,6 +97,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
     demo,
     sourceCode,
     projectType,
+    description,
     tags,
     isApp
   } = project;
@@ -132,10 +146,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
         </Box>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: 5 }}>
-          <SectionHeading>Details</SectionHeading>
-          <Card sx={{ width: '100%' }}>
-            Test
-          </Card>
+          <RichText content={description} renderers={getComponents(styles)} />
         </Box>
 
       </Container>

@@ -12,6 +12,9 @@ export const getProject = async (slug: string): Promise<Project> => {
           slug
           tags
           summary
+          description {
+            raw
+          }
           images {
             alt
             image {

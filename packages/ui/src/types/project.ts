@@ -11,6 +11,7 @@ interface ProjectBase {
   demo: string;
   sourceCode: string;
   isApp: boolean;
+  description: any;
 }
 
 export interface Project extends ProjectBase {

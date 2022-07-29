@@ -83,14 +83,7 @@ interface StaticPropsParams {
 }
 
 export const getStaticProps = async ({ params: { slug } }: StaticPropsParams) => {
-  let post = await getPost(slug)
-
-  const content = post.content.raw;
-
-  post = {
-    ...post,
-    content
-  }
+  const post = await getPost(slug)
 
   return {
     props: {

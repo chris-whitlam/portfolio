@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%'
   },
   grid: {
-    gridGap: theme.spacing(6),
+    gridGap: theme.spacing(4),
     display: 'grid',
     [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: 'repeat(1, 1fr)',
