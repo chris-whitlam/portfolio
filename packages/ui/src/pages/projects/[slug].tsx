@@ -145,7 +145,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
           </Box>
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: 5 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: 2 }}>
           <RichText content={description} renderers={getComponents(styles)} />
         </Box>
 
