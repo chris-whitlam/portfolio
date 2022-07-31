@@ -97,7 +97,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
         <Box className={styles.link}>
           <Link passHref href={link}>
             <Image
-              image={image} sizes='370px'
+              image={image}
+              sizes='370px'
             />
           </Link>
         </Box>

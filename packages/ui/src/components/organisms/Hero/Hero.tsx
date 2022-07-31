@@ -102,7 +102,7 @@ const Hero: FC<HeroProps> = ({ profile }) => {
     <>
       <Box className={styles.container}>
         <Box className={styles.imageContainer}>
-          <Image image={image} className={styles.image} layout='fill' sizes='320px' />
+          <Image image={image} className={styles.image} layout='fill' sizes='320px' priority />
         </Box>
         <Typed
           className={styles.headline}
