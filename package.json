@@ -32,12 +32,10 @@
   },
   "lint-staged": {
     "packages/ui/**/*.{ts,tsx}": [
-      "yarn lint:ui",
-      "git add"
+      "yarn lint:ui"
     ],
-    "packages/api/**/*.{ts}": [
-      "yarn lint:api",
-      "git add"
+    "packages/api/**/*.ts": [
+      "yarn lint:api"
     ]
   },
   "husky": {
