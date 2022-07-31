@@ -1,10 +1,12 @@
-import { gql } from "@apollo/client";
-import { Project } from "@types";
-import { transformProject, transformProjects } from "@utils/transformers";
-import apolloClient from "./apolloClient";
+import { gql } from '@apollo/client';
+import { Project } from '@types';
+import { transformProject, transformProjects } from '@utils/transformers';
+import apolloClient from './apolloClient';
 
 export const getProject = async (slug: string): Promise<Project> => {
-   const { data: { projects } } = await apolloClient.query({
+  const {
+    data: { projects }
+  } = await apolloClient.query({
     query: gql`
       query {
         projects(where: {slug: "${slug}"}) {
@@ -30,13 +32,15 @@ export const getProject = async (slug: string): Promise<Project> => {
         }
       }
     `
-  })
+  });
 
-  return transformProject(projects[0])
-}
+  return transformProject(projects[0]);
+};
 
 export const getProjects = async (): Promise<Project[]> => {
-  const { data: { projects } } = await apolloClient.query({
+  const {
+    data: { projects }
+  } = await apolloClient.query({
     query: gql`
       query {
         projects {
@@ -59,13 +63,15 @@ export const getProjects = async (): Promise<Project[]> => {
         }
       }
     `
-  })
+  });
 
   return transformProjects(projects);
-}
+};
 
 export const getProjectPaths = async () => {
-    const { data: { projects } } = await apolloClient.query({
+  const {
+    data: { projects }
+  } = await apolloClient.query({
     query: gql`
       query {
         projects {
@@ -73,11 +79,11 @@ export const getProjectPaths = async () => {
         }
       }
     `
-  })
+  });
 
   return projects.map((project: Project) => ({
     params: {
       slug: project.slug
     }
-  }))
-}
+  }));
+};

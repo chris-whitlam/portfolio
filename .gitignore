@@ -39,6 +39,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 .env
+.env.*
 .swc
 
 # Netlify

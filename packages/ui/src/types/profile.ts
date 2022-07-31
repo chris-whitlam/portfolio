@@ -1,4 +1,4 @@
-import { Image, GraphQLImage } from '.'
+import { Image, GraphQLImage } from './image';
 
 export interface Socials {
   githubUrl: string;
@@ -14,9 +14,9 @@ interface ProfileBase {
 }
 
 export interface Profile extends ProfileBase {
-  image: Image
+  image: Image;
 }
 
 export interface GraphQLProfile extends ProfileBase {
-  image: GraphQLImage
+  image: GraphQLImage;
 }

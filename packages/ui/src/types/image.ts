@@ -13,5 +13,5 @@ export interface GraphQLImage {
     url: string;
     height?: number;
     width?: number;
-  }
+  };
 }

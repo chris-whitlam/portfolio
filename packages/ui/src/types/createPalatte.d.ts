@@ -1,6 +1,6 @@
-import { Palette as MUIPalette } from "@mui/material/styles";
+import { Palette as MUIPalette } from '@mui/material/styles';
 
-declare module "@mui/material/styles/createPalette" {
+declare module '@mui/material/styles/createPalette' {
   interface Palette {
     tertiary: MUIPalette['primary'];
     danger: MUIPalette['primary'];
@@ -18,9 +18,9 @@ declare module '@mui/material/Button' {
   }
 
   interface ButtonPropsVariantOverrides {
-    primary: true, 
-    secondary: true, 
-    tertiary: true, 
-    danger: true
+    primary: true;
+    secondary: true;
+    tertiary: true;
+    danger: true;
   }
 }
