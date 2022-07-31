@@ -1,10 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
+const Background: FC = () => <canvas />;
 
-const Background: FC = () => {
-  return (
-    <canvas />
-  )
-}
-
-export default Background
+export default Background;

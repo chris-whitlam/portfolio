@@ -13,9 +13,19 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg" />
           <link rel="shortcut icon" type="image/png" href="favicon.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
-          <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Bayon&family=Bungee+Hairline&family=Electrolize&family=Iceland&family=K2D:wght@600&family=Megrim&family=Oxanium:wght@300&family=Raleway:wght@800&family=Righteous&family=Turret+Road:wght@700&display=swap" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Code+Pro:wght@200;300&display=swap" rel="stylesheet" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin=""
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Aldrich&family=Bayon&family=Bungee+Hairline&family=Electrolize&family=Iceland&family=K2D:wght@600&family=Megrim&family=Oxanium:wght@300&family=Raleway:wght@800&family=Righteous&family=Turret+Road:wght@700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Code+Pro:wght@200;300&display=swap"
+            rel="stylesheet"
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -61,7 +71,8 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => materialUISheets.collect(<App {...props} />),
+      enhanceApp: (App) => (props) =>
+        materialUISheets.collect(<App {...props} />)
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -70,11 +81,11 @@ MyDocument.getInitialProps = async (ctx) => {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
-      <Fragment key='styles'>
+      <Fragment key="styles">
         {initialProps.styles}
         {materialUISheets.getStyleElement()}
-        <GlobalStyles key='globalStyles' styles={globalStyles} />
+        <GlobalStyles key="globalStyles" styles={globalStyles} />
       </Fragment>
-    ],
+    ]
   };
 };

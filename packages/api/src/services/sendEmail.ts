@@ -1,14 +1,15 @@
-import { createTransport } from "nodemailer";
-import { getConfig } from "../utils";
+import { ContactRequest } from '@types';
+import { createTransport } from 'nodemailer';
+import { getConfig } from '@utils';
 
-const sendEmail = async ({ name, email, message }: any) => {
+const sendEmail = async ({ name, email, message }: ContactRequest) => {
   const {
     emailHost,
     emailPort,
     emailUsername,
     emailPassword,
     emailSenderAddress,
-    emailRecieverAddress,
+    emailRecieverAddress
   } = getConfig();
 
   const transporter = createTransport({
@@ -17,8 +18,8 @@ const sendEmail = async ({ name, email, message }: any) => {
     secure: true,
     auth: {
       user: emailUsername,
-      pass: emailPassword,
-    },
+      pass: emailPassword
+    }
   });
 
   await transporter.verify();
@@ -32,7 +33,7 @@ const sendEmail = async ({ name, email, message }: any) => {
           <p>${message}</p>
           <p>Message from ${name}</p>
           <p>${email}</p>
-          `,
+          `
     });
   } finally {
     transporter.close();

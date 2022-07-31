@@ -1,97 +1,99 @@
 import { FC, useCallback, useMemo, useRef } from 'react';
 
-import { Box, Theme, Typography, Container, useMediaQuery } from '@mui/material';
+import { Box, Typography, Container, useMediaQuery } from '@mui/material';
 import Card from '@mui/material/Card';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { RichText, NodeRendererType } from '@graphcms/rich-text-react-renderer';
 
-import { BackLink, PageTitle, Button, Image } from '@atoms'
-import { Project } from '@types'
+import { BackLink, PageTitle, Button, Image } from '@atoms';
+import { Project } from '@types';
 import { getProjectPaths, getProject } from '@graphql/projects';
 import { makeStyles } from '@mui/styles';
-import { theme } from '@styles'
+import { theme } from '@styles';
 import { Carousel } from '@molecules';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  mobileButtonsContainer: {
-    display: 'flex',
-    borderRadius: '20px 20px 0 0 ',
-    alignItems: 'center',
-    padding: theme.spacing(1.5),
-    justifyContent: 'space-evenly',
-    position: 'fixed',
-    bottom: '0',
-    width: '100%',
-    zIndex: 10,
-    background: theme.palette.background.default
-  },
-  topContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    width: '100%',
-
-    [theme.breakpoints.up('md')]: {
-      flexDirection: 'row',
+const useStyles = makeStyles(
+  () => ({
+    mobileButtonsContainer: {
+      display: 'flex',
+      borderRadius: '20px 20px 0 0 ',
+      alignItems: 'center',
+      padding: theme.spacing(1.5),
+      justifyContent: 'space-evenly',
+      position: 'fixed',
+      bottom: '0',
+      width: '100%',
+      zIndex: 10,
+      background: theme.palette.background.default
     },
-  },
-  carouselContainer: {
-    width: '100%',
+    topContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      width: '100%',
 
-    [theme.breakpoints.up('md')]: {
-      width: '67%'
+      [theme.breakpoints.up('md')]: {
+        flexDirection: 'row'
+      }
+    },
+    carouselContainer: {
+      width: '100%',
+
+      [theme.breakpoints.up('md')]: {
+        width: '67%'
+      }
+    },
+    summaryContainer: {
+      width: '100%',
+      display: 'flex',
+      gap: theme.spacing(2),
+      marginTop: theme.spacing(3),
+      flexDirection: 'column',
+      [theme.breakpoints.up('md')]: {
+        width: '30%',
+        marginTop: 0
+      }
+    },
+    buttonsContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      alignItems: 'space-evenly',
+      gap: theme.spacing(3)
+    },
+    projectType: {
+      color: theme.palette.secondary.main
+    },
+    techStack: {
+      fontSize: 12,
+      marginBottom: theme.spacing(2),
+      color: theme.palette.grey[500]
     }
-  },
-  summaryContainer: {
-    width: '100%',
-    display: 'flex',
-    gap: theme.spacing(2),
-    marginTop: theme.spacing(3),
-    flexDirection: 'column',
-    [theme.breakpoints.up('md')]: {
-      width: '30%',
-      marginTop: 0
-    }
-  },
-  buttonsContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'space-evenly',
-    gap: theme.spacing(3)
-  },
-  projectType: {
-    color: theme.palette.secondary.main,
-  },
-  techStack: {
-    fontSize: 12,
-    marginBottom: theme.spacing(2),
-    color: theme.palette.grey[500]
-  },
-}), { name: 'Project' });
+  }),
+  { name: 'Project' }
+);
 
 interface ProjectPageProps {
-  project: Project
+  project: Project;
 }
 
-const getComponents = (styles: any): NodeRendererType => ({
+const getComponents = (): NodeRendererType => ({
   img: ({ width, height, altText, src, title }) => {
     const image = {
       alt: altText || title || '',
       height,
       width,
       url: src || ''
-    }
-    return <Image image={image} style={{ borderRadius: '8px' }} />
-  },
-})
-
+    };
+    return <Image image={image} style={{ borderRadius: '8px' }} />;
+  }
+});
 
 const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
   const styles = useStyles();
-  const showFixedButtons = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const showFixedButtons = useMediaQuery(() => theme.breakpoints.down('md'));
   const contentRef = useRef<HTMLDivElement>();
 
   const {
@@ -102,27 +104,24 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
     sourceCode,
     projectType,
     description,
-    tags,
-    isApp
+    tags
   } = project;
 
   const tagsString = useMemo(
-    () => tags?.reduce(
-      (acc, item, count) => `${acc}${item}${count < tags.length - 1 ? ', ' : ''}`
-      , ''
-    ),
+    () =>
+      tags?.reduce(
+        (acc, item, count) =>
+          `${acc}${item}${count < tags.length - 1 ? ', ' : ''}`,
+        ''
+      ),
     [tags]
   );
 
-  const scrollToContent = useCallback(
-    () => {
-      if (contentRef.current) {
-        console.log(contentRef.current)
-        contentRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    },
-    []
-  )
+  const scrollToContent = useCallback(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   return (
     <>
@@ -131,45 +130,104 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
         <PageTitle>{name}</PageTitle>
         <Box className={styles.topContainer}>
           <Box className={styles.carouselContainer}>
-            <Carousel images={images} isApp={isApp} />
+            <Carousel images={images} />
           </Box>
           <Box className={styles.summaryContainer}>
             <Card sx={{ padding: theme.spacing(2) }}>
-              <Typography variant='body2' gutterBottom>{summary}</Typography>
+              <Typography variant="body2" gutterBottom>
+                {summary}
+              </Typography>
             </Card>
             <Card sx={{ padding: theme.spacing(2) }}>
-              <Typography gutterBottom variant="caption" className={styles.projectType}>
+              <Typography
+                gutterBottom
+                variant="caption"
+                className={styles.projectType}
+              >
                 Project Type
               </Typography>
               <Typography sx={{ marginBottom: theme.spacing(2) }}>
                 {projectType}
               </Typography>
-              <Typography gutterBottom variant="caption" className={styles.projectType}>
+              <Typography
+                gutterBottom
+                variant="caption"
+                className={styles.projectType}
+              >
                 Tech Stack
               </Typography>
-              <Typography>
-                {tagsString}
-              </Typography>
+              <Typography>{tagsString}</Typography>
             </Card>
-            {!showFixedButtons && <>
-              {sourceCode && <Button size='medium' variant='secondary' endIcon={<GitHubIcon />} sx={{ height: 50 }}>Source Code</Button>}
-              {demo && <Button size='medium' variant='primary' endIcon={<OpenInNewIcon />} sx={{ height: 50 }}>Go to Site</Button>}
-            </>}
+            {!showFixedButtons && (
+              <>
+                {sourceCode && (
+                  <Button
+                    size="medium"
+                    variant="secondary"
+                    endIcon={<GitHubIcon />}
+                    sx={{ height: 50 }}
+                  >
+                    Source Code
+                  </Button>
+                )}
+                {demo && (
+                  <Button
+                    size="medium"
+                    variant="primary"
+                    endIcon={<OpenInNewIcon />}
+                    sx={{ height: 50 }}
+                  >
+                    Go to Site
+                  </Button>
+                )}
+              </>
+            )}
           </Box>
-          {showFixedButtons && <ExpandMoreIcon sx={{ margin: '0 auto', height: 40, width: 40 }} onClick={scrollToContent} />}
+          {showFixedButtons && (
+            <ExpandMoreIcon
+              sx={{ margin: '0 auto', height: 40, width: 40 }}
+              onClick={scrollToContent}
+            />
+          )}
         </Box>
-        <Box ref={contentRef} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <RichText content={description} renderers={getComponents(styles)} />
+        <Box
+          ref={contentRef}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+          }}
+        >
+          <RichText content={description} renderers={getComponents()} />
         </Box>
-
       </Container>
-      {showFixedButtons && <Box className={styles.mobileButtonsContainer}>
-        {sourceCode && <Button size='medium' variant='secondary' endIcon={<GitHubIcon />} sx={{ height: 40 }}>Source Code</Button>}
-        {demo && <Button size='medium' variant='primary' endIcon={<OpenInNewIcon />} sx={{ height: 40 }}>Go to Site</Button>}
-      </Box>}
+      {showFixedButtons && (
+        <Box className={styles.mobileButtonsContainer}>
+          {sourceCode && (
+            <Button
+              size="medium"
+              variant="secondary"
+              endIcon={<GitHubIcon />}
+              sx={{ height: 40 }}
+            >
+              Source Code
+            </Button>
+          )}
+          {demo && (
+            <Button
+              size="medium"
+              variant="primary"
+              endIcon={<OpenInNewIcon />}
+              sx={{ height: 40 }}
+            >
+              Go to Site
+            </Button>
+          )}
+        </Box>
+      )}
     </>
-  )
-}
+  );
+};
 
 export const getStaticPaths = async () => {
   const paths = await getProjectPaths();
@@ -183,14 +241,15 @@ export const getStaticPaths = async () => {
 interface StaticPropsParams {
   params: {
     slug: string;
-  }
+  };
 }
 
-export const getStaticProps = async ({ params: { slug } }: StaticPropsParams) => {
-  const project = await getProject(slug)
+export const getStaticProps = async ({
+  params: { slug }
+}: StaticPropsParams) => {
+  const project = await getProject(slug);
 
-
-  return { props: { project } }
+  return { props: { project } };
 };
 
 export default ProjectPage;

@@ -6,30 +6,33 @@ import { Header, Footer } from '@organisms';
 import { theme } from '@styles';
 
 interface LayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
-const useStyles = makeStyles(() => ({
-  container: {
-    minHeight: '100vh',
-    maxWidth: '100vw',
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  mainContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(5),
-    [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(15),
-      paddingBottom: theme.spacing(10),
+const useStyles = makeStyles(
+  () => ({
+    container: {
+      minHeight: '100vh',
+      maxWidth: '100vw',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
     },
-  },
-}), { name: 'Layout' })
+    mainContent: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingTop: theme.spacing(10),
+      paddingBottom: theme.spacing(5),
+      [theme.breakpoints.up('md')]: {
+        paddingTop: theme.spacing(15),
+        paddingBottom: theme.spacing(10)
+      }
+    }
+  }),
+  { name: 'Layout' }
+);
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   const styles = useStyles();
@@ -44,8 +47,8 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         </Container>
         <Footer />
       </Box>
-    </ThemeProvider >
-  )
-}
+    </ThemeProvider>
+  );
+};
 
 export default Layout;

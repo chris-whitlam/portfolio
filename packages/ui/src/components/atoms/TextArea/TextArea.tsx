@@ -1,12 +1,12 @@
-import { Input, InputLabel, FormControl, SxProps, Theme, TextField as MUITextField } from "@mui/material"
-import { theme } from "@styles";
-import { FC, ChangeEventHandler } from "react"
+import { SxProps, Theme, TextField as MUITextField } from '@mui/material';
+import { theme } from '@styles';
+import { FC, ChangeEventHandler } from 'react';
 
 interface TextAreaProps {
   label?: string;
   name: string;
   value: string;
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   placeholder?: string;
   error?: string;
   sx?: SxProps<Theme>;
@@ -20,13 +20,13 @@ const TextArea: FC<TextAreaProps> = ({
   placeholder,
   error,
   sx
-}) =>
+}) => (
   <MUITextField
     fullWidth
-    variant='outlined'
+    variant="outlined"
     label={label}
     placeholder={placeholder}
-    type='text'
+    type="text"
     name={name}
     value={value}
     onChange={onChange}
@@ -39,5 +39,6 @@ const TextArea: FC<TextAreaProps> = ({
       ...sx
     }}
   />
+);
 
 export default TextArea;

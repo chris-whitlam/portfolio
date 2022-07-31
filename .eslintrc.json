@@ -1,0 +1,37 @@
+{
+  "root": true,
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "unused-imports"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "import/extensions": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		]
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "useJSXTextNode": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "extensions": [".ts", ".tsx"]
+      }
+    }
+  }
+}

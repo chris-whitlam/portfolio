@@ -1,108 +1,114 @@
-import { FC, useCallback, useState } from "react";
-import { Box, Theme, Button, useMediaQuery } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { FC, useCallback, useState } from 'react';
+import { Box, Button, useMediaQuery } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+import { autoPlay as swipeableAutoPlay } from 'react-swipeable-views-utils';
 
 import { Image, Dots } from '@atoms';
-import { Image as ImageType } from '@types'
-import { theme } from "@styles";
+import { Image as ImageType } from '@types';
+import { theme } from '@styles';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const AutoPlaySwipeableViews = swipeableAutoPlay(SwipeableViews);
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  control: {
-    height: 40,
-    width: 40,
-    filter: 'drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.584))',
-    [theme.breakpoints.up('md')]: {
-      height: 60,
-      width: 60,
+const useStyles = makeStyles(
+  () => ({
+    container: {
+      display: 'flex',
+      justifyContent: 'center'
     },
-  },
-  imageContainer: {
-    width: '100%',
-    height: '100%',
-    borderRadius: '10px',
-    overflow: 'hidden',
-    filter: 'drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.584))',
-    backgroundColor: theme.palette.grey[900],
-
-    '& div': {
+    control: {
+      height: 40,
+      width: 40,
+      filter: 'drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.584))',
+      [theme.breakpoints.up('md')]: {
+        height: 60,
+        width: 60
+      }
+    },
+    imageContainer: {
+      width: '100%',
       height: '100%',
-    },
-
-    [theme.breakpoints.up('md')]: {
-      height: '400px',
-      maxHeight: '500px',
       borderRadius: '10px',
+      overflow: 'hidden',
+      filter: 'drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.584))',
+      backgroundColor: theme.palette.grey[900],
+
+      '& div': {
+        height: '100%'
+      },
+
+      [theme.breakpoints.up('md')]: {
+        height: '400px',
+        maxHeight: '500px',
+        borderRadius: '10px'
+      }
+    },
+    slide: {
+      display: 'flex',
+      flexDirection: 'column'
     }
-  },
-  slide: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-}), { name: 'Carousel' });
+  }),
+  { name: 'Carousel' }
+);
 
 interface CarouselProps {
   images: ImageType[];
   initialImageIndex?: number;
   autoPlay?: boolean;
   onClick?: (index?: number) => void;
-  isApp?: boolean;
 }
 
-const Carousel: FC<CarouselProps> = ({ images, initialImageIndex = 0, autoPlay = true, onClick, isApp = false }) => {
+const Carousel: FC<CarouselProps> = ({
+  images,
+  initialImageIndex = 0,
+  autoPlay = true,
+  onClick
+}) => {
   const styles = useStyles();
   const [imageIndex, setImageIndex] = useState(initialImageIndex);
   const [autoplay, setAutoPlay] = useState(autoPlay);
   const showControls = useMediaQuery(theme.breakpoints.up('md'));
 
-  const incrementImageIndex = useCallback(
-    () => {
-      if (imageIndex === images.length - 1) {
-        setImageIndex(0);
-        return;
-      }
-      setImageIndex((currentIndex) => currentIndex + 1)
-      setAutoPlay(false);
-    },
-    [imageIndex, images.length]
-  );
+  const incrementImageIndex = useCallback(() => {
+    if (imageIndex === images.length - 1) {
+      setImageIndex(0);
+      return;
+    }
+    setImageIndex((currentIndex) => currentIndex + 1);
+    setAutoPlay(false);
+  }, [imageIndex, images.length]);
 
-  const decrementImageIndex = useCallback(
-    () => {
-      if (imageIndex === 0) {
-        setImageIndex(images.length - 1);
-        return;
-      }
-      setImageIndex((currentIndex) => currentIndex - 1)
-      setAutoPlay(false);
-    },
-    [imageIndex, images.length]
-  );
+  const decrementImageIndex = useCallback(() => {
+    if (imageIndex === 0) {
+      setImageIndex(images.length - 1);
+      return;
+    }
+    setImageIndex((currentIndex) => currentIndex - 1);
+    setAutoPlay(false);
+  }, [imageIndex, images.length]);
 
-  const handleAutoplay = useCallback((index: number) => setImageIndex(index), [])
+  const handleAutoplay = useCallback(
+    (index: number) => setImageIndex(index),
+    []
+  );
 
   const handleClick = (index: number) => {
     setAutoPlay(false);
-    onClick && onClick(index)
-  }
+    if (onClick) onClick(index);
+  };
 
   return (
     <Box>
       <Box className={styles.container}>
-        {showControls && <Button onClick={decrementImageIndex}>
-          <ChevronLeftIcon className={styles.control} />
-        </Button>}
+        {showControls && (
+          <Button onClick={decrementImageIndex}>
+            <ChevronLeftIcon className={styles.control} />
+          </Button>
+        )}
         <AutoPlaySwipeableViews
-          axis='x'
+          axis="x"
           index={imageIndex}
           slideCount={images.length}
           onChangeIndex={handleAutoplay}
@@ -116,21 +122,21 @@ const Carousel: FC<CarouselProps> = ({ images, initialImageIndex = 0, autoPlay =
             <Image
               key={image.url}
               image={image}
-              layout='responsive'
+              layout="responsive"
               objectFit="contain"
               onClick={() => handleClick(index)}
             />
           ))}
         </AutoPlaySwipeableViews>
-        {
-          showControls && <Button onClick={incrementImageIndex}>
+        {showControls && (
+          <Button onClick={incrementImageIndex}>
             <ChevronRightIcon className={styles.control} />
           </Button>
-        }
-      </Box >
+        )}
+      </Box>
       <Dots totalDots={images.length} currentIndex={imageIndex} />
-    </Box >
-  )
-}
+    </Box>
+  );
+};
 
 export default Carousel;

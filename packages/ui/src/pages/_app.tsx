@@ -1,18 +1,21 @@
-import type { AppProps as NextAppProps } from 'next/app'
+import type { AppProps as NextAppProps } from 'next/app';
 
 import { Layout } from '@templates';
-import { createEmotionCache } from '@/utils';
-import { EmotionCache } from '@emotion/react';
-import { CacheProvider } from '@emotion/react';
+import { EmotionCache, CacheProvider } from '@emotion/react';
 import Head from 'next/head';
+import { createEmotionCache } from '@/utils';
 
 const clientSideEmotionCache = createEmotionCache();
 
 interface AppProps extends NextAppProps {
-  emotionCache: EmotionCache
+  emotionCache: EmotionCache;
 }
 
-const App = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: AppProps) => (
+const App = ({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache
+}: AppProps) => (
   <CacheProvider value={emotionCache}>
     <Head>
       <title>Chris Whitlam</title>
@@ -22,6 +25,6 @@ const App = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: Ap
       <Component {...pageProps} />
     </Layout>
   </CacheProvider>
-)
+);
 
-export default App
+export default App;

@@ -11,12 +11,37 @@
     "build:api": "yarn --cwd packages/api build",
     "build:ui": "yarn --cwd packages/ui build",
     "build": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn build:ui\" \"yarn build:api\"",
-
     "dev:api": "yarn --cwd packages/api dev",
     "dev:ui": "yarn --cwd packages/ui dev",
-    "dev": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn dev:ui\" \"yarn dev:api\""
+    "dev": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn dev:ui\" \"yarn dev:api\"",
+    "lint:api": "yarn --cwd packages/api lint",
+    "lint:ui": "yarn --cwd packages/ui lint",
+    "lint": "yarn lint:ui && yarn lint:api"
   },
   "devDependencies": {
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.3.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "lint-staged": {
+    "packages/ui/**/*.{ts,tsx}": [
+      "yarn lint:ui -- --silent",
+      "git add"
+    ],
+    "packages/api/**/*.{ts}": [
+      "yarn lint:api -- --silent",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
