@@ -28,7 +28,7 @@ const Button: FC<ButtonProps> = ({
     secondary: {
       ...defaultStyles,
       backgroundColor: theme.palette.background.default
-    },
+    }
   }
 
   const style = styles[variant] || defaultStyles;

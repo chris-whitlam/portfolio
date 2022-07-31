@@ -4,6 +4,7 @@ import { Hero, Projects, Posts, ContactForm, Quote } from '@organisms';
 import { getHomepageData } from '@graphql';
 import { Project, Post, Profile } from '@types';
 import { useCallback, useRef } from 'react';
+import { ScrollToTop } from '@atoms';
 
 interface HomePageProps {
   profile: Profile;
@@ -20,7 +21,7 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => {
         contactFormInputRef.current.focus();
       }
     },
-    [contactFormInputRef.current]
+    []
   )
 
   return (

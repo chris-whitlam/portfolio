@@ -1,12 +1,13 @@
-import { FC, useMemo } from 'react';
+import { FC, useCallback, useMemo, useRef } from 'react';
 
 import { Box, Theme, Typography, Container, useMediaQuery } from '@mui/material';
 import Card from '@mui/material/Card';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { RichText, NodeRendererType } from '@graphcms/rich-text-react-renderer';
 
-import { BackLink, PageTitle, Button, SectionHeading, Image } from '@atoms'
+import { BackLink, PageTitle, Button, Image } from '@atoms'
 import { Project } from '@types'
 import { getProjectPaths, getProject } from '@graphql/projects';
 import { makeStyles } from '@mui/styles';
@@ -23,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'fixed',
     bottom: '0',
     width: '100%',
+    zIndex: 10,
+    background: theme.palette.background.default
   },
   topContainer: {
     display: 'flex',
@@ -89,6 +92,7 @@ const getComponents = (styles: any): NodeRendererType => ({
 const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
   const styles = useStyles();
   const showFixedButtons = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const contentRef = useRef<HTMLDivElement>();
 
   const {
     name,
@@ -110,6 +114,15 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
     [tags]
   );
 
+  const scrollToContent = useCallback(
+    () => {
+      if (contentRef.current) {
+        console.log(contentRef.current)
+        contentRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    []
+  )
 
   return (
     <>
@@ -143,9 +156,9 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
               {demo && <Button size='medium' variant='primary' endIcon={<OpenInNewIcon />} sx={{ height: 50 }}>Go to Site</Button>}
             </>}
           </Box>
+          {showFixedButtons && <ExpandMoreIcon sx={{ margin: '0 auto', height: 40, width: 40 }} onClick={scrollToContent} />}
         </Box>
-
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: 2 }}>
+        <Box ref={contentRef} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <RichText content={description} renderers={getComponents(styles)} />
         </Box>
 

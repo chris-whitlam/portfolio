@@ -6,3 +6,4 @@ export { default as TextArea } from './TextArea/TextArea';
 export { default as Image } from './Image/Image';
 export { default as BackLink } from './BackLink/BackLink';
 export { default as Dots } from './Dots/Dots';
+export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';

@@ -6,6 +6,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 
+import { ScrollToTop } from "@atoms";
+
 import { Socials } from "@types";
 
 
@@ -58,7 +60,8 @@ const Footer: FC<FooterProps> = ({ socials = {} }) => {
 
   return (
     <Box className={styles.container}>
-      <Typography variant='body2'>Created by Chris Whitlam</Typography>
+      <ScrollToTop />
+      <Typography variant='body2' sx={{ marginTop: 2 }}>Created by Chris Whitlam</Typography>
       <Box className={styles.socialsContainer}>
         <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={styles.icon}><GitHubIcon /></a>
         <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" className={styles.icon}><LinkedInIcon /></a>

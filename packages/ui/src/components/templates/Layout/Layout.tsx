@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(10),
+    paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('md')]: {
       paddingTop: theme.spacing(15),
       paddingBottom: theme.spacing(10),
