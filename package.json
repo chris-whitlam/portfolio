@@ -16,7 +16,8 @@
     "dev": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn dev:ui\" \"yarn dev:api\"",
     "lint:api": "yarn --cwd packages/api lint",
     "lint:ui": "yarn --cwd packages/ui lint",
-    "lint": "yarn lint:ui && yarn lint:api"
+    "lint": "yarn lint:ui && yarn lint:api",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "concurrently": "^7.3.0",
