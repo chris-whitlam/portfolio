@@ -1,9 +1,9 @@
-import { GlobalStylesProps } from "@mui/material";
+import { GlobalStylesProps } from '@mui/material';
 
 const globalStyles: GlobalStylesProps['styles'] = {
   html: {
     padding: 0,
-    margin: 0,
+    margin: 0
   },
   body: {
     padding: 0,
@@ -49,9 +49,9 @@ const globalStyles: GlobalStylesProps['styles'] = {
     zIndex: 1,
 
     '&:hover': {
-      textDecoration: 'underline',
+      textDecoration: 'underline'
     }
-  },
-}
+  }
+};
 
 export default globalStyles;

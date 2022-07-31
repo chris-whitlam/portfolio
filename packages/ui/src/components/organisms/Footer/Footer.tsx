@@ -8,8 +8,6 @@ import EmailIcon from '@mui/icons-material/Email';
 
 import { ScrollToTop } from '@atoms';
 
-import { Socials } from '@types';
-
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
@@ -44,21 +42,16 @@ const useStyles = makeStyles(
   { name: 'Footer' }
 );
 
-interface FooterProps {
-  socials?: Socials;
-}
-
-const Footer: FC<FooterProps> = ({ socials = {} }) => {
+const Footer: FC = () => {
   const styles = useStyles();
 
   // TODO:
   // Fetch these in the layout when https://github.com/vercel/next.js/discussions/37136 is released
   // For now, this will always use the defaults. Otherwise it would mean adding useStaticProps onto every page
-  const {
-    githubUrl = 'https://github.com/chris-whitlam',
-    linkedInUrl = 'https://www.linkedin.com/in/christopher-whitlam-54456b173/',
-    email = 'contact@chriswhitlam.dev'
-  } = socials;
+  const githubUrl = 'https://github.com/chris-whitlam';
+  const linkedInUrl =
+    'https://www.linkedin.com/in/christopher-whitlam-54456b173/';
+  const email = 'contact@chriswhitlam.dev';
 
   return (
     <Box className={styles.container}>

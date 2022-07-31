@@ -1,8 +1,16 @@
-import apolloClient from './apolloClient';
 import { gql } from '@apollo/client';
-import { transformPosts, transformProjects, transformProfile } from '@utils/transformers';
+import {
+  transformPosts,
+  transformProjects,
+  transformProfile
+} from '@utils/transformers';
+import apolloClient from './apolloClient';
 
-const fetchHomepageData = async ({ numOfFeaturesProjects }: { numOfFeaturesProjects: number }) => {
+const fetchHomepageData = async ({
+  numOfFeaturesProjects
+}: {
+  numOfFeaturesProjects: number;
+}) => {
   const { data } = await apolloClient.query({
     query: gql`
       query {
@@ -58,15 +66,15 @@ const fetchHomepageData = async ({ numOfFeaturesProjects }: { numOfFeaturesProje
         }
       }
     `
-  })
+  });
 
   const homepageData = {
     profile: transformProfile(data.profiles[0]),
     projects: transformProjects(data.projects),
     posts: transformPosts(data.posts)
-  }
+  };
 
   return homepageData;
-}
+};
 
 export default fetchHomepageData;

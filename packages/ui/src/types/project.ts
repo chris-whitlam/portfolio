@@ -1,4 +1,4 @@
-import { Image, GraphQLImage } from '.';
+import { Image, GraphQLImage } from './image';
 
 type ProjectType = 'Personal' | 'Work';
 

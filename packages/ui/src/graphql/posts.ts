@@ -1,10 +1,12 @@
-import { gql } from "@apollo/client";
-import { Post } from "@types";
-import { transformPost, transformPosts } from "@utils/transformers";
-import apolloClient from "./apolloClient";
+import { gql } from '@apollo/client';
+import { Post } from '@types';
+import { transformPost, transformPosts } from '@utils/transformers';
+import apolloClient from './apolloClient';
 
 export const getPost = async (slug: string): Promise<Post> => {
-    const { data: { posts } } = await apolloClient.query({
+  const {
+    data: { posts }
+  } = await apolloClient.query({
     query: gql`
       query {
         posts(where: {slug: "${slug}"}) {
@@ -26,12 +28,14 @@ export const getPost = async (slug: string): Promise<Post> => {
         }
       }
     `
-  })
+  });
   return transformPost(posts[0]);
-}
+};
 
-export const getPosts = async ():Promise<Post[]> => {
-  const { data: { posts } } = await apolloClient.query({
+export const getPosts = async (): Promise<Post[]> => {
+  const {
+    data: { posts }
+  } = await apolloClient.query({
     query: gql`
       query {
         posts {
@@ -51,12 +55,14 @@ export const getPosts = async ():Promise<Post[]> => {
         }
       }
     `
-  })
+  });
   return transformPosts(posts);
-}
+};
 
 export const getPostPaths = async () => {
-    const { data: { posts } } = await apolloClient.query({
+  const {
+    data: { posts }
+  } = await apolloClient.query({
     query: gql`
       query {
         posts(orderBy: publishedAt_DESC) {
@@ -64,11 +70,11 @@ export const getPostPaths = async () => {
         }
       }
     `
-  })
+  });
 
   return posts.map((post: Post) => ({
     params: {
       slug: post.slug
     }
-  }))
-}
+  }));
+};

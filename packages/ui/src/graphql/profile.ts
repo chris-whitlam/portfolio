@@ -1,6 +1,6 @@
-import apolloClient from './apolloClient';
 import { gql } from '@apollo/client';
 import { transformProfile } from '@utils/transformers';
+import apolloClient from './apolloClient';
 
 export const getProfile = async () => {
   const { data } = await apolloClient.query({
@@ -25,8 +25,7 @@ export const getProfile = async () => {
         }
       }
     `
-  })
+  });
 
-  
   return transformProfile(data.profiles[0]);
-}
+};

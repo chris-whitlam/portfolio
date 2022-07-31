@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "netlify functions:serve --port 3001",
     "build": "netlify functions:build",
-    "lint": "eslint \"**/*.ts*\" --fix"
+    "lint": "eslint \"**/*.ts\" --fix"
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.4",
