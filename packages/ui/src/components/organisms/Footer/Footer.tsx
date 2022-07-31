@@ -45,10 +45,10 @@ const useStyles = makeStyles(
 );
 
 interface FooterProps {
-  socials: Socials;
+  socials?: Socials;
 }
 
-const Footer: FC<FooterProps> = ({ socials }) => {
+const Footer: FC<FooterProps> = ({ socials = {} }) => {
   const styles = useStyles();
 
   // TODO:
