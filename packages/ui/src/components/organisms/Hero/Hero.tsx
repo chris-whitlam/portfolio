@@ -1,4 +1,4 @@
-import { Box, darken, Theme, Typography } from '@mui/material';
+import { Box, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FC } from 'react';
 import Typed from 'react-typed';
@@ -7,9 +7,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 
-import { Button, Image } from '@atoms';
+import { Image } from '@atoms';
 import { Profile } from '@/types';
-import { theme } from '@styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -17,7 +16,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    minWidth: '100%'
   },
   imageContainer: {
     display: 'flex',
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center'
   },
   socialIcon: {
-    margin: `0 ${theme.spacing(2)} 0  ${theme.spacing(2)}`,
+    margin: `${theme.spacing(2)} ${theme.spacing(2)} 0  ${theme.spacing(2)}`,
     transition: 'all .1s ease-in-out',
 
     '&:hover': {
@@ -79,10 +79,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface HeroProps {
   profile: Profile,
-  scrollToContactForm: () => void;
 }
 
-const Hero: FC<HeroProps> = ({ profile, scrollToContactForm }) => {
+const Hero: FC<HeroProps> = ({ profile }) => {
   const styles = useStyles();
 
   if (!profile) {
@@ -113,10 +112,6 @@ const Hero: FC<HeroProps> = ({ profile, scrollToContactForm }) => {
           backDelay={2000}
           loop
         />
-        <Box className={styles.buttonsContainer}>
-          <Button className={styles.button} onClick={scrollToContactForm}>Contact me</Button>
-          <Button className={styles.button} variant='secondary'>Download CV</Button>
-        </Box>
         <Box className={styles.socialsContainer}>
           <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={styles.socialIcon}><GitHubIcon /></a>
           <a href={linkedInUrl} target="_blank" rel="noopener noreferrer" className={styles.socialIcon}><LinkedInIcon /></a>

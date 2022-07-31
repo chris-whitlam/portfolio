@@ -1,4 +1,4 @@
-import { ForwardedRef } from "react";
+import { FC } from "react";
 
 import { Box, Theme, Grid, Typography, Collapse } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -69,7 +69,7 @@ const schema = Yup.object({
     .max(200, "Please enter a message less than 200 characters")
 });
 
-const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>) => {
+const ContactForm: FC = () => {
   const styles = useStyles();
   const [submit, { loading, data, error }] = useSubmitContactForm();
 
@@ -91,7 +91,6 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
       <Grid container columns={{ xs: 1, md: 4 }} spacing={'20px'}>
         <Grid item xs={4} md={2}>
           <TextField
-            ref={ref}
             label="Name"
             name="name"
             placeholder="Jane Doe"
@@ -161,6 +160,6 @@ const ContactForm = React.forwardRef((props, ref: ForwardedRef<HTMLInputElement>
       </Grid>
     </form>
   )
-})
+}
 
 export default ContactForm;
