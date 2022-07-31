@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@mui/styles'; // works with @material-ui/core/styles, if you prefer to use it.
 import { globalStyles, theme } from '@styles'; // Adjust here as well
@@ -56,12 +56,12 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets();
+  const materialUISheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceApp: (App) => (props) => materialUISheets.collect(<App {...props} />),
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -69,6 +69,12 @@ MyDocument.getInitialProps = async (ctx) => {
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...React.Children.toArray(initialProps.styles), <GlobalStyles key='globalStyles' styles={globalStyles} />],
+    styles: [
+      <Fragment key='styles'>
+        {initialProps.styles}
+        {materialUISheets.getStyleElement()}
+        <GlobalStyles key='globalStyles' styles={globalStyles} />
+      </Fragment>
+    ],
   };
 };
