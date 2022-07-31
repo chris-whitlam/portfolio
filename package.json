@@ -31,11 +31,11 @@
   },
   "lint-staged": {
     "packages/ui/**/*.{ts,tsx}": [
-      "yarn lint:ui -- --silent",
+      "yarn lint:ui",
       "git add"
     ],
     "packages/api/**/*.{ts}": [
-      "yarn lint:api -- --silent",
+      "yarn lint:api",
       "git add"
     ]
   },
