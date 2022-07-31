@@ -1,4 +1,4 @@
-import { Box, Theme } from '@mui/material';
+import { Box, Theme, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FC } from 'react';
 import Typed from 'react-typed';
@@ -9,15 +9,22 @@ import EmailIcon from '@mui/icons-material/Email';
 
 import { Image } from '@atoms';
 import { Profile } from '@/types';
+import { theme } from '@styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  '@keyframes spin': {
+    '0%': { transform: 'rotate(0)' },
+    '50%': { transform: 'rotate(180deg)' },
+    '100%': { transform: 'rotate(360deg)' },
+  },
   container: {
     marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    minWidth: '100%'
+    minWidth: '100%',
+    maxWidth: '100vw',
   },
   imageContainer: {
     display: 'flex',
@@ -74,6 +81,29 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.primary.main,
       transform: 'scale(1.5)'
     }
+  },
+  centerSvg: {
+    position: 'absolute',
+    height: 450,
+    top: '-80px',
+    left: '-70px',
+    maxWidth: '100vw',
+    animation: '$spin 60s linear infinite',
+    animationFillMode: 'forwards',
+  },
+  topLeft: {
+    position: 'absolute',
+    width: '40%',
+    maxWidth: '800px',
+    left: 0,
+    top: 0
+  },
+  topRight: {
+    position: 'absolute',
+    width: '40%',
+    maxWidth: '800px',
+    right: 0,
+    top: 0
   }
 }), { name: 'Hero' });
 
@@ -83,6 +113,7 @@ interface HeroProps {
 
 const Hero: FC<HeroProps> = ({ profile }) => {
   const styles = useStyles();
+  const showCornerImages = useMediaQuery(theme.breakpoints.up('md'));
 
   if (!profile) {
     return null
@@ -101,8 +132,17 @@ const Hero: FC<HeroProps> = ({ profile }) => {
   return (
     <>
       <Box className={styles.container}>
-        <Box className={styles.imageContainer}>
-          <Image image={image} className={styles.image} layout='fill' sizes='320px' priority />
+
+        {showCornerImages && <>
+          <img src="topLeftBurst.svg" className={styles.topLeft} />
+          <img src="topRightBurst.svg" className={styles.topRight} />
+        </>}
+
+        <Box sx={{ position: 'relative' }}>
+          <img src="centerBurst.svg" className={styles.centerSvg} />
+          <Box className={styles.imageContainer}>
+            <Image image={image} className={styles.image} layout='fill' sizes='320px' priority />
+          </Box>
         </Box>
         <Typed
           className={styles.headline}

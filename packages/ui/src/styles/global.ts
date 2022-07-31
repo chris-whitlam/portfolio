@@ -1,5 +1,4 @@
 import { GlobalStylesProps } from "@mui/material";
-import { theme } from '.';
 
 const globalStyles: GlobalStylesProps['styles'] = {
   html: {
@@ -11,7 +10,9 @@ const globalStyles: GlobalStylesProps['styles'] = {
     margin: 0,
     color: '#e7e1e1',
     fontFamily: `"Roboto","Helvetica","Arial", sans-serif;`,
-    lineHeight: '1.5em'
+    lineHeight: '1.5em',
+    backgroundImage: 'url(background.svg)',
+    backgroundSize: '350px 350px'
   },
   h1: {
     fontFamily: `'Bungee Hairline', cursive;`,
