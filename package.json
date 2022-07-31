@@ -11,6 +11,7 @@
     "build:api": "yarn --cwd packages/api build",
     "build:ui": "yarn --cwd packages/ui build",
     "build": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn build:ui\" \"yarn build:api\"",
+    "export:ui": "yarn --cwd packages/ui export",
     "dev:api": "yarn --cwd packages/api dev",
     "dev:ui": "yarn --cwd packages/ui dev",
     "dev": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn dev:ui\" \"yarn dev:api\"",
