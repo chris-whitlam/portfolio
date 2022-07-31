@@ -1,4 +1,6 @@
 const errorResponse = (message = 'Something went wrong', statusCode = 500) => {
+  console.error(message);
+
   return {
     statusCode,
     headers: {
