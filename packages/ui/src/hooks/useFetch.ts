@@ -4,7 +4,7 @@ import { RequestBody, RequestMethod, makeRequest } from '@utils';
 
 export interface RequestState {
   loading: boolean;
-  data?: object;
+  data?: object | unknown;
   error?: string;
 }
 
