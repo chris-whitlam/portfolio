@@ -7,6 +7,10 @@ module.exports = {
     }
   },
   moduleFileExtensions: ['ts', 'js'],
+  moduleNameMapper: {
+    '@utils': '<rootDir>/src/utils',
+    '@utils/(.*)': '<rootDir>/src/utils/$1'
+  },
   transform: {
     '^.+\\.ts$': 'ts-jest'
   },

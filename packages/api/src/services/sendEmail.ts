@@ -22,7 +22,12 @@ const sendEmail = async ({ name, email, message }: ContactRequest) => {
     }
   });
 
-  await transporter.verify();
+  try {
+    await transporter.verify();
+  } catch (error) {
+    console.error(`Email verification failed: ${error}`);
+    throw error;
+  }
 
   try {
     await transporter.sendMail({
@@ -35,6 +40,9 @@ const sendEmail = async ({ name, email, message }: ContactRequest) => {
           <p>${email}</p>
           `
     });
+  } catch (error) {
+    console.error(`Failed to send email: ${error}`);
+    throw error;
   } finally {
     transporter.close();
   }
