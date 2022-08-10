@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "netlify functions:serve --port 3001",
+    "test": "jest",
     "build": "netlify functions:build",
     "lint": "eslint \"**/*.ts\" --fix"
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.4",
-    "netlify-cli": "^10.11.1"
+    "jest": "^28.1.3",
+    "netlify-cli": "^10.11.1",
+    "ts-jest": "^28.0.7"
   },
   "dependencies": {
     "@netlify/functions": "^1.0.0",

@@ -1,14 +1,16 @@
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Methods': '*',
+  'Content-Type': 'application/json'
+};
+
 const errorResponse = (message = 'Something went wrong', statusCode = 500) => {
   console.error(message);
 
   return {
     statusCode,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Methods': '*',
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify({
       error: message
     })
@@ -17,12 +19,7 @@ const errorResponse = (message = 'Something went wrong', statusCode = 500) => {
 
 export const successResponse = (data: unknown, statusCode = 200) => ({
   statusCode,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': '*',
-    'Content-Type': 'application/json'
-  },
+  headers,
   body: JSON.stringify(data)
 });
 
