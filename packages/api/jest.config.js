@@ -13,6 +13,7 @@ module.exports = {
   testMatch: ['**/*.test.ts'],
   testEnvironment: 'node',
   reporters: ['default'],
+  setupFiles: ['./jest.setup.js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
   maxWorkers: 2
 };
