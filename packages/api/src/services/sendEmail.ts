@@ -12,6 +12,8 @@ const sendEmail = async ({ name, email, message }: ContactRequest) => {
     emailRecieverAddress
   } = getConfig();
 
+  console.log('sadasd');
+
   const transporter = createTransport({
     host: emailHost,
     port: emailPort,

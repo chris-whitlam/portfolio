@@ -1017,6 +1017,37 @@
     "@types/mdx" "^2.0.0"
     "@types/react" ">=16"
 
+"@middy/core@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@middy/core/-/core-3.2.0.tgz#db1956c0f5ff7caffc5bbbf266b3d1eda8a2819a"
+  integrity sha512-5oS/SZdfaq+SQcC4zsub82lHRs6wFj6sQa0duDat3UodEURj9S1DqZ0NUoBhJ46bSSvEBFBh4jF1oy0gVnil/Q==
+
+"@middy/http-cors@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@middy/http-cors/-/http-cors-3.2.0.tgz#e0575f29d389ae35ba66c6712b175f3b504a03d4"
+  integrity sha512-ygE2seSDWqhQQeyH6EBLPune5iwdCs4IYMtOWEF97iVefqaEFihTE4pmTDA98iee6XHCkY2qN637b2KLDUyDGw==
+  dependencies:
+    "@middy/util" "3.2.0"
+
+"@middy/http-error-handler@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@middy/http-error-handler/-/http-error-handler-3.2.0.tgz#8a396aaa6a6fe03b49e775c4373a7bb6e5677c5b"
+  integrity sha512-FTX3rUQ5SNLC0GcxHvDunt76F4Xxse3tYQMSXMvMWxxV2b1B+bDXcL555RozZbyHyyhdWGd8bqyVYla2XmNe5Q==
+  dependencies:
+    "@middy/util" "3.2.0"
+
+"@middy/http-json-body-parser@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-3.2.0.tgz#1768dee96cf97274a11aa053da471f73e303fb13"
+  integrity sha512-kP2gNo/CCK9i3A+YS5sVdv2Yo74O4GlUarA3r9xtlrkLltJJFS1CiJXQuln/cCmlpEIs9rCN8+YvMlGH9FIY7A==
+  dependencies:
+    "@middy/util" "3.2.0"
+
+"@middy/util@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@middy/util/-/util-3.2.0.tgz#23f261decdc678750d8f81eae14f254271ccd8c3"
+  integrity sha512-sHUpHEXJn13LSRU/7ivZDSssephM0hACHUVoBUSHsE8Ppms4ZzsbJ2i03JttgdjvXVW00YdBDnZxzdw8yAqCqQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2032,6 +2063,11 @@
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/http-cache-semantics/-/http-cache-semantics-4.0.1.tgz#0ea7b61496902b95890dc4c3a116b60cb8dae812"
   integrity sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==
+
+"@types/http-errors@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-1.8.2.tgz#7315b4c4c54f82d13fa61c228ec5c2ea5cc9e0e1"
+  integrity sha512-EqX+YQxINb+MeXaIqYDASb6U6FCHbWjkj4a1CKDBks3d/QiB2+PqBLyO72vLDgAO1wUI4O+9gweRcQK11bTL/w==
 
 "@types/http-proxy@^1.17.8":
   version "1.17.9"
@@ -6009,7 +6045,7 @@ http-cache-semantics@^4.0.0:
   resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz#49e91c5cbf36c9b94bcfcd71c23d5249ec74e390"
   integrity sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==
 
-http-errors@2.0.0:
+http-errors@2.0.0, http-errors@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"
   integrity sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==

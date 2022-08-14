@@ -1,4 +1,5 @@
 import LambdaTester from 'lambda-tester';
+import { Response } from '@netlify/functions/dist/function/response';
 import { handler } from './contact';
 import { createEvent } from '../../../test/utils';
 
@@ -23,13 +24,13 @@ describe('Functions -> contact (Integration)', () => {
 
       await LambdaTester(handler)
         .event(event)
-        .expectResolve((result) => {
-          expect(result.statusCode).toEqual(200);
+        .expectResolve((result: Response) => {
           expect(result.body).toEqual(
             JSON.stringify({
               message: 'Contact request sent'
             })
           );
+          expect(result.statusCode).toEqual(200);
         });
     });
   });
@@ -40,13 +41,9 @@ describe('Functions -> contact (Integration)', () => {
 
       await LambdaTester(handler)
         .event(event)
-        .expectResolve((result) => {
+        .expectResolve((result: Response) => {
           expect(result.statusCode).toEqual(400);
-          expect(result.body).toEqual(
-            JSON.stringify({
-              error: 'Request body cannot be empty'
-            })
-          );
+          expect(result.body).toEqual(`Request body can't be empty`);
         });
     });
 
@@ -75,12 +72,8 @@ describe('Functions -> contact (Integration)', () => {
 
         await LambdaTester(handler)
           .event(event)
-          .expectResolve((result) => {
-            expect(result.body).toEqual(
-              JSON.stringify({
-                error: expectedMessage
-              })
-            );
+          .expectResolve((result: Response) => {
+            expect(result.body).toEqual(expectedMessage);
             expect(result.statusCode).toEqual(400);
           });
       }

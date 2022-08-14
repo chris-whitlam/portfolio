@@ -1,14 +1,23 @@
-import { Event } from '@netlify/functions/dist/function/event';
-
-export const createEvent = (body: object | null = null): Event => ({
-  rawUrl: '',
-  rawQuery: '',
-  path: '',
-  httpMethod: 'POST',
+export const createEvent = (body: object | null = null): any => ({
+  body,
   headers: {},
   multiValueHeaders: {},
-  queryStringParameters: null,
-  multiValueQueryStringParameters: null,
-  body: body && JSON.stringify(body),
-  isBase64Encoded: false
+  httpMethod: 'POST',
+  isBase64Encoded: false,
+  path: '',
+  queryStringParameters: {},
+  pathParameters: {},
+  multiValueQueryStringParameters: {},
+  stageVariables: {},
+  requestContext: {
+    accountId: '',
+    apiId: '',
+    authorizer: {},
+    protocol: '',
+    httpMethod: '',
+    identity: {} as any,
+    path: '',
+    stage: ''
+  },
+  resource: ''
 });
