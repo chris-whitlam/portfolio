@@ -1,6 +1,6 @@
 import { getConfig } from './config';
 
-fdescribe('Utils -> config', () => {
+describe('Utils -> config', () => {
   it('should return config object', () => {
     const config = getConfig();
 
@@ -10,7 +10,8 @@ fdescribe('Utils -> config', () => {
       emailPort: 465,
       emailRecieverAddress: 'reciever@username.dev',
       emailSenderAddress: 'sender@username.dev',
-      emailUsername: 'my@username.dev'
+      emailUsername: 'my@username.dev',
+      corsOrigin: 'myCors'
     });
   });
 });

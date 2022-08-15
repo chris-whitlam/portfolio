@@ -20,6 +20,8 @@ module.exports = {
     '@utils': '<rootDir>/src/utils',
     '@utils/(.*)': '<rootDir>/src/utils/$1',
     '@services': '<rootDir>/src/services',
-    '@services/(.*)': '<rootDir>/src/services/$1'
+    '@services/(.*)': '<rootDir>/src/services/$1',
+    '@middleware': '<rootDir>/src/middleware',
+    '@middleware/(.*)': '<rootDir>/src/middleware/$1'
   }
 };

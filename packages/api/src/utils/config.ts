@@ -5,6 +5,7 @@ interface Config {
   emailUsername: string;
   emailSenderAddress: string;
   emailRecieverAddress: string;
+  corsOrigin: string;
 }
 
 export const getConfig = (): Config => {
@@ -14,7 +15,8 @@ export const getConfig = (): Config => {
     EMAIL_PASSWORD: emailPassword = '',
     EMAIL_USERNAME: emailUsername = '',
     EMAIL_SENDER_ADDRESS: emailSenderAddress = '',
-    EMAIL_RECIEVER_ADDRESS: emailRecieverAddress = ''
+    EMAIL_RECIEVER_ADDRESS: emailRecieverAddress = '',
+    CORS_ORIGIN: corsOrigin = ''
   } = process.env;
 
   return {
@@ -23,6 +25,7 @@ export const getConfig = (): Config => {
     emailPassword,
     emailUsername,
     emailSenderAddress,
-    emailRecieverAddress
+    emailRecieverAddress,
+    corsOrigin
   };
 };

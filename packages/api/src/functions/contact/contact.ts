@@ -7,9 +7,12 @@ import { ContactRequest } from '@types';
 import httpErrorHandler from '@middy/http-error-handler';
 import cors from '@middy/http-cors';
 import { Response } from '@netlify/functions/dist/function/response';
-import { successResponse } from '../../utils';
+import { getConfig, successResponse } from '@utils';
 
+import { optionsMiddleware } from '@middleware';
 import validateContactFormInput from './validation';
+
+const config = getConfig();
 
 const lambdaHandler = async (event: Event): Promise<Response> => {
   console.log('Received contact request');
@@ -38,7 +41,14 @@ const lambdaHandler = async (event: Event): Promise<Response> => {
 };
 
 export const handler = middy()
-  .use(cors())
+  .use(
+    cors({
+      origin: config.corsOrigin,
+      headers: 'Content-Type',
+      methods: 'OPTIONS, POST'
+    })
+  )
+  .use(optionsMiddleware())
   .use(jsonBodyParser())
   .use(httpErrorHandler({ fallbackMessage: 'Something went wrong' }))
   .handler(lambdaHandler);

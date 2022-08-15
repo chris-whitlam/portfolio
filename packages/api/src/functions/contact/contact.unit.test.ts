@@ -5,11 +5,7 @@ import { handler } from './contact';
 import * as sendEmailModule from '../../services/sendEmail';
 import * as validationModule from './validation';
 
-// jest.mock('@services', () => ({
-//   sendEmail: jest.fn()
-// }));
-
-describe('Functions -> contact (Unit)', () => {
+describe('Functions -> contact -> contact (Unit)', () => {
   const body = {
     name: 'Bob Bobbins',
     email: 'bob@bobbins.com',

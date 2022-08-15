@@ -31,7 +31,7 @@ const schema = Joi.object({
   });
 
 const validateContactFormInput = async (contactFormInput: ContactRequest) => {
-  return schema.validateAsync(contactFormInput, { abortEarly: false });
+  return schema.validateAsync(contactFormInput);
 };
 
 export default validateContactFormInput;

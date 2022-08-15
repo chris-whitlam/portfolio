@@ -36,6 +36,12 @@
       "@utils/*": [
         "src/utils/*"
       ],
+      "@middleware": [
+        "src/middleware"
+      ],
+      "@middleware/*": [
+        "src/middleware/*"
+      ],
     },
     "lib": [
       "esnext",

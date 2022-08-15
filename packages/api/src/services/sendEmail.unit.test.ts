@@ -19,7 +19,7 @@ describe('Services -> sendEmail', () => {
     message: 'Wow your website is amazing!'
   };
 
-  afterEach(jest.resetAllMocks);
+  beforeEach(jest.clearAllMocks);
 
   it('should successfully send email', async () => {
     await sendEmail(contactRequest);
@@ -46,9 +46,10 @@ describe('Services -> sendEmail', () => {
 
     expect(sendMailMock).not.toBeCalled();
     expect(closeMock).not.toBeCalled();
+    verifyMock.mockRestore();
   });
 
-  fit('should throw error if send fails', async () => {
+  it('should throw error if send fails', async () => {
     const error = new Error('Something went wrong');
     sendMailMock.mockRejectedValue(error);
 
@@ -57,5 +58,6 @@ describe('Services -> sendEmail', () => {
     expect(verifyMock).toBeCalled();
     expect(sendMailMock).toBeCalled();
     expect(closeMock).toBeCalled();
+    sendMailMock.mockRestore();
   });
 });

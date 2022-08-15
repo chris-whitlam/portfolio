@@ -2,9 +2,9 @@ import { successResponse } from './responses';
 
 describe('Utils -> Responses', () => {
   const headers = {
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': '*',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'OPTIONS, POST, PUT, GET, POST, DELETE',
+    'Access-Control-Allow-Origin': process.env.CORS_ORIGIN,
     'Content-Type': 'application/json'
   };
 

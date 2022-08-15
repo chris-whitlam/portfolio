@@ -11,7 +11,7 @@ jest.mock('nodemailer', () => ({
   }))
 }));
 
-describe('Functions -> contact (Integration)', () => {
+describe('Functions -> contact -> contact (Integration)', () => {
   const body = {
     name: 'Bob Bobbins',
     email: 'bob@bobbins.com',
@@ -47,36 +47,18 @@ describe('Functions -> contact (Integration)', () => {
         });
     });
 
-    it.each`
-      input                     | expectedMessage
-      ${{ name: undefined }}    | ${'Name is a required field'}
-      ${{ name: '' }}           | ${'Name cannot be empty'}
-      ${{
-  name: 'hi'
-}} | ${'Name should have a minimum length of 3 characters'}
-      ${{
-  name: new Array(35 + 1).join('a')
-}} | ${'Name should be less than 30 characters'}
-      ${{ email: undefined }}   | ${'Email is a required field'}
-      ${{ email: '' }}          | ${'Email cannot be empty'}
-      ${{ email: 'sdfsdif@' }}  | ${'Must be a valid email'}
-      ${{ message: undefined }} | ${'Message is a required field'}
-      ${{ message: '' }}        | ${'Message cannot be empty'}
-    `(
-      `should throw 400 when given $input`,
-      async ({ input, expectedMessage }) => {
-        const event = createEvent({
-          ...body,
-          ...input
-        });
+    it(`should throw 400 when given invalid input`, async () => {
+      const event = createEvent({
+        ...body,
+        email: 'test'
+      });
 
-        await LambdaTester(handler)
-          .event(event)
-          .expectResolve((result: Response) => {
-            expect(result.body).toEqual(expectedMessage);
-            expect(result.statusCode).toEqual(400);
-          });
-      }
-    );
+      await LambdaTester(handler)
+        .event(event)
+        .expectResolve((result: Response) => {
+          expect(result.body).toEqual('Must be a valid email');
+          expect(result.statusCode).toEqual(400);
+        });
+    });
   });
 });

@@ -1,14 +1,17 @@
 import { Response } from '@netlify/functions/dist/function/response';
+import { getConfig } from './config';
+
+const config = getConfig();
 
 export const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': '*',
+  'Access-Control-Allow-Origin': config.corsOrigin,
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, PUT, GET, POST, DELETE',
   'Content-Type': 'application/json'
 };
 
-export const successResponse = (data: unknown, statusCode = 200): Response => ({
+export const successResponse = (data?: object, statusCode = 200): Response => ({
   statusCode,
   headers,
-  body: JSON.stringify(data)
+  body: data && JSON.stringify(data)
 });

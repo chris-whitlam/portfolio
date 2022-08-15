@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "netlify functions:serve --port 3001",
-    "test": "jest",
+    "test": "jest --silent",
     "build": "netlify functions:build",
     "lint": "eslint \"**/*.ts\" --fix"
   },
