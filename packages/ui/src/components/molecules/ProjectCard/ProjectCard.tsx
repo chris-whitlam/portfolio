@@ -126,18 +126,22 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
         </CardContent>
         <CardActions className={styles.buttonsContainer}>
           {demo && (
-            <Button
-              size="medium"
-              variant="tertiary"
-              endIcon={<OpenInNewIcon />}
-            >
-              Go to
-            </Button>
+            <a href={demo}>
+              <Button
+                size="medium"
+                variant="tertiary"
+                endIcon={<OpenInNewIcon />}
+              >
+                Go to
+              </Button>
+            </a>
           )}
           {sourceCode && (
-            <Button size="medium" variant="tertiary" endIcon={<GitHubIcon />}>
-              Code
-            </Button>
+            <a href={sourceCode}>
+              <Button size="medium" variant="tertiary" endIcon={<GitHubIcon />}>
+                Code
+              </Button>
+            </a>
           )}
         </CardActions>
         <Link passHref href={link}>
