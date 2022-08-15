@@ -36,6 +36,8 @@
       "@types/*": ["types/*"],
       "@graphql": ["graphql"],
       "@graphql/*": ["graphql/*"],
+      "@test": ["../test"],
+      "@test/*": ["../test/*"],
       "@/*": [ "./*" ],
     }
   },

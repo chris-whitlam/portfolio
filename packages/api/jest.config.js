@@ -14,7 +14,6 @@ module.exports = {
   reporters: ['default'],
   setupFiles: ['./jest.setup.js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
-  maxWorkers: 2,
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
     '@utils': '<rootDir>/src/utils',
