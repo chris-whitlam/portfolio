@@ -1,33 +1,17 @@
-const errorResponse = (message = 'Something went wrong', statusCode = 500) => {
-  console.error(message);
+import { Response } from '@netlify/functions/dist/function/response';
+import { getConfig } from './config';
 
-  return {
-    statusCode,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Methods': '*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      error: message
-    })
-  };
+const config = getConfig();
+
+export const headers = {
+  'Access-Control-Allow-Origin': config.corsOrigin,
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, PUT, GET, POST, DELETE',
+  'Content-Type': 'application/json'
 };
 
-export const successResponse = (data: unknown, statusCode = 200) => ({
+export const successResponse = (data?: object, statusCode = 200): Response => ({
   statusCode,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': '*',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
+  headers,
+  body: data && JSON.stringify(data)
 });
-
-export const badRequest = (message: string) => errorResponse(message, 400);
-export const internalServerError = (message = 'Something went wrong') =>
-  errorResponse(message, 500);
-export const unprocessableEntity = (message = 'Something went wrong') =>
-  errorResponse(message, 422);

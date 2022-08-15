@@ -1,69 +1,54 @@
-import { Handler } from '@netlify/functions';
-import Joi, { ValidationError } from 'joi';
+import { ValidationError } from 'joi';
 import { sendEmail } from '@services';
+import middy from '@middy/core';
+import jsonBodyParser, { Event } from '@middy/http-json-body-parser';
+import { BadRequest, InternalServerError } from 'http-errors';
 import { ContactRequest } from '@types';
-import {
-  successResponse,
-  badRequest,
-  internalServerError,
-  unprocessableEntity
-} from '../../utils';
+import httpErrorHandler from '@middy/http-error-handler';
+import cors from '@middy/http-cors';
+import { Response } from '@netlify/functions/dist/function/response';
+import { getConfig, successResponse } from '@utils';
 
-const schema = Joi.object({
-  name: Joi.string().min(3).max(30).required().messages({
-    'string.base': `Name should be a string`,
-    'string.empty': `Name cannot be empty`,
-    'string.min': `Name should have a minimum length of {#limit}`,
-    'string.max': `Name should have less than {#limit} characters`,
-    'any.required': `Name is a required field`
-  }),
+import { optionsMiddleware } from '@middleware';
+import validateContactFormInput from './validation';
 
-  email: Joi.string().email().required().messages({
-    'string.base': `Email should be a string`,
-    'string.empty': `Email cannot be empty`,
-    'any.required': `Email is a required field`,
-    'string.email': `Must be a valid email`
-  }),
+const config = getConfig();
 
-  message: Joi.string().required().messages({
-    'string.base': `Message should be a string`,
-    'string.empty': `Message cannot be empty`,
-    'any.required': `Message is a required field`
-  })
-});
-
-const validateContactFormInput = async (contactFormInput: ContactRequest) => {
-  return schema.validateAsync(contactFormInput);
-};
-
-export const handler: Handler = async (event) => {
+const lambdaHandler = async (event: Event): Promise<Response> => {
   console.log('Received contact request');
 
-  if (!event.body) return badRequest('Request body cannot be empty');
-
-  let body: ContactRequest;
-  try {
-    body = JSON.parse(event.body);
-  } catch {
-    return unprocessableEntity();
+  if (!event.body) {
+    throw new BadRequest("Request body can't be empty");
   }
+
+  const body = event.body as unknown as ContactRequest;
 
   try {
     await validateContactFormInput(body);
-  } catch (error) {
+  } catch (error: any) {
     if (error instanceof ValidationError) {
-      return badRequest(error.message);
+      throw new BadRequest(error.message);
     }
-    return internalServerError();
+    throw new InternalServerError(
+      `Failed to validate contact request - ${error.message}`
+    );
   }
 
-  try {
-    await sendEmail(body);
-  } catch (error) {
-    console.error(error);
-    return internalServerError();
-  }
+  await sendEmail(body);
 
   console.log('Successfully sent email');
   return successResponse({ message: 'Contact request sent' });
 };
+
+export const handler = middy()
+  .use(
+    cors({
+      origin: config.corsOrigin,
+      headers: 'Content-Type',
+      methods: 'OPTIONS, POST'
+    })
+  )
+  .use(optionsMiddleware())
+  .use(jsonBodyParser())
+  .use(httpErrorHandler({ fallbackMessage: 'Something went wrong' }))
+  .handler(lambdaHandler);

@@ -36,6 +36,12 @@
       "@utils/*": [
         "src/utils/*"
       ],
+      "@middleware": [
+        "src/middleware"
+      ],
+      "@middleware/*": [
+        "src/middleware/*"
+      ],
     },
     "lib": [
       "esnext",
@@ -46,5 +52,6 @@
   },
   "include": [
     "src/**/*.ts",
+    "test/**/*.ts",
   ],
 }
