@@ -8,15 +8,18 @@ interface ArrowLinkProps {
   href: string;
 }
 
-const ArrowLink: FC<ArrowLinkProps> = ({ children, href }) => (
-  <Link passHref href={href}>
-    <Button
-      sx={{ fontSize: { xs: '0.8rem', md: '1rem' } }}
-      endIcon={<ArrowForwardIosIcon />}
-    >
-      {children}
-    </Button>
-  </Link>
-);
+const ArrowLink: FC<ArrowLinkProps> = ({ children, href, ...rest }) => {
+  return (
+    <Link passHref href={href}>
+      <Button
+        sx={{ fontSize: { xs: '0.8rem', md: '1rem' } }}
+        endIcon={<ArrowForwardIosIcon />}
+        {...rest}
+      >
+        {children}
+      </Button>
+    </Link>
+  );
+};
 
 export default ArrowLink;

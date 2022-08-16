@@ -1,21 +1,20 @@
 module.exports = {
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.test.json',
       compilerHost: true,
       isolatedModules: true
     }
   },
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
-    '^.+\\.(js)$': 'babel-jest'
+    '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest'
   },
-  testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-  testMatch: ['**/*.test.ts'],
+  testEnvironment: 'jsdom',
+  testMatch: ['**/*.test.(ts|tsx)'],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
-  setupFiles: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['./jest.setup.js'],
   moduleNameMapper: {
     '@atoms': '<rootDir>/src/components/atoms',
     '@atoms/(.*)': '<rootDir>/src/components/atoms/$1',

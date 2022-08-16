@@ -2,9 +2,14 @@
   "compilerOptions": {
     "composite": true,
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -13,34 +18,85 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true,
     "jsx": "preserve",
     "baseUrl": "./src",
     "paths": {
-      "@atoms": ["components/atoms"],
-      "@atoms/*": ["components/atoms/*"],
-      "@organisms": ["components/organisms"],
-      "@organisms/*": ["components/organisms/*"],
-      "@molecules": ["components/molecules"],
-      "@molecules/*": ["components/molecules/*"],
-      "@templates": ["components/templates"],
-      "@templates/*": ["components/templates/*"],
-      "@pages": ["pages"],
-      "@pages/*": ["pages/*"],
-      "@styles": ["styles"],
-      "@styles/*": ["styles/*"],
-      "@hooks": ["hooks"],
-      "@hooks/*": ["hooks/*"],
-      "@utils": ["utils"],
-      "@utils/*": ["utils/*"],
-      "@types": ["types"],
-      "@types/*": ["types/*"],
-      "@graphql": ["graphql"],
-      "@graphql/*": ["graphql/*"],
-      "@test": ["../test"],
-      "@test/*": ["../test/*"],
-      "@/*": [ "./*" ],
-    }
+      "@atoms": [
+        "components/atoms"
+      ],
+      "@atoms/*": [
+        "components/atoms/*"
+      ],
+      "@organisms": [
+        "components/organisms"
+      ],
+      "@organisms/*": [
+        "components/organisms/*"
+      ],
+      "@molecules": [
+        "components/molecules"
+      ],
+      "@molecules/*": [
+        "components/molecules/*"
+      ],
+      "@templates": [
+        "components/templates"
+      ],
+      "@templates/*": [
+        "components/templates/*"
+      ],
+      "@pages": [
+        "pages"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@styles": [
+        "styles"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@hooks": [
+        "hooks"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@utils": [
+        "utils"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@types": [
+        "types"
+      ],
+      "@types/*": [
+        "types/*"
+      ],
+      "@graphql": [
+        "graphql"
+      ],
+      "@graphql/*": [
+        "graphql/*"
+      ],
+      "@test": [
+        "../test"
+      ],
+      "@test/*": [
+        "../test/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["packages/ui/next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "packages/ui/next-env.d.ts",
+    "src/**/*",
+  ],
   "exclude": ["node_modules"]
 }
