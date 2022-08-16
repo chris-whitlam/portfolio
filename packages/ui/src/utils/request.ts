@@ -4,7 +4,7 @@ export type RequestBody = object | undefined;
 export const makeRequest = async (
   url: string,
   method: RequestMethod = 'GET',
-  body: RequestBody = {}
+  body: RequestBody = undefined
 ) => {
   return new Promise((resolve, reject) => {
     fetch(url, {

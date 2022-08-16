@@ -8,8 +8,8 @@ export interface RequestState {
   error?: string;
 }
 
-export type RequestCallback = (body: RequestBody) => Promise<RequestState>;
-export type LazyRequestHookReturn = [RequestCallback, RequestState];
+export type RequestCallback = (body?: RequestBody) => Promise<RequestState>;
+export type LazyRequestHookReturn = [RequestState, RequestCallback];
 export type RequestHookReturn = RequestState;
 
 const useLazyRequest = (
@@ -52,15 +52,15 @@ const useLazyRequest = (
     [state, method, url]
   );
 
-  return [callback, state];
+  return [state, callback];
 };
 
 const useRequest = (
   url: string,
   method: RequestMethod,
-  body: RequestBody
+  body?: RequestBody
 ): RequestHookReturn => {
-  const [callback, state] = useLazyRequest(url, method);
+  const [state, callback] = useLazyRequest(url, method);
 
   useEffect(() => {
     callback(body);
@@ -69,9 +69,9 @@ const useRequest = (
   return state;
 };
 
-export const useGetRequest = (url: string, body: RequestBody) =>
+export const useGetRequest = (url: string, body?: RequestBody) =>
   useRequest(url, 'GET', body);
-export const usePostRequest = (url: string, body: RequestBody) =>
+export const usePostRequest = (url: string, body?: RequestBody) =>
   useRequest(url, 'POST', body);
 export const useLazyGetRequest = (url: string) => useLazyRequest(url, 'GET');
 export const useLazyPostRequest = (url: string) => useLazyRequest(url, 'POST');

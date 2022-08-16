@@ -7,12 +7,15 @@ module.exports = {
     }
   },
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(js)$': 'babel-jest'
   },
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   testMatch: ['**/*.test.ts'],
-  moduleFileExtensions: ['ts', 'js'],
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
+  setupFiles: ['./jest.setup.js'],
   moduleNameMapper: {
     '@atoms': '<rootDir>/src/components/atoms',
     '@atoms/(.*)': '<rootDir>/src/components/atoms/$1',

@@ -73,7 +73,7 @@ const schema = Yup.object({
 
 const ContactForm: FC = () => {
   const styles = useStyles();
-  const [submit, { loading, data, error }] = useSubmitContactForm();
+  const [{ loading, data, error }, submit] = useSubmitContactForm();
 
   const formik = useFormik({
     initialValues: {
