@@ -23,7 +23,7 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
 );
 
 export const getStaticProps = async () => {
-  const props = await getHomepageData({ numOfFeaturesProjects: 5 });
+  const props = await getHomepageData({ numOfFeaturedProjects: 5 });
 
   return { props };
 };
