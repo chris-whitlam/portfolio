@@ -14,6 +14,7 @@ const ArrowLink: FC<ArrowLinkProps> = ({ children, href, ...rest }) => {
       <Button
         sx={{ fontSize: { xs: '0.8rem', md: '1rem' } }}
         endIcon={<ArrowForwardIosIcon />}
+        data-test-id="arrow-link"
         {...rest}
       >
         {children}
