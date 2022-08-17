@@ -130,12 +130,12 @@ const Hero: FC<HeroProps> = ({ profile }) => {
   } = profile;
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="hero">
       {showCornerImages && (
-        <>
+        <div data-test-id="hero-corner-images">
           <img src="topLeftBurst.svg" className={styles.topLeft} />
           <img src="topRightBurst.svg" className={styles.topRight} />
-        </>
+        </div>
       )}
 
       <Box sx={{ position: 'relative' }}>
