@@ -111,7 +111,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
 
             <Typography variant="h5" component="div" className={styles.title}>
               <Link passHref href={`blog/${slug}`}>
-                {title}
+                <span>{title}</span>
               </Link>
             </Typography>
 
