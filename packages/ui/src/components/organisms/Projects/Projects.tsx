@@ -42,7 +42,7 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
   }
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="projects">
       <SectionHeading href="/projects">Projects</SectionHeading>
       <Box className={styles.grid}>
         {projects.map((project: Project) => (
@@ -58,7 +58,11 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
         }}
       >
         <NextLink passHref href="/projects">
-          <Button variant="secondary">View all</Button>
+          <div>
+            <Button variant="secondary" data-test-id="all-projects-link">
+              View all
+            </Button>
+          </div>
         </NextLink>
       </Box>
     </Box>
