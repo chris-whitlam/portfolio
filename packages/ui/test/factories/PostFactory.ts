@@ -11,7 +11,7 @@ const PostFactory = PostDataObjectFactory.define(() => ({
   slug: faker.lorem.words(1),
   content: faker.lorem.lines(10),
   date: faker.date.past().toISOString(),
-  tags: faker.helpers.arrayElements(['Typescript', 'Database', 'Unity']),
+  tags: faker.helpers.arrayElements(['Typescript', 'Database', 'Unity'], 2),
   readTime: faker.datatype.number(20),
   coverImage: ImageFactory.build()
 }));

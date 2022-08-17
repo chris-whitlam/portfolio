@@ -1,4 +1,5 @@
 export { default as PostFactory } from './PostFactory';
+export { default as ProjectFactory } from './ProjectFactory';
 export { default as ImageFactory } from './ImageFactory';
 export { default as GraphQLImageFactory } from './GraphQLImageFactory';
 export { default as GraphQLPostFactory } from './GraphQLPostFactory';
