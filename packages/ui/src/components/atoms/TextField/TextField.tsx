@@ -13,7 +13,16 @@ interface TextFieldProps {
 
 const TextField = React.forwardRef(
   (
-    { label, name, value, onChange, placeholder, error, sx }: TextFieldProps,
+    {
+      label,
+      name,
+      value,
+      onChange,
+      placeholder,
+      error,
+      sx,
+      ...rest
+    }: TextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => (
     <MUITextField
@@ -29,6 +38,9 @@ const TextField = React.forwardRef(
       error={!!error}
       helperText={error}
       sx={sx}
+      data-test-id="text-field"
+      inputProps={{ 'data-test-id': 'text-field-input' }}
+      {...rest}
     />
   )
 );
