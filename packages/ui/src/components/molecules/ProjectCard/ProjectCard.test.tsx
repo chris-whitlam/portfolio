@@ -12,7 +12,7 @@ const render = (project = ProjectFactory.build()) =>
   rtlRender(<ProjectCard project={project} />);
 
 describe('Components -> Molecules -> Project Card', () => {
-  fit('should render component', () => {
+  it('should render component', () => {
     const project = ProjectFactory.build();
     const { getByTestId } = render(project);
 
