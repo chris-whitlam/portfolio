@@ -97,6 +97,7 @@
   "include": [
     "packages/ui/next-env.d.ts",
     "src/**/*",
+    "test/**/*"
   ],
   "exclude": ["node_modules"]
 }
