@@ -54,12 +54,12 @@ const Footer: FC = () => {
   const email = 'contact@chriswhitlam.dev';
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="footer">
       <ScrollToTop />
       <Typography variant="body2" sx={{ marginTop: 2 }}>
         Created by Chris Whitlam
       </Typography>
-      <Box className={styles.socialsContainer}>
+      <Box className={styles.socialsContainer} data-test-id="footer-socials">
         <a
           href={githubUrl}
           aria-label="Github"
