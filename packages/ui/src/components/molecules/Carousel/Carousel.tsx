@@ -69,7 +69,8 @@ const Carousel: FC<CarouselProps> = ({
   const styles = useStyles();
   const [imageIndex, setImageIndex] = useState(initialImageIndex);
   const [autoplay, setAutoPlay] = useState(autoPlay);
-  const showControls = useMediaQuery(theme.breakpoints.up('md'));
+  const showControls =
+    useMediaQuery(theme.breakpoints.up('md')) && images.length > 1;
 
   const incrementImageIndex = useCallback(() => {
     if (imageIndex === images.length - 1) {
@@ -100,36 +101,47 @@ const Carousel: FC<CarouselProps> = ({
   };
 
   return (
-    <Box>
+    <Box data-test-id="carousel">
       <Box className={styles.container}>
         {showControls && (
-          <Button onClick={decrementImageIndex}>
+          <Button
+            onClick={decrementImageIndex}
+            data-test-id="previous-slide-button"
+          >
             <ChevronLeftIcon className={styles.control} />
           </Button>
         )}
         <AutoPlaySwipeableViews
           axis="x"
           index={imageIndex}
-          slideCount={images.length}
           onChangeIndex={handleAutoplay}
           enableMouseEvents
           animateTransitions
           autoplay={autoplay}
           className={styles.imageContainer}
           slideClassName={styles.slide}
+          data-test-id="carousel-swipeable-views"
         >
-          {images.map((image, index) => (
-            <Image
-              key={image.url}
-              image={image}
-              layout="responsive"
-              objectFit="contain"
-              onClick={() => handleClick(index)}
-            />
-          ))}
+          {images.map((image, index) => {
+            return (
+              <div key={image.url}>
+                <Image
+                  priority={index === 0}
+                  image={image}
+                  layout="responsive"
+                  objectFit="contain"
+                  onClick={() => handleClick(index)}
+                  data-test-id="carousel-slide-image"
+                />
+              </div>
+            );
+          })}
         </AutoPlaySwipeableViews>
         {showControls && (
-          <Button onClick={incrementImageIndex}>
+          <Button
+            onClick={incrementImageIndex}
+            data-test-id="next-slide-button"
+          >
             <ChevronRightIcon className={styles.control} />
           </Button>
         )}

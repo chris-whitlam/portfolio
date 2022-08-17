@@ -30,11 +30,11 @@ const useStyles = makeStyles(
     imageContainer: {
       display: 'flex',
       background: `linear-gradient(
-      -30deg,
-      #0f3912 0%,
-      #0f3912 20%,
-      #377e45 100%
-    )`,
+        -30deg,
+        #0f3912 0%,
+        #0f3912 20%,
+        #377e45 100%
+      )`,
       width: 'clamp(130px, 60vw, 300px)',
       height: 'clamp(130px, 60vw, 300px)',
       borderRadius: '50%',
@@ -43,7 +43,8 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       paddingTop: '70px',
       filter: 'drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.584))',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      position: 'relative'
     },
     image: {
       filter: 'drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.584))',
