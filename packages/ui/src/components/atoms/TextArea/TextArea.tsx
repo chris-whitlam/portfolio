@@ -19,7 +19,8 @@ const TextArea: FC<TextAreaProps> = ({
   onChange,
   placeholder,
   error,
-  sx
+  sx,
+  ...rest
 }) => (
   <MUITextField
     fullWidth
@@ -38,6 +39,9 @@ const TextArea: FC<TextAreaProps> = ({
       backgroundColor: theme.palette.background.default,
       ...sx
     }}
+    data-test-id="text-area"
+    inputProps={{ 'data-test-id': 'text-area-input' }}
+    {...rest}
   />
 );
 
