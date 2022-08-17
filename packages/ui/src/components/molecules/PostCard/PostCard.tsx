@@ -91,13 +91,15 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
         {showImage && (
           <Box className={styles.image}>
             <Link passHref href={`blog/${slug}`}>
-              <Image
-                image={coverImage}
-                sizes="280px"
-                objectFit="cover"
-                objectPosition="0 -25px"
-                data-test-id="post-card-image"
-              />
+              <div>
+                <Image
+                  image={coverImage}
+                  sizes="280px"
+                  objectFit="cover"
+                  objectPosition="0 -25px"
+                  data-test-id="post-card-image"
+                />
+              </div>
             </Link>
           </Box>
         )}
