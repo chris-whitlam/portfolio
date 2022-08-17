@@ -59,8 +59,8 @@ describe('hooks -> useRequest', () => {
     `(
       `should set error when request fails`,
       async ({ hook, expectedMethod }) => {
-        const mockError = new Error('Something went wrong');
-        makeRequestSpy.mockRejectedValueOnce(mockError);
+        const mockError = 'Something went wrong';
+        makeRequestSpy.mockRejectedValueOnce(new Error(mockError));
 
         const { result }: RenderHookResult<RequestState, unknown> =
           renderHook(hook);
@@ -133,8 +133,8 @@ describe('hooks -> useRequest', () => {
     `(
       `should set error when request fails`,
       async ({ hook, expectedMethod }) => {
-        const mockError = new Error('Something went wrong');
-        makeRequestSpy.mockRejectedValueOnce(mockError);
+        const mockError = 'Something went wrong';
+        makeRequestSpy.mockRejectedValueOnce(new Error(mockError));
 
         const { result }: RenderHookResult<LazyRequestHookReturn, unknown> =
           renderHook(hook);
