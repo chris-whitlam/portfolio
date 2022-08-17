@@ -10,6 +10,7 @@ interface TextAreaProps {
   placeholder?: string;
   error?: string;
   sx?: SxProps<Theme>;
+  'data-test-id'?: string;
 }
 
 const TextArea: FC<TextAreaProps> = ({
@@ -20,6 +21,7 @@ const TextArea: FC<TextAreaProps> = ({
   placeholder,
   error,
   sx,
+  'data-test-id': dataTestId,
   ...rest
 }) => (
   <MUITextField
@@ -39,8 +41,11 @@ const TextArea: FC<TextAreaProps> = ({
       backgroundColor: theme.palette.background.default,
       ...sx
     }}
-    data-test-id="text-area"
-    inputProps={{ 'data-test-id': 'text-area-input' }}
+    data-test-id={dataTestId || 'text-area'}
+    inputProps={{ 'data-test-id': `${dataTestId}-input` || 'text-area-input' }}
+    FormHelperTextProps={{
+      'data-test-id': `${dataTestId}-message` || 'text-area-message'
+    }}
     {...rest}
   />
 );

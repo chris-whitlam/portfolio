@@ -43,7 +43,7 @@ const useLazyRequest = (
         setState({
           data: undefined,
           loading: false,
-          error: err
+          error: err.message || err
         });
       }
 
