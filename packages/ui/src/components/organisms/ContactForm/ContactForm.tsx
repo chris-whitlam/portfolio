@@ -10,7 +10,7 @@ import { Button, SectionHeading, TextArea, TextField } from '@atoms';
 import { useFormik } from 'formik';
 
 import * as Yup from 'yup';
-import useSubmitContactForm from './hooks/useSubmitContactForm';
+import { useLazyPostRequest } from '@hooks';
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -71,9 +71,11 @@ const schema = Yup.object({
     .max(200, 'Please enter a message less than 200 characters')
 });
 
+const url = `${process.env.NEXT_PUBLIC_API_URL}/contact`;
+
 const ContactForm: FC = () => {
   const styles = useStyles();
-  const [{ loading, data, error }, submit] = useSubmitContactForm();
+  const [{ loading, data, error }, submit] = useLazyPostRequest(url);
 
   const formik = useFormik({
     initialValues: {
