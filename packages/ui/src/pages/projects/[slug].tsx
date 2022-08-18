@@ -5,14 +5,15 @@ import Card from '@mui/material/Card';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { RichText, NodeRendererType } from '@graphcms/rich-text-react-renderer';
+import { RichText } from '@graphcms/rich-text-react-renderer';
 
-import { BackLink, PageTitle, Button, Image } from '@atoms';
+import { BackLink, PageTitle, Button } from '@atoms';
 import { Project } from '@types';
-import { getProjectPaths, getProject } from '@graphql/projects';
+import { getProjectPaths, getProject } from '@graphql';
 import { makeStyles } from '@mui/styles';
 import { theme } from '@styles';
 import { Carousel } from '@molecules';
+import { componentMap } from '@utils';
 
 const useStyles = makeStyles(
   () => ({
@@ -75,21 +76,9 @@ const useStyles = makeStyles(
   { name: 'Project' }
 );
 
-interface ProjectPageProps {
+export interface ProjectPageProps {
   project: Project;
 }
-
-const getComponents = (): NodeRendererType => ({
-  img: ({ width, height, altText, src, title }) => {
-    const image = {
-      alt: altText || title || '',
-      height,
-      width,
-      url: src || ''
-    };
-    return <Image image={image} style={{ borderRadius: '8px' }} />;
-  }
-});
 
 const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
   const styles = useStyles();
@@ -107,15 +96,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
     tags
   } = project;
 
-  const tagsString = useMemo(
-    () =>
-      tags?.reduce(
-        (acc, item, count) =>
-          `${acc}${item}${count < tags.length - 1 ? ', ' : ''}`,
-        ''
-      ),
-    [tags]
-  );
+  const tagsString = useMemo(() => tags.join(', '), [tags]);
 
   const scrollToContent = useCallback(() => {
     if (contentRef.current) {
@@ -125,7 +106,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
 
   return (
     <>
-      <Container>
+      <Container data-test-id="project-page">
         <BackLink />
         <PageTitle>{name}</PageTitle>
         <Box className={styles.topContainer}>
@@ -134,7 +115,11 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
           </Box>
           <Box className={styles.summaryContainer}>
             <Card sx={{ padding: theme.spacing(2) }}>
-              <Typography variant="body2" gutterBottom>
+              <Typography
+                variant="body2"
+                gutterBottom
+                data-test-id="product-summary"
+              >
                 {summary}
               </Typography>
             </Card>
@@ -146,7 +131,10 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
               >
                 Project Type
               </Typography>
-              <Typography sx={{ marginBottom: theme.spacing(2) }}>
+              <Typography
+                sx={{ marginBottom: theme.spacing(2) }}
+                data-test-id="product-type"
+              >
                 {projectType}
               </Typography>
               <Typography
@@ -156,29 +144,39 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
               >
                 Tech Stack
               </Typography>
-              <Typography>{tagsString}</Typography>
+              <Typography data-test-id="product-tech-stack">
+                {tagsString}
+              </Typography>
             </Card>
             {!showFixedButtons && (
               <>
                 {sourceCode && (
-                  <Button
-                    size="medium"
-                    variant="secondary"
-                    endIcon={<GitHubIcon />}
-                    sx={{ height: 50 }}
-                  >
-                    Source Code
-                  </Button>
+                  <a href={sourceCode}>
+                    <Button
+                      fullWidth
+                      size="medium"
+                      variant="secondary"
+                      endIcon={<GitHubIcon />}
+                      sx={{ height: 50 }}
+                      data-test-id="source-code-link"
+                    >
+                      Source Code
+                    </Button>
+                  </a>
                 )}
                 {demo && (
-                  <Button
-                    size="medium"
-                    variant="primary"
-                    endIcon={<OpenInNewIcon />}
-                    sx={{ height: 50 }}
-                  >
-                    Go to Site
-                  </Button>
+                  <a href={demo}>
+                    <Button
+                      fullWidth
+                      size="medium"
+                      variant="primary"
+                      endIcon={<OpenInNewIcon />}
+                      sx={{ height: 50 }}
+                      data-test-id="demo-link"
+                    >
+                      Go to Site
+                    </Button>
+                  </a>
                 )}
               </>
             )}
@@ -187,6 +185,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
             <ExpandMoreIcon
               sx={{ margin: '0 auto', height: 40, width: 40 }}
               onClick={scrollToContent}
+              data-test-id="scroll-to-content-button"
             />
           )}
         </Box>
@@ -198,30 +197,40 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
             justifyContent: 'center'
           }}
         >
-          <RichText content={description} renderers={getComponents()} />
+          <RichText
+            data-test-id="project-description"
+            content={description}
+            renderers={componentMap}
+          />
         </Box>
       </Container>
       {showFixedButtons && (
         <Box className={styles.mobileButtonsContainer}>
           {sourceCode && (
-            <Button
-              size="medium"
-              variant="secondary"
-              endIcon={<GitHubIcon />}
-              sx={{ height: 40 }}
-            >
-              Source Code
-            </Button>
+            <a href={sourceCode}>
+              <Button
+                size="medium"
+                variant="secondary"
+                endIcon={<GitHubIcon />}
+                sx={{ height: 40 }}
+                data-test-id="fixed-source-code-link"
+              >
+                Source Code
+              </Button>
+            </a>
           )}
           {demo && (
-            <Button
-              size="medium"
-              variant="primary"
-              endIcon={<OpenInNewIcon />}
-              sx={{ height: 40 }}
-            >
-              Go to Site
-            </Button>
+            <a href={demo}>
+              <Button
+                size="medium"
+                variant="primary"
+                endIcon={<OpenInNewIcon />}
+                sx={{ height: 40 }}
+                data-test-id="fixed-demo-link"
+              >
+                Go to Site
+              </Button>
+            </a>
           )}
         </Box>
       )}

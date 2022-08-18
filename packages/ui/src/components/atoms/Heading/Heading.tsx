@@ -6,6 +6,7 @@ import ArrowLink from '../ArrowLink/ArrowLink';
 interface SectionHeadingProps {
   children: ReactNode;
   href?: string;
+  'data-test-id'?: string;
 }
 
 interface BaseProps {
@@ -25,7 +26,11 @@ const SectionHeadingText: FC<BaseProps> = ({ children }) => (
   </Typography>
 );
 
-export const SectionHeading: FC<SectionHeadingProps> = ({ children, href }) => (
+export const SectionHeading: FC<SectionHeadingProps> = ({
+  children,
+  href,
+  ...rest
+}) => (
   <Box
     sx={{
       display: 'flex',
@@ -33,13 +38,15 @@ export const SectionHeading: FC<SectionHeadingProps> = ({ children, href }) => (
       justifyContent: 'space-between',
       marginBottom: () => theme.spacing(2)
     }}
+    data-test-id="section-heading"
+    {...rest}
   >
     <SectionHeadingText>{children}</SectionHeadingText>
     {href && <ArrowLink href={href}>View all</ArrowLink>}
   </Box>
 );
 
-export const PageTitle: FC<BaseProps> = ({ children }) => (
+export const PageTitle: FC<BaseProps> = ({ children, ...rest }) => (
   <Typography
     variant="h2"
     fontWeight={800}
@@ -48,6 +55,8 @@ export const PageTitle: FC<BaseProps> = ({ children }) => (
       fontFamily: `'Bungee Hairline', cursive;`,
       marginBottom: theme.spacing(4)
     }}
+    data-test-id="page-title"
+    {...rest}
   >
     {children}
   </Typography>

@@ -29,12 +29,8 @@ interface PostsProps {
 const Posts: FC<PostsProps> = ({ posts }) => {
   const styles = useStyles();
 
-  if (!posts) {
-    return null;
-  }
-
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="posts">
       <SectionHeading href="/blog">Recent Posts</SectionHeading>
       <Box>
         {posts.map((post) => (
@@ -48,9 +44,12 @@ const Posts: FC<PostsProps> = ({ posts }) => {
           justifyContent: 'center',
           marginTop: 3
         }}
+        data-test-id="all-posts-link"
       >
         <NextLink passHref href="/blog">
-          <Button variant="secondary">View all</Button>
+          <div>
+            <Button variant="secondary">View all</Button>
+          </div>
         </NextLink>
       </Box>
     </Box>

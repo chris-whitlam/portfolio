@@ -10,7 +10,7 @@ import { Button, SectionHeading, TextArea, TextField } from '@atoms';
 import { useFormik } from 'formik';
 
 import * as Yup from 'yup';
-import useSubmitContactForm from './hooks/useSubmitContactForm';
+import { useLazyPostRequest } from '@hooks';
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -65,15 +65,17 @@ const schema = Yup.object({
   email: Yup.string()
     .email('Please enter a valid email')
     .max(50, 'Please enter an email less than 50 characters')
-    .required('An email is required'),
+    .required('Your email is required'),
   message: Yup.string()
     .required('A message is required')
     .max(200, 'Please enter a message less than 200 characters')
 });
 
+const url = `${process.env.NEXT_PUBLIC_API_URL}/contact`;
+
 const ContactForm: FC = () => {
   const styles = useStyles();
-  const [submit, { loading, data, error }] = useSubmitContactForm();
+  const [{ loading, data, error }, submit] = useLazyPostRequest(url);
 
   const formik = useFormik({
     initialValues: {
@@ -88,7 +90,11 @@ const ContactForm: FC = () => {
   });
 
   return (
-    <form className={styles.container} onSubmit={formik.handleSubmit}>
+    <form
+      className={styles.container}
+      onSubmit={formik.handleSubmit}
+      data-test-id="contact-form"
+    >
       <SectionHeading>Contact me</SectionHeading>
       <Grid container columns={{ xs: 1, md: 4 }} spacing="20px">
         <Grid item xs={4} md={2}>
@@ -103,6 +109,7 @@ const ContactForm: FC = () => {
               gridColumn: 'span 4',
               gridRow: 'span 1'
             }}
+            data-test-id="contact-form-name-field"
           />
         </Grid>
         <Grid item xs={4} md={2}>
@@ -117,6 +124,7 @@ const ContactForm: FC = () => {
               gridColumn: 'span 4',
               gridRow: 'span 1'
             }}
+            data-test-id="contact-form-email-field"
           />
         </Grid>
         <Grid item xs={4}>
@@ -130,15 +138,21 @@ const ContactForm: FC = () => {
               gridColumn: 'span 4',
               gridRow: 'span 1'
             }}
+            data-test-id="contact-form-message-field"
           />
         </Grid>
-        {error && (
-          <Grid item xs={4}>
-            <Typography variant="body2" className={styles.errorMessage}>
+        <Grid item xs={4}>
+          <Collapse in={!!error}>
+            <Typography
+              variant="body2"
+              className={styles.errorMessage}
+              data-test-id="contact-form-error-message"
+              aria-hidden={!error}
+            >
               {error}
             </Typography>
-          </Grid>
-        )}
+          </Collapse>
+        </Grid>
 
         <Grid item xs={4}>
           <Collapse in={!!data}>
@@ -149,7 +163,12 @@ const ContactForm: FC = () => {
                 alignItems: 'center'
               }}
             >
-              <Typography variant="body2" className={styles.successMessage}>
+              <Typography
+                variant="body2"
+                className={styles.successMessage}
+                data-test-id="contact-form-success-message"
+                aria-hidden={!data}
+              >
                 Message sent
               </Typography>
               <CheckCircleIcon color="primary" />
@@ -167,6 +186,7 @@ const ContactForm: FC = () => {
               endIcon={<SendIcon />}
               type="submit"
               isLoading={loading}
+              data-test-id="contact-form-submit-button"
             >
               Send
             </Button>

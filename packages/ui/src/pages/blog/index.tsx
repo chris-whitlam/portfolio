@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { PostCard } from '@molecules';
 import { BackLink, PageTitle } from '@atoms';
 
-interface BlogPageProps {
+export interface BlogPageProps {
   posts: Post[];
 }
 

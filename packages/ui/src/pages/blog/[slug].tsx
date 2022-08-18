@@ -1,27 +1,16 @@
 import { PageTitle, Image, BackLink } from '@atoms';
 import { FC } from 'react';
 
-import { NodeRendererType, RichText } from '@graphcms/rich-text-react-renderer';
+import { RichText } from '@graphcms/rich-text-react-renderer';
 import { Box, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { Post } from '@/types';
-import { getPost, getPostPaths } from '@/graphql';
+import { Post } from '@types';
+import { getPost, getPostPaths } from '@graphql';
+import { componentMap } from '@utils';
 
-interface BlogPostProps {
+export interface BlogPostProps {
   post: Post;
 }
-
-const getComponents = (): NodeRendererType => ({
-  img: ({ width, height, altText, src, title }) => {
-    const image = {
-      alt: altText || title || '',
-      height,
-      width,
-      url: src || ''
-    };
-    return <Image image={image} style={{ borderRadius: '8px' }} />;
-  }
-});
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -56,14 +45,14 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
   const { title, coverImage, content } = post;
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="blog-post-page">
       <BackLink />
       <PageTitle>{title}</PageTitle>
       <Box className={styles.coverImage}>
         <Image image={coverImage} />
       </Box>
       <Box className={styles.content}>
-        <RichText content={content} renderers={getComponents()} />
+        <RichText content={content} renderers={componentMap} />
       </Box>
     </Box>
   );

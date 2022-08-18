@@ -4,7 +4,7 @@ export type RequestBody = object | undefined;
 export const makeRequest = async (
   url: string,
   method: RequestMethod = 'GET',
-  body: RequestBody = {}
+  body: RequestBody = undefined
 ) => {
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -31,17 +31,11 @@ export const makeRequest = async (
       }
 
       if (contentType.includes('json')) {
-        return response
-          .json()
-          .then(reject)
-          .catch(() => reject(response));
+        return response.json().then(reject);
       }
 
       if (contentType.includes('text')) {
-        return response
-          .text()
-          .then(reject)
-          .catch(() => reject(response));
+        return response.text().then(reject);
       }
 
       return reject(response);

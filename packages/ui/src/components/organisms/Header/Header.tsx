@@ -60,7 +60,12 @@ interface MobileNavProps {
 }
 
 const MobileNav: FC<MobileNavProps> = ({ pages, isOpen, onClick }) => (
-  <Collapse orientation="vertical" in={isOpen}>
+  <Collapse
+    orientation="vertical"
+    in={isOpen}
+    data-test-id="header-mobile-nav"
+    aria-hidden={!isOpen}
+  >
     <Container>
       {pages.map(({ name, href }) => (
         <NextLink key={name} passHref href={href}>
@@ -94,6 +99,7 @@ const DesktopNav: FC<DesktopNavProps> = ({ pages }) => (
       display: { xs: 'none', md: 'flex' },
       justifyContent: { md: 'flex-end' }
     }}
+    data-test-id="header-desktop-nav"
   >
     {pages.map(({ name, href }) => (
       <NextLink key={name} passHref href={href}>
@@ -146,7 +152,7 @@ const Header = () => {
   const MenuToggleIcon = isMenuOpen ? CloseIcon : MenuIcon;
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" data-test-id="header">
       <Container maxWidth="xl" sx={{ paddingX: { xs: 0, md: 4 } }}>
         <Toolbar disableGutters>
           <Logo sx={{ display: { xs: 'none', md: 'flex' } }} />
@@ -158,6 +164,7 @@ const Header = () => {
               aria-haspopup="true"
               color="inherit"
               onClick={handleToggleMenu}
+              data-test-id="header-menu-button"
             >
               <MenuToggleIcon fontSize="inherit" />
             </IconButton>
@@ -170,10 +177,16 @@ const Header = () => {
               fontSize: '1.7rem'
             }}
           />
-          <DesktopNav pages={pages} />
+          {isNotMobile && <DesktopNav pages={pages} />}
         </Toolbar>
       </Container>
-      <MobileNav pages={pages} isOpen={isMenuOpen} onClick={handleToggleMenu} />
+      {!isNotMobile && (
+        <MobileNav
+          pages={pages}
+          isOpen={isMenuOpen}
+          onClick={handleToggleMenu}
+        />
+      )}
     </AppBar>
   );
 };

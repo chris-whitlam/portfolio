@@ -40,11 +40,19 @@ const Quote: FC<QuoteProps> = ({ children, speaker }) => {
   const styles = useStyles();
 
   return (
-    <Box className={styles.container}>
-      <Typography variant="h2" className={styles.quote}>
+    <Box className={styles.container} data-test-id="quote">
+      <Typography
+        variant="h2"
+        className={styles.quote}
+        data-test-id="quote-body"
+      >
         &ldquo;{children}&rdquo;
       </Typography>
-      <Typography variant="body2" className={styles.speaker}>
+      <Typography
+        variant="body2"
+        className={styles.speaker}
+        data-test-id="quote-speaker"
+      >
         - {speaker}
       </Typography>
     </Box>

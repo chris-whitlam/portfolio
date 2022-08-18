@@ -1,1 +1,2 @@
-export * from './useFetch';
+/* istanbul ignore file */
+export * from './useRequest';

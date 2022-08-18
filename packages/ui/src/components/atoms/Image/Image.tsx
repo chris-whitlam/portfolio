@@ -45,6 +45,7 @@ const Image: FC<ImageProps> = ({
       style={sx}
       layout={layout}
       objectFit={objectFit}
+      data-test-id="image"
       {...rest}
     />
   );

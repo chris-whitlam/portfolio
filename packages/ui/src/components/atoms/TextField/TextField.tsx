@@ -8,12 +8,23 @@ interface TextFieldProps {
   value: string;
   error?: string;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  'data-test-id'?: string;
   sx?: SxProps<Theme>;
 }
 
 const TextField = React.forwardRef(
   (
-    { label, name, value, onChange, placeholder, error, sx }: TextFieldProps,
+    {
+      label,
+      name,
+      value,
+      onChange,
+      placeholder,
+      error,
+      sx,
+      'data-test-id': dataTestId,
+      ...rest
+    }: TextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => (
     <MUITextField
@@ -29,6 +40,14 @@ const TextField = React.forwardRef(
       error={!!error}
       helperText={error}
       sx={sx}
+      data-test-id={dataTestId || 'text-field'}
+      inputProps={{
+        'data-test-id': `${dataTestId}-input` || 'text-field-input'
+      }}
+      FormHelperTextProps={{
+        'data-test-id': `${dataTestId}-message` || 'text-field-message'
+      }}
+      {...rest}
     />
   )
 );

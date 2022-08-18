@@ -5,10 +5,9 @@ import {
   Typography,
   CardContent,
   Box,
-  Theme,
-  useMediaQuery,
-  useTheme
+  useMediaQuery
 } from '@mui/material';
+import { theme } from '@styles';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { makeStyles } from '@mui/styles';
 
@@ -20,7 +19,7 @@ interface PostCardProps {
 }
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  () => ({
     container: {
       marginBottom: theme.spacing(2),
       position: 'relative',
@@ -80,37 +79,31 @@ const useStyles = makeStyles(
 
 const PostCard: FC<PostCardProps> = ({ post }) => {
   const styles = useStyles();
-  const theme = useTheme();
   const showImage = useMediaQuery(theme.breakpoints.up('md'));
 
   const { title, tags, date, coverImage, readTime, slug } = post;
 
-  const tagsString = useMemo(
-    () =>
-      tags.reduce(
-        (acc, item, count) =>
-          `${acc}${item}${count < tags.length - 1 ? ', ' : ''}`,
-        ''
-      ),
-    [tags]
-  );
+  const tagsString = useMemo(() => tags.join(', '), [tags]);
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="post-card">
       <Card sx={{ display: 'flex' }}>
         {showImage && (
           <Box className={styles.image}>
             <Link passHref href={`blog/${slug}`}>
-              <Image
-                image={coverImage}
-                sizes="280px"
-                objectFit="cover"
-                objectPosition="0 -25px"
-              />
+              <div>
+                <Image
+                  image={coverImage}
+                  sizes="280px"
+                  objectFit="cover"
+                  objectPosition="0 -25px"
+                  data-test-id="post-card-image"
+                />
+              </div>
             </Link>
           </Box>
         )}
-        <CardContent className={styles.content} data-test-id="test">
+        <CardContent className={styles.content}>
           <Box>
             <Typography variant="overline" className={styles.date}>
               <i>{date}</i>
@@ -118,11 +111,15 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
 
             <Typography variant="h5" component="div" className={styles.title}>
               <Link passHref href={`blog/${slug}`}>
-                {title}
+                <span>{title}</span>
               </Link>
             </Typography>
 
-            <Typography gutterBottom className={styles.tags}>
+            <Typography
+              gutterBottom
+              className={styles.tags}
+              data-test-id="post-card-tags"
+            >
               <i>{tagsString}</i>
             </Typography>
           </Box>
