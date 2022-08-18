@@ -6,7 +6,7 @@ import { getProjects } from '@graphql';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import createMockRouter from '@test/utils/createMockRouter';
 
-import ProjectPage, { getStaticProps, ProjectPageProps } from './index';
+import ProjectsPage, { getStaticProps, ProjectPageProps } from './index';
 
 jest.mock('@graphql', () => ({
   getProjects: jest.fn()
@@ -20,7 +20,7 @@ const render = (props: ProjectPageProps = defaultProps) =>
   rtlRender(
     <ThemeProvider theme={theme}>
       <RouterContext.Provider value={createMockRouter()}>
-        <ProjectPage {...props} />
+        <ProjectsPage {...props} />
       </RouterContext.Provider>
     </ThemeProvider>
   );

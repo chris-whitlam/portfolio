@@ -9,7 +9,7 @@ const ProjectFactory = ProjectDataObjectFactory.define(() => ({
   name: faker.lorem.words(3),
   slug: faker.lorem.words(1),
   tags: faker.helpers.arrayElements(['Typescript', 'Javascript', 'C#'], 2),
-  summary: faker.lorem.lines(10),
+  summary: faker.lorem.paragraph(),
   projectType: 'Personal' as ProjectType,
   demo: faker.internet.url(),
   sourceCode: faker.internet.url(),
