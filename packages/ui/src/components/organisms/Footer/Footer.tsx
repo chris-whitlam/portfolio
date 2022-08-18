@@ -2,11 +2,8 @@ import { FC } from 'react';
 
 import { Box, Theme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
 
-import { ScrollToTop } from '@atoms';
+import { ScrollToTop, Socials } from '@atoms';
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -45,49 +42,13 @@ const useStyles = makeStyles(
 const Footer: FC = () => {
   const styles = useStyles();
 
-  // TODO:
-  // Fetch these in the layout when https://github.com/vercel/next.js/discussions/37136 is released
-  // For now, this will always use the defaults. Otherwise it would mean adding useStaticProps onto every page
-  const githubUrl = 'https://github.com/chris-whitlam';
-  const linkedInUrl =
-    'https://www.linkedin.com/in/christopher-whitlam-54456b173/';
-  const email = 'contact@chriswhitlam.dev';
-
   return (
     <Box className={styles.container} data-test-id="footer">
       <ScrollToTop />
       <Typography variant="body2" sx={{ marginTop: 2 }}>
         Created by Chris Whitlam
       </Typography>
-      <Box className={styles.socialsContainer} data-test-id="footer-socials">
-        <a
-          href={githubUrl}
-          aria-label="Github"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.icon}
-        >
-          <GitHubIcon />
-        </a>
-        <a
-          href={linkedInUrl}
-          aria-label="LinkedIn"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.icon}
-        >
-          <LinkedInIcon />
-        </a>
-        <a
-          href={`mailto:${email}`}
-          aria-label="Email"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.icon}
-        >
-          <EmailIcon />
-        </a>
-      </Box>
+      <Socials />
     </Box>
   );
 };

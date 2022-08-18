@@ -5,6 +5,7 @@ import ProjectCard from './ProjectCard';
 // TODO: Not ideal button was having issues with the buttons
 jest.mock('@mui/material', () => ({
   ...jest.requireActual('@mui/material'),
+  // eslint-disable-next-line unused-imports/no-unused-vars, @typescript-eslint/no-explicit-any
   Button: ({ fullWidth, endIcon, ...rest }: any) => <div {...rest} />
 }));
 

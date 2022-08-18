@@ -3,6 +3,7 @@ import { Factory } from 'fishery';
 import { faker } from '@faker-js/faker';
 
 import ImageFactory from './ImageFactory';
+import SocialsFactory from './SocialsFactory';
 
 class ProfileDataObjectFactory extends Factory<Profile> {}
 
@@ -14,11 +15,7 @@ const ProfileFactory = ProfileDataObjectFactory.define(() => ({
     'Song Writer'
   ]),
   bio: faker.lorem.lines(4),
-  socials: {
-    githubUrl: faker.internet.url(),
-    linkedInUrl: faker.internet.url(),
-    email: faker.internet.url()
-  },
+  socials: SocialsFactory.build(),
   image: ImageFactory.build()
 }));
 
