@@ -1,3 +1,4 @@
+import { RichTextContent } from '@graphcms/rich-text-types';
 import { Image, GraphQLImage } from './image';
 
 interface PostBase {
@@ -9,7 +10,7 @@ interface PostBase {
 }
 
 export interface Post extends PostBase {
-  content: string;
+  content: RichTextContent;
   coverImage: Image;
 }
 

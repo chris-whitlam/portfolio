@@ -56,7 +56,7 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
   const { title, coverImage, content } = post;
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="blog-post-page">
       <BackLink />
       <PageTitle>{title}</PageTitle>
       <Box className={styles.coverImage}>
