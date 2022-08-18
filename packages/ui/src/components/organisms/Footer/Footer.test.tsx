@@ -21,6 +21,6 @@ describe('Components -> Organisms -> Footer', () => {
     const { getByTestId } = render();
 
     expect(getByTestId('footer')).toBeInTheDocument();
-    expect(getByTestId('footer-socials')).toBeInTheDocument();
+    expect(getByTestId('socials')).toBeInTheDocument();
   });
 });

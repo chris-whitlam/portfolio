@@ -36,10 +36,10 @@ const render = (props: ProjectPageProps = defaultProps) =>
   );
 
 describe('Pages -> Projects -> Slug (Individual Projects)', () => {
-  fdescribe('Component', () => {
+  describe('Component', () => {
     const project = ProjectFactory.build();
 
-    fdescribe('Desktop', () => {
+    describe('Desktop', () => {
       it('should render page correctly', () => {
         const { getByTestId, queryByTestId } = render({ project });
 
