@@ -2,9 +2,18 @@ import { Button } from '@atoms';
 import { act, fireEvent, render as rtlRender } from '@testing-library/react';
 import { ButtonProps } from './Button';
 
-const render = ({ onClick, isLoading = false }: ButtonProps = {}) =>
+const render = ({
+  onClick,
+  disabled = false,
+  isLoading = false
+}: ButtonProps = {}) =>
   rtlRender(
-    <Button data-test-id="button" onClick={onClick} isLoading={isLoading}>
+    <Button
+      data-test-id="button"
+      onClick={onClick}
+      isLoading={isLoading}
+      disabled={disabled}
+    >
       My Button
     </Button>
   );
@@ -37,5 +46,12 @@ describe('Components -> Atoms -> Button', () => {
     });
 
     expect(onClick).toBeCalled();
+  });
+
+  it('should disable button if disabled passed as prop', () => {
+    const onClick = jest.fn();
+    const { getByTestId } = render({ onClick, disabled: true });
+
+    expect(getByTestId('button')).toBeDisabled();
   });
 });

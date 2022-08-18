@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
-import { PostFactory, ProjectFactory } from '@test/factories';
+import { PostFactory } from '@test/factories';
 import { render as rtlRender } from '@testing-library/react';
 import { getPost, getPostPaths } from '@graphql';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
@@ -9,7 +9,7 @@ import createMockRouter from '@test/utils/createMockRouter';
 import ProjectPage, {
   getStaticProps,
   getStaticPaths,
-  ProjectPageProps
+  BlogPostProps
 } from './[slug]';
 
 jest.mock('@graphql', () => ({
@@ -22,11 +22,11 @@ jest.mock('@mui/material', () => ({
   useMediaQuery: jest.fn().mockReturnValue(false)
 }));
 
-const defaultProps: ProjectPageProps = {
-  project: ProjectFactory.build()
+const defaultProps: BlogPostProps = {
+  post: PostFactory.build()
 };
 
-const render = (props: ProjectPageProps = defaultProps) =>
+const render = (props: BlogPostProps = defaultProps) =>
   rtlRender(
     <ThemeProvider theme={theme}>
       <RouterContext.Provider value={createMockRouter()}>

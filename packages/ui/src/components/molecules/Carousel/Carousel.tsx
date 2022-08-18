@@ -122,20 +122,16 @@ const Carousel: FC<CarouselProps> = ({
           slideClassName={styles.slide}
           data-test-id="carousel-swipeable-views"
         >
-          {images.map((image, index) => {
-            return (
-              <div key={image.url}>
-                <Image
-                  priority={index === 0}
-                  image={image}
-                  layout="responsive"
-                  objectFit="contain"
-                  onClick={() => handleClick(index)}
-                  data-test-id="carousel-slide-image"
-                />
-              </div>
-            );
-          })}
+          {images.map((image, index) => (
+            <Image
+              priority={index === 0}
+              image={image}
+              layout="responsive"
+              objectFit="contain"
+              onClick={() => handleClick(index)}
+              data-test-id="carousel-slide-image"
+            />
+          ))}
         </AutoPlaySwipeableViews>
         {showControls && (
           <Button

@@ -170,5 +170,30 @@ describe('hooks -> useRequest', () => {
         makeRequestSpy.mockReset();
       }
     );
+
+    it(`should use default error message if error has no message`, async () => {
+      makeRequestSpy.mockRejectedValueOnce(new Error());
+
+      const { result }: RenderHookResult<LazyRequestHookReturn, unknown> =
+        renderHook(() => useLazyGetRequest(url));
+
+      const [state, callback] = result.current;
+
+      expect(state.loading).toBe(false);
+
+      act(() => {
+        callback();
+      });
+
+      // Complete state
+      await waitFor(() => {
+        const updatedState = result.current[0];
+
+        expect(updatedState.loading).toBe(false);
+        expect(updatedState.data).toBeUndefined();
+        expect(updatedState.error).toStrictEqual('Something went wrong');
+      });
+      makeRequestSpy.mockReset();
+    });
   });
 });

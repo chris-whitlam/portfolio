@@ -1,2 +1,2 @@
-/* eslint-disable import/prefer-default-export */
+/* istanbul ignore file */
 export { default as Layout } from './Layout/Layout';

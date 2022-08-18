@@ -51,14 +51,6 @@ describe('Utils -> Request', () => {
     expect(result).toStrictEqual(expectedResponse);
   });
 
-  it('should throw error if fails', async () => {
-    const expectedError = new Error('Something went wrong');
-
-    fetchMock.mockRejectOnce(expectedError);
-
-    expect(makeRequest(url, 'GET')).rejects.toThrowError(expectedError);
-  });
-
   it('should throw error if unsupported content-type', async () => {
     const contentType = 'random/content-type';
 
@@ -71,5 +63,39 @@ describe('Utils -> Request', () => {
     expect(makeRequest(url, 'GET')).rejects.toThrowError(
       new Error(`Unable to resolve content-type ${contentType}`)
     );
+  });
+
+  it('should throw error if response is not ok and return json', async () => {
+    const expectedError = { error: 'Something went wrong' };
+
+    fetchMock.mockResponseOnce(JSON.stringify(expectedError), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    expect(makeRequest(url, 'GET')).rejects.toStrictEqual(expectedError);
+  });
+
+  it('should throw error if response is not ok and return text', async () => {
+    const expectedError = 'Something went wrong';
+
+    fetchMock.mockResponseOnce(expectedError, {
+      status: 400,
+      headers: {
+        'Content-Type': 'text/html'
+      }
+    });
+
+    expect(makeRequest(url, 'GET')).rejects.toStrictEqual(expectedError);
+  });
+
+  it('should throw error if fails', async () => {
+    const expectedError = new Error('Something went wrong');
+
+    fetchMock.mockRejectOnce(expectedError);
+
+    expect(makeRequest(url, 'GET')).rejects.toThrowError(expectedError);
   });
 });

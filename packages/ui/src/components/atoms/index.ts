@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export { default as Button } from './Button/Button';
 export * from './Heading/Heading';
 export { default as ArrowLink } from './ArrowLink/ArrowLink';

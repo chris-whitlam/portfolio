@@ -31,17 +31,11 @@ export const makeRequest = async (
       }
 
       if (contentType.includes('json')) {
-        return response
-          .json()
-          .then(reject)
-          .catch(() => reject(response));
+        return response.json().then(reject);
       }
 
       if (contentType.includes('text')) {
-        return response
-          .text()
-          .then(reject)
-          .catch(() => reject(response));
+        return response.text().then(reject);
       }
 
       return reject(response);

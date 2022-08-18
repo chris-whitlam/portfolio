@@ -40,11 +40,7 @@ const defaultSocials: Socials = {
 };
 
 const Socials: FC<SocialsProps> = ({
-  socials: {
-    linkedInUrl = 'https://www.linkedin.com/in/christopher-whitlam',
-    githubUrl = 'https://github.com/chris-whitlam',
-    email = 'contact@chriswhitlam.dev'
-  } = defaultSocials,
+  socials: { linkedInUrl, githubUrl, email } = defaultSocials,
   ...rest
 }) => {
   const styles = useStyles();

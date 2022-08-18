@@ -37,10 +37,6 @@ interface ProjectsProps {
 const Projects: FC<ProjectsProps> = ({ projects }) => {
   const styles = useStyles();
 
-  if (!projects) {
-    return null;
-  }
-
   return (
     <Box className={styles.container} data-test-id="projects">
       <SectionHeading href="/projects">Projects</SectionHeading>

@@ -119,10 +119,6 @@ const Hero: FC<HeroProps> = ({ profile }) => {
   const styles = useStyles();
   const showCornerImages = useMediaQuery(theme.breakpoints.up('md'));
 
-  if (!profile) {
-    return null;
-  }
-
   const {
     image,
     roles,

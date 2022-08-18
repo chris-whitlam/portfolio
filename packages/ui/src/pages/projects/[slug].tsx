@@ -5,14 +5,15 @@ import Card from '@mui/material/Card';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { RichText, NodeRendererType } from '@graphcms/rich-text-react-renderer';
+import { RichText } from '@graphcms/rich-text-react-renderer';
 
-import { BackLink, PageTitle, Button, Image } from '@atoms';
+import { BackLink, PageTitle, Button } from '@atoms';
 import { Project } from '@types';
 import { getProjectPaths, getProject } from '@graphql';
 import { makeStyles } from '@mui/styles';
 import { theme } from '@styles';
 import { Carousel } from '@molecules';
+import { componentMap } from '@utils';
 
 const useStyles = makeStyles(
   () => ({
@@ -78,18 +79,6 @@ const useStyles = makeStyles(
 export interface ProjectPageProps {
   project: Project;
 }
-
-const getComponents = (): NodeRendererType => ({
-  img: ({ width, height, altText, src, title }) => {
-    const image = {
-      alt: altText || title || '',
-      height,
-      width,
-      url: src || ''
-    };
-    return <Image image={image} style={{ borderRadius: '8px' }} />;
-  }
-});
 
 const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
   const styles = useStyles();
@@ -211,7 +200,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
           <RichText
             data-test-id="project-description"
             content={description}
-            renderers={getComponents()}
+            renderers={componentMap}
           />
         </Box>
       </Container>
