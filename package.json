@@ -42,10 +42,12 @@
   },
   "lint-staged": {
     "packages/ui/**/*.{ts,tsx}": [
-      "yarn lint:ui"
+      "yarn lint:ui",
+      "yarn test:ui:ci"
     ],
     "packages/api/**/*.ts": [
-      "yarn lint:api"
+      "yarn lint:api",
+      "yarn test:api:ci"
     ]
   },
   "husky": {
