@@ -1,7 +1,7 @@
 import { GraphQLPostFactory } from '@test/factories';
 import { GraphQLPost } from '@types';
 import apolloClient from './apolloClient';
-import { getPost, getPosts } from './posts';
+import { getPost, getPosts, getPostPaths } from './posts';
 
 jest.mock('./apolloClient', () => ({
   query: jest.fn()
@@ -57,6 +57,25 @@ describe('GraphQL -> posts', () => {
       expect(result).toStrictEqual([
         getExpectedPostOutput(posts[0]),
         getExpectedPostOutput(posts[1])
+      ]);
+    });
+  });
+
+  describe('getPostPaths', () => {
+    it('should successfully retrieve post paths', async () => {
+      const { posts } = getData(2);
+
+      const formattedPosts = posts.map((post) => ({ slug: post.slug }));
+
+      mockQuery.mockResolvedValue({
+        data: { posts: formattedPosts }
+      });
+
+      const result = await getPostPaths();
+
+      expect(result).toStrictEqual([
+        { params: formattedPosts[0] },
+        { params: formattedPosts[1] }
       ]);
     });
   });

@@ -1,4 +1,4 @@
-import { getProject, getProjects } from '@graphql';
+import { getProject, getProjects, getProjectPaths } from '@graphql';
 import { GraphQLProjectFactory } from '@test/factories';
 import { GraphQLProject } from '@types';
 import apolloClient from './apolloClient';
@@ -63,6 +63,26 @@ describe('GraphQL -> projects', () => {
       expect(result).toStrictEqual([
         getExpectedProjectOutput(projects[0]),
         getExpectedProjectOutput(projects[1])
+      ]);
+    });
+  });
+
+  describe('getProjectPaths', () => {
+    it('should successfully retrieve project paths', async () => {
+      const { projects } = getData(2);
+      const formattedProjects = projects.map((project) => ({
+        slug: project.slug
+      }));
+
+      mockQuery.mockResolvedValue({
+        data: { projects: formattedProjects }
+      });
+
+      const result = await getProjectPaths();
+
+      expect(result).toStrictEqual([
+        { params: formattedProjects[0] },
+        { params: formattedProjects[1] }
       ]);
     });
   });
