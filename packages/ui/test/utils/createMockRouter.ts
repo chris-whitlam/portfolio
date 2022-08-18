@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router';
 
-const createMockRouter = (router: Partial<NextRouter>): NextRouter => ({
+const createMockRouter = (router?: Partial<NextRouter>): NextRouter => ({
   basePath: '',
   pathname: '/',
   route: '/',

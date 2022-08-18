@@ -7,7 +7,12 @@ const BackLink: FC = ({ ...rest }) => {
   const router = useRouter();
 
   return (
-    <Button startIcon={<ChevronLeftIcon />} onClick={router.back} {...rest}>
+    <Button
+      startIcon={<ChevronLeftIcon />}
+      onClick={router.back}
+      data-test-id="back-link"
+      {...rest}
+    >
       Back
     </Button>
   );

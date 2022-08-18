@@ -8,7 +8,7 @@ const backMock = jest.fn();
 const render = () =>
   rtlRender(
     <RouterContext.Provider value={createMockRouter({ back: backMock })}>
-      <BackLink data-test-id="back-link" />
+      <BackLink />
     </RouterContext.Provider>
   );
 
