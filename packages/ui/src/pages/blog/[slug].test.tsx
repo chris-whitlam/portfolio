@@ -6,6 +6,7 @@ import { getPost, getPostPaths } from '@graphql';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import createMockRouter from '@test/utils/createMockRouter';
 
+import { RichTextContent } from '@test/types';
 import ProjectPage, {
   getStaticProps,
   getStaticPaths,
@@ -38,14 +39,24 @@ const render = (props: BlogPostProps = defaultProps) =>
 describe('Pages -> Blog -> Slug (Individual Blog Post)', () => {
   describe('Component', () => {
     const post = PostFactory.build();
+    const postContent = post.content as RichTextContent;
 
     it('should render page correctly', () => {
-      const { getByTestId } = render({ post });
+      const { getByTestId, container } = render({ post });
+      const contentTitle = container.querySelector('h3');
+      const paragraph = container.querySelector('p');
 
       expect(getByTestId('blog-post-page')).toBeInTheDocument();
       expect(getByTestId('back-link')).toBeInTheDocument();
       expect(getByTestId('image')).toBeInTheDocument();
       expect(getByTestId('page-title')).toHaveTextContent(post.title);
+
+      expect(contentTitle).toHaveTextContent(
+        postContent.children[0].children[0].text
+      );
+      expect(paragraph).toHaveTextContent(
+        postContent.children[1].children[0].text
+      );
     });
   });
 

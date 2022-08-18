@@ -43,9 +43,6 @@ const TextArea: FC<TextAreaProps> = ({
     }}
     data-test-id={dataTestId || 'text-area'}
     inputProps={{ 'data-test-id': `${dataTestId}-input` || 'text-area-input' }}
-    FormHelperTextProps={{
-      'data-test-id': `${dataTestId}-message` || 'text-area-message'
-    }}
     {...rest}
   />
 );

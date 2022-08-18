@@ -8,7 +8,7 @@
     "export": "next build && next export",
     "start": "next start",
     "lint": "eslint \"**/*.ts*\" --fix",
-    "test": "jest --findRelatedTests", 
+    "test": "jest", 
     "test:ci": "jest --collectCoverage --silent --findRelatedTests"
   },
   "dependencies": {

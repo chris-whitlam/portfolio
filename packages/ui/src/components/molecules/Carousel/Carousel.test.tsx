@@ -17,9 +17,7 @@ describe('Components -> Molecules -> Carousel', () => {
   afterAll(jest.restoreAllMocks);
 
   it('should render component', () => {
-    const { getByTestId, debug } = render();
-
-    debug();
+    const { getByTestId } = render();
 
     expect(getByTestId('carousel')).toBeInTheDocument();
     expect(getByTestId('previous-slide-button')).toBeInTheDocument();

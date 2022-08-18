@@ -14,7 +14,26 @@ const ProjectFactory = ProjectDataObjectFactory.define(() => ({
   demo: faker.internet.url(),
   sourceCode: faker.internet.url(),
   isApp: false,
-  description: faker.lorem.lines(10),
+  description: {
+    children: [
+      {
+        type: 'heading-three' as const,
+        children: [
+          {
+            text: faker.lorem.words(3)
+          }
+        ]
+      },
+      {
+        type: 'paragraph' as const,
+        children: [
+          {
+            text: faker.lorem.paragraph()
+          }
+        ]
+      }
+    ]
+  },
   images: ImageFactory.buildList(2)
 }));
 

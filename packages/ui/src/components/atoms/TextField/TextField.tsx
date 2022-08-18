@@ -44,9 +44,6 @@ const TextField = React.forwardRef(
       inputProps={{
         'data-test-id': `${dataTestId}-input` || 'text-field-input'
       }}
-      FormHelperTextProps={{
-        'data-test-id': `${dataTestId}-message` || 'text-field-message'
-      }}
       {...rest}
     />
   )

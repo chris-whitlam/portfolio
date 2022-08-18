@@ -14,18 +14,9 @@ import ContactForm from './ContactForm';
 
 const ids = {
   form: 'contact-form',
-  nameField: {
-    input: 'contact-form-name-field-input',
-    message: 'contact-form-name-field-message'
-  },
-  emailField: {
-    input: 'contact-form-email-field-input',
-    message: 'contact-form-email-field-message'
-  },
-  messageField: {
-    input: 'contact-form-message-field-input',
-    message: 'contact-form-message-field-message'
-  },
+  nameField: 'contact-form-name-field-input',
+  emailField: 'contact-form-email-field-input',
+  messageField: 'contact-form-message-field-input',
   submitBtn: 'contact-form-submit-button',
   errorMsg: 'contact-form-error-message',
   successMsg: 'contact-form-success-message'
@@ -42,17 +33,23 @@ const fillForm = ({
   email = defaultFormInput.email,
   message = defaultFormInput.message
 } = defaultFormInput) => {
-  fireEvent.change(screen.getByTestId(ids.nameField.input), {
+  fireEvent.change(screen.getByTestId(ids.nameField), {
     target: { value: name }
   });
 
-  fireEvent.change(screen.getByTestId(ids.emailField.input), {
+  fireEvent.change(screen.getByTestId(ids.emailField), {
     target: { value: email }
   });
 
-  fireEvent.change(screen.getByTestId(ids.messageField.input), {
+  fireEvent.change(screen.getByTestId(ids.messageField), {
     target: { value: message }
   });
+};
+
+const getHelperText = (container: HTMLElement, inputId: string) => {
+  const nameInput = screen.getByTestId(inputId);
+  const nameErrorMessageId = nameInput.getAttribute('aria-describedby');
+  return container.querySelector(`#${nameErrorMessageId}`);
 };
 
 const render = () =>
@@ -79,9 +76,9 @@ describe('Components -> Organisms -> Contact Form', () => {
     const { getByTestId } = render();
 
     expect(getByTestId(ids.form)).toBeInTheDocument();
-    expect(getByTestId(ids.nameField.input)).toBeInTheDocument();
-    expect(getByTestId(ids.emailField.input)).toBeInTheDocument();
-    expect(getByTestId(ids.messageField.input)).toBeInTheDocument();
+    expect(getByTestId(ids.nameField)).toBeInTheDocument();
+    expect(getByTestId(ids.emailField)).toBeInTheDocument();
+    expect(getByTestId(ids.messageField)).toBeInTheDocument();
     expect(getByTestId(ids.submitBtn)).toBeInTheDocument();
     expect(getByTestId(ids.errorMsg)).not.toBeVisible();
     expect(getByTestId(ids.successMsg)).not.toBeVisible();
@@ -132,7 +129,7 @@ describe('Components -> Organisms -> Contact Form', () => {
     const expectedErrorMessage = 'Something went wrong';
     fetchMock.mockRejectOnce(new Error(expectedErrorMessage));
 
-    const { getByTestId } = render();
+    const { getByTestId, getByText } = render();
 
     const submitButton = getByTestId(ids.submitBtn);
 
@@ -141,17 +138,14 @@ describe('Components -> Organisms -> Contact Form', () => {
     });
 
     await waitFor(async () => {
-      const nameErrorMessage = getByTestId(ids.nameField.message);
+      const nameErrorMessage = getByText('Your name is required');
       expect(nameErrorMessage).toBeVisible();
-      expect(nameErrorMessage).toHaveTextContent('Your name is required');
 
-      const emailErrorMessage = getByTestId(ids.emailField.message);
+      const emailErrorMessage = getByText('Your email is required');
       expect(emailErrorMessage).toBeVisible();
-      expect(emailErrorMessage).toHaveTextContent('Your email is required');
 
-      const messageErrorMessage = getByTestId(ids.messageField.message);
+      const messageErrorMessage = getByText('A message is required');
       expect(messageErrorMessage).toBeVisible();
-      expect(messageErrorMessage).toHaveTextContent('A message is required');
 
       expect(getByTestId(ids.errorMsg)).not.toBeVisible();
       expect(getByTestId(ids.successMsg)).not.toBeVisible();

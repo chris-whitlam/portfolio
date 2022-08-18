@@ -6,6 +6,7 @@ import { getProject, getProjectPaths } from '@graphql';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import createMockRouter from '@test/utils/createMockRouter';
 
+import { RichTextContent } from '@test/types';
 import ProjectPage, {
   getStaticProps,
   getStaticPaths,
@@ -38,10 +39,14 @@ const render = (props: ProjectPageProps = defaultProps) =>
 describe('Pages -> Projects -> Slug (Individual Projects)', () => {
   describe('Component', () => {
     const project = ProjectFactory.build();
+    const projectDescription = project.description as RichTextContent;
 
     describe('Desktop', () => {
       it('should render page correctly', () => {
-        const { getByTestId, queryByTestId } = render({ project });
+        const { getByTestId, queryByTestId, container } = render({ project });
+
+        const descriptionTitle = container.querySelector('h3');
+        const paragraphs = container.querySelectorAll('p');
 
         expect(getByTestId('project-page')).toBeInTheDocument();
         expect(getByTestId('page-title')).toHaveTextContent(project.name);
@@ -62,6 +67,13 @@ describe('Pages -> Projects -> Slug (Individual Projects)', () => {
         ).not.toBeInTheDocument();
         expect(queryByTestId('fixed-source-code-link')).not.toBeInTheDocument();
         expect(queryByTestId('fixed-demo-link')).not.toBeInTheDocument();
+
+        expect(descriptionTitle).toHaveTextContent(
+          projectDescription.children[0].children[0].text
+        );
+        expect(paragraphs[3]).toHaveTextContent(
+          projectDescription.children[1].children[0].text
+        );
       });
     });
 

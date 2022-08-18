@@ -124,6 +124,7 @@ const Carousel: FC<CarouselProps> = ({
         >
           {images.map((image, index) => (
             <Image
+              key={image.url}
               priority={index === 0}
               image={image}
               layout="responsive"
