@@ -8,8 +8,8 @@
     "export": "next build && next export",
     "start": "next start",
     "lint": "eslint \"**/*.ts*\" --fix",
-    "test": "jest", 
-    "test:ci": "jest --collectCoverage --silent"
+    "test": "jest --findRelatedTests", 
+    "test:ci": "jest --collectCoverage --silent --findRelatedTests"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",

@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "netlify functions:serve --port 3001",
-    "test": "jest ",
-    "test:ci": "jest --collectCoverage --silent",
+    "test": "jest --findRelatedTests",
+    "test:ci": "jest --collectCoverage --silent --findRelatedTests",
     "build": "netlify functions:build",
     "lint": "eslint \"**/*.ts\" --fix"
   },

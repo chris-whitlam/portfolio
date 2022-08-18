@@ -30,8 +30,7 @@ const schema = Joi.object({
     'any.required': `Please provide required fields`
   });
 
-const validateContactFormInput = async (contactFormInput: ContactRequest) => {
-  return schema.validateAsync(contactFormInput);
-};
+const validateContactFormInput = async (contactFormInput: ContactRequest) =>
+  schema.validateAsync(contactFormInput);
 
 export default validateContactFormInput;
