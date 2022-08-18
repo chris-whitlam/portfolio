@@ -8,11 +8,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { makeStyles } from '@mui/styles';
 
+import { theme } from '@styles';
 import { Button, Image } from '@atoms';
 import { Project } from '@/types';
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  () => ({
     container: {
       position: 'relative',
       transition: 'all .1s ease-in-out',
@@ -79,17 +80,10 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
     sourceCode,
     slug
   } = project;
+
   const [image] = images;
 
-  const tagsString = useMemo(
-    () =>
-      tags?.reduce(
-        (acc, item, count) =>
-          `${acc}${item}${count < tags.length - 1 ? ', ' : ''}`,
-        ''
-      ),
-    [tags]
-  );
+  const tagsString = useMemo(() => tags.join(', '), [tags]);
 
   const defaultStyle = isApp
     ? {
@@ -101,11 +95,17 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
   const link = `/projects/${slug}`;
 
   return (
-    <Box className={styles.container} sx={{ ...defaultStyle, ...sx }}>
+    <Box
+      className={styles.container}
+      sx={{ ...defaultStyle, ...sx }}
+      data-test-id="project-card"
+    >
       <Card className={styles.card}>
         <Box className={styles.link}>
-          <Link passHref href={link}>
-            <Image image={image} sizes="370px" />
+          <Link href={link}>
+            <Box>
+              <Image image={image} sizes="370px" />
+            </Box>
           </Link>
         </Box>
         <CardContent className={styles.content}>
@@ -113,11 +113,13 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
             <i>{projectType} Project</i>
           </Typography>
           <Typography variant="h5" component="div">
-            <Link passHref href={link}>
-              {name}
-            </Link>
+            <Link href={link}>{name}</Link>
           </Typography>
-          <Typography gutterBottom className={styles.techStack}>
+          <Typography
+            gutterBottom
+            className={styles.techStack}
+            data-test-id="project-card-tags"
+          >
             <i>{tagsString}</i>
           </Typography>
           <Typography variant="body2" className={styles.summary}>
@@ -126,22 +128,36 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
         </CardContent>
         <CardActions className={styles.buttonsContainer}>
           {demo && (
-            <Button
-              size="medium"
-              variant="tertiary"
-              endIcon={<OpenInNewIcon />}
-            >
-              Go to
-            </Button>
+            <a href={demo}>
+              <Button
+                size="medium"
+                variant="tertiary"
+                endIcon={<OpenInNewIcon />}
+                data-test-id="project-card-demo-link"
+              >
+                Go to
+              </Button>
+            </a>
           )}
           {sourceCode && (
-            <Button size="medium" variant="tertiary" endIcon={<GitHubIcon />}>
-              Code
-            </Button>
+            <a href={sourceCode}>
+              <Button
+                size="medium"
+                variant="tertiary"
+                endIcon={<GitHubIcon />}
+                data-test-id="project-card-code-link"
+              >
+                Code
+              </Button>
+            </a>
           )}
         </CardActions>
-        <Link passHref href={link}>
-          <Button size="medium">More details</Button>
+        <Link href={link}>
+          <Box>
+            <Button size="medium" fullWidth>
+              More details
+            </Button>
+          </Box>
         </Link>
       </Card>
     </Box>

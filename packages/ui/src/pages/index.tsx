@@ -4,7 +4,7 @@ import { Hero, Projects, Posts, ContactForm, Quote } from '@organisms';
 import { getHomepageData } from '@graphql';
 import { Project, Post, Profile } from '@types';
 
-interface HomePageProps {
+export interface HomePageProps {
   profile: Profile;
   projects: Project[];
   posts: Post[];
@@ -23,7 +23,7 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
 );
 
 export const getStaticProps = async () => {
-  const props = await getHomepageData({ numOfFeaturesProjects: 5 });
+  const props = await getHomepageData({ numOfFeaturedProjects: 5 });
 
   return { props };
 };

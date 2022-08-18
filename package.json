@@ -18,7 +18,13 @@
     "lint:api": "yarn --cwd packages/api lint",
     "lint:ui": "yarn --cwd packages/ui lint",
     "lint": "concurrently -n ui,api -c blue,magenta -m 1 \"yarn lint:ui\" \"yarn lint:api\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:api": "yarn --cwd packages/api test",
+    "test:api:ci": "yarn --cwd packages/api test:ci",
+    "test:ui": "yarn --cwd packages/ui test",
+    "test:ui:ci": "yarn --cwd packages/ui test:ci",
+    "test": "concurrently -n api,ui -c blue,magenta -m 1 \"yarn test:api\" \"yarn test:ui\"",
+    "test:ci": "concurrently -n api,ui -c blue,magenta -m 1 \"yarn test:api:ci\" \"yarn test:ui:ci\""
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
@@ -30,14 +36,18 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.7",
+    "jest": "^28.1.3"
   },
   "lint-staged": {
     "packages/ui/**/*.{ts,tsx}": [
-      "yarn lint:ui"
+      "yarn lint:ui",
+      "yarn test:ui:ci"
     ],
     "packages/api/**/*.ts": [
-      "yarn lint:api"
+      "yarn lint:api",
+      "yarn test:api:ci"
     ]
   },
   "husky": {

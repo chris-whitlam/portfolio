@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import createCache from '@emotion/cache';
 
 // prepend: true moves MUI styles to the top of the <head> so they're loaded first.

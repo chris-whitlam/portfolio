@@ -43,7 +43,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Box className={styles.container}>
         <Header />
         <Container sx={{ flex: '1 1 auto' }}>
-          <Box className={styles.mainContent}>{children}</Box>
+          <Box className={styles.mainContent} data-test-id="main-content">
+            {children}
+          </Box>
         </Container>
         <Footer />
       </Box>

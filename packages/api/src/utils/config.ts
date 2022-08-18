@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 interface Config {
   emailHost: string;
   emailPort: number;
@@ -10,14 +11,26 @@ interface Config {
 
 export const getConfig = (): Config => {
   const {
-    EMAIL_HOST: emailHost = '',
-    EMAIL_PORT: emailPort = '',
-    EMAIL_PASSWORD: emailPassword = '',
-    EMAIL_USERNAME: emailUsername = '',
-    EMAIL_SENDER_ADDRESS: emailSenderAddress = '',
-    EMAIL_RECIEVER_ADDRESS: emailRecieverAddress = '',
-    CORS_ORIGIN: corsOrigin = ''
+    EMAIL_HOST: emailHost,
+    EMAIL_PORT: emailPort,
+    EMAIL_PASSWORD: emailPassword,
+    EMAIL_USERNAME: emailUsername,
+    EMAIL_SENDER_ADDRESS: emailSenderAddress,
+    EMAIL_RECIEVER_ADDRESS: emailRecieverAddress,
+    CORS_ORIGIN: corsOrigin
   } = process.env;
+
+  if (
+    !emailHost ||
+    !emailPort ||
+    !emailPassword ||
+    !emailUsername ||
+    !emailSenderAddress ||
+    !emailRecieverAddress ||
+    !corsOrigin
+  ) {
+    throw new Error('Not all env vars defined');
+  }
 
   return {
     emailHost,

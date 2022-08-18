@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { theme } from '@styles';
 
-interface ButtonProps extends MUIButtonProps {
+export interface ButtonProps extends MUIButtonProps {
   size?: 'medium' | 'large' | 'small';
   isLoading?: boolean;
 }
@@ -28,6 +28,7 @@ const Button: FC<ButtonProps> = ({
   const defaultStyles: CSSProperties = {
     boxShadow: '3px 3px #1a1a1a'
   };
+
   const styles: Record<string, CSSProperties> = {
     secondary: {
       ...defaultStyles,
@@ -45,7 +46,10 @@ const Button: FC<ButtonProps> = ({
       color={color}
       endIcon={
         isLoading ? (
-          <CircularProgress sx={{ maxHeight: '25px', maxWidth: '25px' }} />
+          <CircularProgress
+            data-test-id="button-loading-icon"
+            sx={{ maxHeight: '25px', maxWidth: '25px' }}
+          />
         ) : (
           endIcon
         )

@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 import { BackLink, PageTitle } from '@atoms';
 import { ProjectCard } from '@molecules';
 import { Project } from '@types';
-import { getProjects } from '@/graphql/projects';
+import { getProjects } from '@graphql';
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -30,7 +30,7 @@ const useStyles = makeStyles(
   { name: 'Projects' }
 );
 
-interface ProjectPageProps {
+export interface ProjectPageProps {
   projects: Project[];
 }
 

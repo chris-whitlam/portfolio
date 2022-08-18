@@ -6,11 +6,13 @@ import {
 } from '@utils/transformers';
 import apolloClient from './apolloClient';
 
+interface fetchHomepageDataOptions {
+  numOfFeaturedProjects?: number;
+}
+
 const fetchHomepageData = async ({
-  numOfFeaturesProjects
-}: {
-  numOfFeaturesProjects: number;
-}) => {
+  numOfFeaturedProjects = 5
+}: fetchHomepageDataOptions) => {
   const { data } = await apolloClient.query({
     query: gql`
       query {
@@ -31,7 +33,7 @@ const fetchHomepageData = async ({
             email
           }
         }
-        projects(first: ${numOfFeaturesProjects}) {
+        projects(first: ${numOfFeaturedProjects}) {
           name
           slug
           tags

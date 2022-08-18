@@ -1,6 +1,7 @@
+import { RichTextContent } from '@graphcms/rich-text-types';
 import { Image, GraphQLImage } from './image';
 
-type ProjectType = 'Personal' | 'Work';
+export type ProjectType = 'Personal' | 'Work';
 
 interface ProjectBase {
   name: string;
@@ -11,15 +12,18 @@ interface ProjectBase {
   demo: string;
   sourceCode: string;
   isApp: boolean;
-  description: any;
 }
 
 export interface Project extends ProjectBase {
+  description: RichTextContent;
   images: Image[];
 }
 
 export type Projects = Project[];
 
 export interface GraphQLProject extends ProjectBase {
+  description: {
+    raw: string;
+  };
   images: GraphQLImage[];
 }
