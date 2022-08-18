@@ -28,6 +28,7 @@ const Button: FC<ButtonProps> = ({
   const defaultStyles: CSSProperties = {
     boxShadow: '3px 3px #1a1a1a'
   };
+
   const styles: Record<string, CSSProperties> = {
     secondary: {
       ...defaultStyles,
