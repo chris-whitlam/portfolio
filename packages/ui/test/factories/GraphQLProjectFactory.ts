@@ -3,6 +3,7 @@ import { Factory } from 'fishery';
 import { faker } from '@faker-js/faker';
 
 import GraphQLImageFactory from './GraphQLImageFactory';
+import RichContentFactory from './RichContentFactory';
 
 class GraphQLProjectDataObjectFactory extends Factory<GraphQLProject> {}
 
@@ -16,7 +17,7 @@ const GraphQLProjectFactory = GraphQLProjectDataObjectFactory.define(() => ({
   sourceCode: faker.internet.url(),
   isApp: false,
   description: {
-    raw: faker.lorem.lines(10)
+    raw: RichContentFactory.build()
   },
   images: GraphQLImageFactory.buildList(2)
 }));

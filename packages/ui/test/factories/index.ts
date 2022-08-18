@@ -7,3 +7,4 @@ export { default as GraphQLPostFactory } from './GraphQLPostFactory';
 export { default as GraphQLProfileFactory } from './GraphQLProfileFactory';
 export { default as GraphQLProjectFactory } from './GraphQLProjectFactory';
 export { default as SocialsFactory } from './SocialsFactory';
+export { default as RichContentFactory } from './RichContentFactory';

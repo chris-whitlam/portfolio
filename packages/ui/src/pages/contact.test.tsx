@@ -4,7 +4,7 @@ import { ProfileFactory } from '@test/factories';
 import { render as rtlRender } from '@testing-library/react';
 import { getProfile } from '@graphql';
 
-import Contact, { ContactPageProps, getStaticProps } from './contact';
+import Contact, { ContactPageProps, getStaticProps } from './contact.page';
 
 jest.mock('@graphql', () => ({
   getProfile: jest.fn()

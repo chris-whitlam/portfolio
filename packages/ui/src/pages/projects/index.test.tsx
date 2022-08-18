@@ -6,7 +6,7 @@ import { getProjects } from '@graphql';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import createMockRouter from '@test/utils/createMockRouter';
 
-import ProjectsPage, { getStaticProps, ProjectPageProps } from './index';
+import ProjectsPage, { getStaticProps, ProjectPageProps } from './index.page';
 
 jest.mock('@graphql', () => ({
   getProjects: jest.fn()

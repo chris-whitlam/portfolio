@@ -11,7 +11,7 @@ import ProjectPage, {
   getStaticProps,
   getStaticPaths,
   BlogPostProps
-} from './[slug]';
+} from './[slug].page';
 
 jest.mock('@graphql', () => ({
   getPost: jest.fn(),

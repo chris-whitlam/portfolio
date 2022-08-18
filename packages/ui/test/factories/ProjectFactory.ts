@@ -2,6 +2,7 @@ import { Project, ProjectType } from '@types';
 import { Factory } from 'fishery';
 import { faker } from '@faker-js/faker';
 import ImageFactory from './ImageFactory';
+import RichContentFactory from './RichContentFactory';
 
 class ProjectDataObjectFactory extends Factory<Project> {}
 
@@ -14,26 +15,7 @@ const ProjectFactory = ProjectDataObjectFactory.define(() => ({
   demo: faker.internet.url(),
   sourceCode: faker.internet.url(),
   isApp: false,
-  description: {
-    children: [
-      {
-        type: 'heading-three' as const,
-        children: [
-          {
-            text: faker.lorem.words(3)
-          }
-        ]
-      },
-      {
-        type: 'paragraph' as const,
-        children: [
-          {
-            text: faker.lorem.paragraph()
-          }
-        ]
-      }
-    ]
-  },
+  description: RichContentFactory.build(),
   images: ImageFactory.buildList(2)
 }));
 

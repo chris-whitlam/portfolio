@@ -23,7 +23,7 @@ export type Projects = Project[];
 
 export interface GraphQLProject extends ProjectBase {
   description: {
-    raw: string;
+    raw: RichTextContent;
   };
   images: GraphQLImage[];
 }

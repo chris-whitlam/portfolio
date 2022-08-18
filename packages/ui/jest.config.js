@@ -24,7 +24,6 @@ module.exports = {
     '@molecules/(.*)': '<rootDir>/src/components/molecules/$1',
     '@templates': '<rootDir>/src/components/templates',
     '@templates/(.*)': '<rootDir>/src/components/templates/$1',
-    '@pages': '<rootDir>/src/pages',
     '@pages/(.*)': '<rootDir>/src/pages/$1',
     '@styles': '<rootDir>/src/styles',
     '@styles/(.*)': '<rootDir>/src/styles/$1',

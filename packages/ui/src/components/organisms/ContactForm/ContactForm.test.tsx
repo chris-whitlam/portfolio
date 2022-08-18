@@ -46,12 +46,6 @@ const fillForm = ({
   });
 };
 
-const getHelperText = (container: HTMLElement, inputId: string) => {
-  const nameInput = screen.getByTestId(inputId);
-  const nameErrorMessageId = nameInput.getAttribute('aria-describedby');
-  return container.querySelector(`#${nameErrorMessageId}`);
-};
-
 const render = () =>
   rtlRender(
     <ThemeProvider theme={theme}>

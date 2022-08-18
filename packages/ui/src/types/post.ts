@@ -16,7 +16,7 @@ export interface Post extends PostBase {
 
 export interface GraphQLPost extends PostBase {
   content: {
-    raw: string;
+    raw: RichTextContent;
   };
   coverImage: GraphQLImage;
 }

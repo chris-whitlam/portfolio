@@ -3,6 +3,7 @@ import { Factory } from 'fishery';
 import { faker } from '@faker-js/faker';
 
 import ImageFactory from './ImageFactory';
+import RichContentFactory from './RichContentFactory';
 
 class PostDataObjectFactory extends Factory<Post> {}
 
@@ -13,26 +14,7 @@ const PostFactory = PostDataObjectFactory.define(() => ({
   tags: faker.helpers.arrayElements(['Typescript', 'Database', 'Unity'], 2),
   readTime: faker.datatype.number(20),
   coverImage: ImageFactory.build(),
-  content: {
-    children: [
-      {
-        type: 'heading-three' as const,
-        children: [
-          {
-            text: faker.lorem.words(3)
-          }
-        ]
-      },
-      {
-        type: 'paragraph' as const,
-        children: [
-          {
-            text: faker.lorem.paragraph()
-          }
-        ]
-      }
-    ]
-  }
+  content: RichContentFactory.build()
 }));
 
 export default PostFactory;

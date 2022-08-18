@@ -6,7 +6,7 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import createMockRouter from '@test/utils/createMockRouter';
 
 import { PostFactory } from '@test/factories';
-import BlogPage, { getStaticProps, BlogPageProps } from './index';
+import BlogPage, { getStaticProps, BlogPageProps } from './index.page';
 
 jest.mock('@graphql', () => ({
   getPosts: jest.fn()

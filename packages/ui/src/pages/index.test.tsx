@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { render as rtlRender } from '@testing-library/react';
 
-import Home, { HomePageProps, getStaticProps } from '@pages';
+import Home, { HomePageProps, getStaticProps } from '@pages/index.page';
 import { PostFactory, ProfileFactory, ProjectFactory } from '@test/factories';
 import { getHomepageData } from '@graphql';
 
