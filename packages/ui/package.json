@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
+    "postbuild": "next-sitemap",
+    "export": "yarn build && next export",
     "start": "next start",
     "lint": "eslint \"**/*.ts*\" --fix",
     "test": "jest",
@@ -25,6 +26,7 @@
     "graphql": "^16.5.0",
     "next": "^12.2.0",
     "next-mdx-remote": "^4.0.3",
+    "next-sitemap": "^3.1.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-swipeable-views": "^0.14.0",

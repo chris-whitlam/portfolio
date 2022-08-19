@@ -129,13 +129,17 @@ const Hero: FC<HeroProps> = ({ profile }) => {
     <Box className={styles.container} data-test-id="hero">
       {showCornerImages && (
         <div data-test-id="hero-corner-images">
-          <img src="topLeftBurst.svg" className={styles.topLeft} alt="" />
-          <img src="topRightBurst.svg" className={styles.topRight} alt="" />
+          <img src="/img/topLeftBurst.svg" className={styles.topLeft} alt="" />
+          <img
+            src="/img/topRightBurst.svg"
+            className={styles.topRight}
+            alt=""
+          />
         </div>
       )}
 
       <Box sx={{ position: 'relative' }}>
-        <img src="centerBurst.svg" className={styles.centerSvg} alt="" />
+        <img src="/img/centerBurst.svg" className={styles.centerSvg} alt="" />
         <Box className={styles.imageContainer}>
           <Image
             image={image}
