@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
-    "export": "next build && next export",
+    "export": "yarn build && next export",
     "start": "next start",
     "lint": "eslint \"**/*.ts*\" --fix",
     "test": "jest",

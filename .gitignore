@@ -47,5 +47,8 @@ yarn-error.log*
 .ssl
 .vscode
 
+# UI
 out
 dist
+packages/ui/public/robots.txt
+packages/ui/public/sitemap*.xml
