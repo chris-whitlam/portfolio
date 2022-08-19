@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { PageTitle, Image, BackLink } from '@atoms';
 import { FC } from 'react';
 
@@ -42,19 +43,25 @@ const useStyles = makeStyles(
 const BlogPost: FC<BlogPostProps> = ({ post }) => {
   const styles = useStyles();
 
-  const { title, coverImage, content } = post;
+  const { title, coverImage, content, summary = '' } = post;
 
   return (
-    <Box className={styles.container} data-test-id="blog-post-page">
-      <BackLink />
-      <PageTitle>{title}</PageTitle>
-      <Box className={styles.coverImage}>
-        <Image image={coverImage} />
+    <>
+      <Head>
+        <title>{title} - Chris Whitlam</title>
+        <meta name="description" content={summary} />
+      </Head>
+      <Box className={styles.container} data-test-id="blog-post-page">
+        <BackLink />
+        <PageTitle>{title}</PageTitle>
+        <Box className={styles.coverImage}>
+          <Image image={coverImage} />
+        </Box>
+        <Box className={styles.content}>
+          <RichText content={content} renderers={componentMap} />
+        </Box>
       </Box>
-      <Box className={styles.content}>
-        <RichText content={content} renderers={componentMap} />
-      </Box>
-    </Box>
+    </>
   );
 };
 

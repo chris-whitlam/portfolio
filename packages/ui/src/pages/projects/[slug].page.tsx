@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { FC, useCallback, useMemo, useRef } from 'react';
 
 import { Box, Typography, Container, useMediaQuery } from '@mui/material';
@@ -106,6 +107,10 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
 
   return (
     <>
+      <Head>
+        <title>{name} - Chris Whitlam</title>
+        <meta name="description" content={summary} />
+      </Head>
       <Container data-test-id="project-page">
         <BackLink />
         <PageTitle>{name}</PageTitle>

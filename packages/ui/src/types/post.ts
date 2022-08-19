@@ -3,6 +3,7 @@ import { Image, GraphQLImage } from './image';
 
 interface PostBase {
   title: string;
+  summary: string;
   slug: string;
   date: string;
   tags: string[];

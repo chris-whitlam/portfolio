@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Post } from '@types';
 import { getPosts } from '@graphql';
 import { Box } from '@mui/material';
@@ -10,15 +11,24 @@ export interface BlogPageProps {
 }
 
 const BlogPage: FC<BlogPageProps> = ({ posts }) => (
-  <Box>
-    <BackLink />
-    <PageTitle>Blog Posts</PageTitle>
+  <>
+    <Head>
+      <title>Blog - Chris Whitlam</title>
+      <meta
+        name="description"
+        content="A collection of blog posts on what I've learnt throughout my career as a developer and my general thoughts on all things programming related"
+      />
+    </Head>
     <Box>
-      {posts.map((post) => (
-        <PostCard key={post.title} post={post} />
-      ))}
+      <BackLink />
+      <PageTitle>Blog Posts</PageTitle>
+      <Box>
+        {posts.map((post) => (
+          <PostCard key={post.title} post={post} />
+        ))}
+      </Box>
     </Box>
-  </Box>
+  </>
 );
 
 export const getStaticProps = async () => {

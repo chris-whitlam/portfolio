@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Box, Theme } from '@mui/material';
 import { FC } from 'react';
 import { makeStyles } from '@mui/styles';
@@ -38,15 +39,24 @@ const ProjectsPage: FC<ProjectPageProps> = ({ projects }) => {
   const styles = useStyles();
 
   return (
-    <Box>
-      <BackLink />
-      <PageTitle>Projects</PageTitle>
-      <Box className={styles.grid}>
-        {projects.map((project: Project) => (
-          <ProjectCard key={project.name} project={project} />
-        ))}
+    <>
+      <Head>
+        <title>Projects - Chris Whitlam</title>
+        <meta
+          name="description"
+          content="A collection of programming projects created by Chris Whitlam."
+        />
+      </Head>
+      <Box>
+        <BackLink />
+        <PageTitle>Projects</PageTitle>
+        <Box className={styles.grid}>
+          {projects.map((project: Project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 
