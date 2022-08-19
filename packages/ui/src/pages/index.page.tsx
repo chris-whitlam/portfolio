@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import type { NextPage } from 'next';
 
 import { Hero, Projects, Posts, ContactForm, Quote } from '@organisms';
@@ -12,6 +13,13 @@ export interface HomePageProps {
 
 const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
   <>
+    <Head>
+      <title>Chris Whitlam</title>
+      <meta
+        name="description"
+        content="A showcase of programming projects and blog posts to teach and inspire other developers. Get inspired!"
+      />
+    </Head>
     <Hero profile={profile} />
     <Quote speaker="Kent Beck">
       Make it work, make it right, make it fast.

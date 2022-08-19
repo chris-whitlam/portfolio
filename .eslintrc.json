@@ -1,15 +1,15 @@
 {
   "root": true,
-  "plugins": [
-    "@typescript-eslint",
-    "prettier",
-    "unused-imports"
-  ],
   "extends": [
     "airbnb",
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "unused-imports"
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {

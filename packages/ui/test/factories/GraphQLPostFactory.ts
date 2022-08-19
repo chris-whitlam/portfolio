@@ -10,6 +10,7 @@ class GraphQLPostDataObjectFactory extends Factory<GraphQLPost> {}
 const GraphQLPostFactory = GraphQLPostDataObjectFactory.define(() => ({
   title: faker.lorem.words(5),
   slug: faker.internet.url(),
+  summary: faker.lorem.paragraph(),
   content: {
     raw: RichContentFactory.build()
   },

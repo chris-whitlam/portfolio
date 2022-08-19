@@ -6,7 +6,10 @@ const nextConfig = {
     domains: ['media.graphassets.com', 'media.graphcms.com'],
     deviceSizes: [320, 640, 750, 828, 1080, 1200, 1920]
   },
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+  typescript: {
+    tsconfigPath: './tsconfig.json'
+  }
 };
 
 module.exports = nextConfig;

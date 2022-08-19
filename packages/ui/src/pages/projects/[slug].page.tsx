@@ -105,10 +105,12 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
     }
   }, []);
 
+  const pageTitle = `${name} - Chris Whitlam`;
+
   return (
     <>
       <Head>
-        <title>{name} - Chris Whitlam</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={summary} />
       </Head>
       <Container data-test-id="project-page">

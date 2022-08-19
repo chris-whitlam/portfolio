@@ -9,10 +9,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta
-            name="description"
-            content="A showcase of programming projects and blog posts to teach and inspire other developers. Get inspired!"
-          />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
             rel="shortcut icon"

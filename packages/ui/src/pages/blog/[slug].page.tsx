@@ -45,10 +45,12 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
 
   const { title, coverImage, content, summary = '' } = post;
 
+  const pageTitle = `${title} - Chris Whitlam`;
+
   return (
     <>
       <Head>
-        <title>{title} - Chris Whitlam</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={summary} />
       </Head>
       <Box className={styles.container} data-test-id="blog-post-page">

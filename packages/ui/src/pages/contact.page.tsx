@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { PageTitle, Socials } from '@atoms';
 import { ContactForm } from '@organisms';
 import { FC } from 'react';
@@ -11,6 +12,13 @@ export interface ContactPageProps {
 const Contact: FC<ContactPageProps> = ({ profile: { socials } }) => {
   return (
     <>
+      <Head>
+        <title>Contact Me - Chris Whitlam</title>
+        <meta
+          name="description"
+          content="You can easily contact me via this form or via LinkedIn or email"
+        />
+      </Head>
       <PageTitle>Let&apos;s get in contact</PageTitle>
       <Socials socials={socials} />
       <ContactForm />

@@ -13,6 +13,7 @@ export const getPost = async (slug: string): Promise<Post> => {
           title
           tags
           date
+          summary
           content {
             raw
           }
