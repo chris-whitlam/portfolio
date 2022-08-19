@@ -9,6 +9,7 @@ class PostDataObjectFactory extends Factory<Post> {}
 
 const PostFactory = PostDataObjectFactory.define(() => ({
   title: faker.lorem.words(5),
+  summary: faker.lorem.paragraph(1),
   slug: faker.lorem.words(1),
   date: faker.date.past().toISOString(),
   tags: faker.helpers.arrayElements(['Typescript', 'Database', 'Unity'], 2),
