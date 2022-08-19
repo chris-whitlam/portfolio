@@ -107,6 +107,7 @@ const Carousel: FC<CarouselProps> = ({
           <Button
             onClick={decrementImageIndex}
             data-test-id="previous-slide-button"
+            aria-label="Previous slide button"
           >
             <ChevronLeftIcon className={styles.control} />
           </Button>
@@ -138,6 +139,7 @@ const Carousel: FC<CarouselProps> = ({
           <Button
             onClick={incrementImageIndex}
             data-test-id="next-slide-button"
+            aria-label="Next slide button"
           >
             <ChevronRightIcon className={styles.control} />
           </Button>

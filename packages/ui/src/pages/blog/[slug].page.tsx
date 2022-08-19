@@ -57,7 +57,7 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
         <BackLink />
         <PageTitle>{title}</PageTitle>
         <Box className={styles.coverImage}>
-          <Image image={coverImage} />
+          <Image image={coverImage} priority />
         </Box>
         <Box className={styles.content}>
           <RichText content={content} renderers={componentMap} />
