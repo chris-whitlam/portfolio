@@ -11,7 +11,7 @@ const globalStyles: GlobalStylesProps['styles'] = {
     color: '#e7e1e1',
     fontFamily: `"Roboto","Helvetica","Arial", sans-serif;`,
     lineHeight: '1.5em',
-    backgroundImage: 'url(background.svg)',
+    backgroundImage: 'url(img/background.svg)',
     backgroundSize: '350px 350px'
   },
   h1: {
