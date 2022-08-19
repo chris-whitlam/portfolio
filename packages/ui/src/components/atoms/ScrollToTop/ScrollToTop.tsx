@@ -23,6 +23,12 @@ const useStyles = makeStyles(
       animationDuration: '1500ms',
       animationFillMode: 'forwards',
       animationIterationCount: 'infinite'
+    },
+    text: {
+      '-webkit-user-select': 'none' /* Safari */,
+      '-moz-user-select': 'none' /* Firefox */,
+      '-ms-user-select': 'none' /* IE10+/Edge */,
+      'user-select': 'none' /* Standard */
     }
   }),
   { name: 'ScrollToTop' }
@@ -45,10 +51,11 @@ const ScrollToTop: FC<ScrollToTopProps> = ({ sx, ...rest }) => {
       sx={sx}
       onClick={scrollToTop}
       data-test-id="scroll-to-top"
+      role="button"
       {...rest}
     >
       <KeyboardDoubleArrowUpIcon className={styles.icon} />
-      <Typography>Back to Top</Typography>
+      <Typography className={styles.text}>Back to Top</Typography>
     </Box>
   );
 };

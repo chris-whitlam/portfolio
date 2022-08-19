@@ -10,6 +10,7 @@ const useStyles = makeStyles(
     container: {
       display: 'flex',
       flexDirection: 'column',
+      alignItems: 'center',
       margin: '0 auto',
       width: '200px',
       textAlign: 'center',
