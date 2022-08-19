@@ -9,9 +9,17 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta
+            name="description"
+            content="A showcase of programming projects and blog posts to teach and inspire other developers. Get inspired!"
+          />
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg" />
-          <link rel="shortcut icon" type="image/png" href="favicon.png" />
+          <link
+            rel="shortcut icon"
+            type="image/svg+xml"
+            href="/img/favicon.svg"
+          />
+          <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

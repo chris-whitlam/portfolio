@@ -94,7 +94,8 @@
   "include": [
     "packages/ui/next-env.d.ts",
     "src/**/*",
-    "test/**/*"
+    "test/**/*",
+    "next-sitemap.config.js"
   ],
   "exclude": ["node_modules", "coverage"]
 }
