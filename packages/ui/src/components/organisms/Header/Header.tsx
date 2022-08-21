@@ -105,19 +105,19 @@ const DesktopNav: FC<DesktopNavProps> = ({ pages }) => (
     }}
     data-test-id="header-desktop-nav"
   >
-    {pages.map(({ name, href }) => (
+    {pages.map(({ name, href }, index) => (
       <NextLink key={name} passHref href={href}>
         <Button
           key={name}
           sx={{
             my: 2,
-            ml: 4,
+            ml: index === 0 ? 0 : 4,
             color: 'white',
             display: 'block',
             fontFamily: `'Bungee Hairline', cursive;`,
             fontWeight: 700,
-            fontSize: '1.2rem',
-            transition: 'all .2s ease-in-out',
+            fontSize: 'clamp(0.8rem, 1.5vw, 1.2rem)',
+            transition: 'transform .2s ease-in-out',
             textUnderlineOffset: '0.4em',
 
             '&:hover': {
