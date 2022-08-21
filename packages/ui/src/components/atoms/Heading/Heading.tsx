@@ -1,11 +1,12 @@
 import { FC, ReactNode } from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, SxProps } from '@mui/material';
 import { theme } from '@styles';
 import ArrowLink from '../ArrowLink/ArrowLink';
 
 interface SectionHeadingProps {
   children: ReactNode;
   href?: string;
+  sx?: SxProps;
   'data-test-id'?: string;
 }
 
@@ -29,6 +30,7 @@ const SectionHeadingText: FC<BaseProps> = ({ children }) => (
 export const SectionHeading: FC<SectionHeadingProps> = ({
   children,
   href,
+  sx = {},
   ...rest
 }) => (
   <Box
@@ -36,9 +38,30 @@ export const SectionHeading: FC<SectionHeadingProps> = ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: () => theme.spacing(2)
+      marginBottom: () => theme.spacing(2),
+      ...sx
     }}
     data-test-id="section-heading"
+    {...rest}
+  >
+    <SectionHeadingText>{children}</SectionHeadingText>
+    {href && <ArrowLink href={href}>View all</ArrowLink>}
+  </Box>
+);
+
+export const SubSectionHeading: FC<SectionHeadingProps> = ({
+  children,
+  href,
+  sx = {},
+  ...rest
+}) => (
+  <Box
+    sx={{
+      textAlign: 'center',
+      marginBottom: () => theme.spacing(2),
+      ...sx
+    }}
+    data-test-id="sub-section-heading"
     {...rest}
   >
     <SectionHeadingText>{children}</SectionHeadingText>

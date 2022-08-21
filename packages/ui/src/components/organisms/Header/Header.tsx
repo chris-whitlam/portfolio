@@ -140,6 +140,7 @@ const Header = () => {
   const isNotMobile = useMediaQuery(() => theme.breakpoints.up('md'));
   const pages: Page[] = [
     { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
     { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' }

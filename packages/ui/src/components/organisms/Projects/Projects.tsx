@@ -24,7 +24,8 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: 'repeat(3, 1fr)'
-      }
+      },
+      paddingBottom: theme.spacing(0.5)
     }
   }),
   { name: 'Projects' }

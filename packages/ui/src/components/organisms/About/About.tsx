@@ -1,4 +1,3 @@
-import { SectionHeading } from '@atoms';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { Theme, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -15,7 +14,6 @@ const useStyles = makeStyles(
     container: {
       width: '80%',
       [theme.breakpoints.down('md')]: {
-        paddingTop: theme.spacing(5),
         width: '100%'
       }
     }
@@ -28,7 +26,6 @@ const About: FC<AboutProps> = ({ profile }) => {
 
   return (
     <Box className={styles.container}>
-      <SectionHeading>About</SectionHeading>
       <Box data-test-id="bio">
         <RichText content={profile.bio} renderers={componentMap} />
       </Box>

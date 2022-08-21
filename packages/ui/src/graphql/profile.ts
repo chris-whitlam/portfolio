@@ -9,6 +9,9 @@ export const getProfile = async () => {
         profiles {
           name
           roles
+          bio {
+            raw
+          }
           image {
             alt
             image {

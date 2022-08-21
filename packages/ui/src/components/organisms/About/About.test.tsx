@@ -21,7 +21,6 @@ describe('Components -> Organisms -> About', () => {
 
     const bioTitle = container.querySelector('h3');
     const paragraph = container.querySelector('p');
-    expect(getByTestId('section-heading')).toHaveTextContent('About');
     expect(getByTestId('bio')).toBeInTheDocument();
 
     expect(bioTitle).toHaveTextContent(bio.children[0].children[0].text);
