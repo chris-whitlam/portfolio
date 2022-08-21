@@ -128,7 +128,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
         </CardContent>
         <CardActions className={styles.buttonsContainer}>
           {demo && (
-            <a href={demo}>
+            <a href={demo} target="_blank" rel="noopener noreferrer">
               <Button
                 size="medium"
                 variant="tertiary"
@@ -140,7 +140,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
             </a>
           )}
           {sourceCode && (
-            <a href={sourceCode}>
+            <a href={sourceCode} target="_blank" rel="noopener noreferrer">
               <Button
                 size="medium"
                 variant="tertiary"

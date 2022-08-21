@@ -158,7 +158,11 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
             {!showFixedButtons && (
               <>
                 {sourceCode && (
-                  <a href={sourceCode}>
+                  <a
+                    href={sourceCode}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button
                       fullWidth
                       size="medium"
@@ -172,7 +176,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
                   </a>
                 )}
                 {demo && (
-                  <a href={demo}>
+                  <a href={demo} target="_blank" rel="noopener noreferrer">
                     <Button
                       fullWidth
                       size="medium"
@@ -214,7 +218,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
       {showFixedButtons && (
         <Box className={styles.mobileButtonsContainer}>
           {sourceCode && (
-            <a href={sourceCode}>
+            <a href={sourceCode} target="_blank" rel="noopener noreferrer">
               <Button
                 size="medium"
                 variant="secondary"
@@ -227,7 +231,7 @@ const ProjectPage: FC<ProjectPageProps> = ({ project }) => {
             </a>
           )}
           {demo && (
-            <a href={demo}>
+            <a href={demo} target="_blank" rel="noopener noreferrer">
               <Button
                 size="medium"
                 variant="primary"
