@@ -49,26 +49,6 @@ export const SectionHeading: FC<SectionHeadingProps> = ({
   </Box>
 );
 
-export const SubSectionHeading: FC<SectionHeadingProps> = ({
-  children,
-  href,
-  sx = {},
-  ...rest
-}) => (
-  <Box
-    sx={{
-      textAlign: 'center',
-      marginBottom: () => theme.spacing(2),
-      ...sx
-    }}
-    data-test-id="sub-section-heading"
-    {...rest}
-  >
-    <SectionHeadingText>{children}</SectionHeadingText>
-    {href && <ArrowLink href={href}>View all</ArrowLink>}
-  </Box>
-);
-
 export const PageTitle: FC<BaseProps> = ({ children, ...rest }) => (
   <Typography
     variant="h2"
