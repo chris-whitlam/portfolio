@@ -3,7 +3,7 @@ import type { AppProps as NextAppProps } from 'next/app';
 import { Layout } from '@templates';
 import { EmotionCache, CacheProvider } from '@emotion/react';
 import Head from 'next/head';
-import { createEmotionCache } from '@/utils';
+import { createEmotionCache } from '@utils';
 
 const clientSideEmotionCache = createEmotionCache();
 

@@ -9,6 +9,7 @@ jest.mock('./apolloClient', () => ({
 
 const getExpectedProfileOutput = (profile: GraphQLProfile) => ({
   ...profile,
+  bio: profile.bio.raw,
   image: {
     ...profile.image.image,
     alt: profile.image.alt

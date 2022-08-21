@@ -6,3 +6,4 @@ export { default as Posts } from './Posts/Posts';
 export { default as ContactForm } from './ContactForm/ContactForm';
 export { default as Quote } from './Quote/Quote';
 export { default as Footer } from './Footer/Footer';
+export { default as About } from './About/About';

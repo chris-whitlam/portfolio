@@ -10,12 +10,16 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
-  Theme
+  Theme,
+  Slide
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import NextLink from 'next/link';
 import { theme } from '@styles';
+import useScrollDirection, {
+  ScrollDirection
+} from './hooks/useScrollDirection';
 
 interface Page {
   name: string;
@@ -130,6 +134,8 @@ const DesktopNav: FC<DesktopNavProps> = ({ pages }) => (
 );
 
 const Header = () => {
+  const scrollDirection = useScrollDirection();
+
   const [isMenuOpen, setMenuToggle] = useState(false);
   const isNotMobile = useMediaQuery(() => theme.breakpoints.up('md'));
   const pages: Page[] = [
@@ -152,42 +158,50 @@ const Header = () => {
   const MenuToggleIcon = isMenuOpen ? CloseIcon : MenuIcon;
 
   return (
-    <AppBar position="fixed" data-test-id="header">
-      <Container maxWidth="xl" sx={{ paddingX: { xs: 0, md: 4 } }}>
-        <Toolbar disableGutters>
-          <Logo sx={{ display: { xs: 'none', md: 'flex' } }} />
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
-              onClick={handleToggleMenu}
-              data-test-id="header-menu-button"
-            >
-              <MenuToggleIcon fontSize="inherit" />
-            </IconButton>
-          </Box>
+    <Slide
+      direction="down"
+      in={
+        scrollDirection === ScrollDirection.NONE ||
+        scrollDirection === ScrollDirection.UP
+      }
+    >
+      <AppBar position="fixed" data-test-id="header">
+        <Container maxWidth="xl" sx={{ paddingX: { xs: 0, md: 4 } }}>
+          <Toolbar disableGutters>
+            <Logo sx={{ display: { xs: 'none', md: 'flex' } }} />
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                onClick={handleToggleMenu}
+                data-test-id="header-menu-button"
+              >
+                <MenuToggleIcon fontSize="inherit" />
+              </IconButton>
+            </Box>
 
-          <Logo
-            sx={{
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontSize: '1.7rem'
-            }}
+            <Logo
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontSize: '1.7rem'
+              }}
+            />
+            {isNotMobile && <DesktopNav pages={pages} />}
+          </Toolbar>
+        </Container>
+        {!isNotMobile && (
+          <MobileNav
+            pages={pages}
+            isOpen={isMenuOpen}
+            onClick={handleToggleMenu}
           />
-          {isNotMobile && <DesktopNav pages={pages} />}
-        </Toolbar>
-      </Container>
-      {!isNotMobile && (
-        <MobileNav
-          pages={pages}
-          isOpen={isMenuOpen}
-          onClick={handleToggleMenu}
-        />
-      )}
-    </AppBar>
+        )}
+      </AppBar>
+    </Slide>
   );
 };
 

@@ -12,7 +12,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { makeStyles } from '@mui/styles';
 
 import { Image } from '@atoms';
-import { Post } from '@/types';
+import { Post } from '@types';
 
 interface PostCardProps {
   post: Post;

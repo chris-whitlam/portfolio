@@ -31,6 +31,7 @@ describe('GraphQL -> homepage', () => {
     expect(result).toStrictEqual({
       profile: {
         ...mockData.profiles[0],
+        bio: mockData.profiles[0].bio.raw,
         image: {
           ...mockData.profiles[0].image.image,
           alt: mockData.profiles[0].image.alt

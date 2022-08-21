@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker';
 
 import ImageFactory from './ImageFactory';
 import SocialsFactory from './SocialsFactory';
+import RichContentFactory from './RichContentFactory';
 
 class ProfileDataObjectFactory extends Factory<Profile> {}
 
@@ -14,7 +15,7 @@ const ProfileFactory = ProfileDataObjectFactory.define(() => ({
     'Guitarist',
     'Song Writer'
   ]),
-  bio: faker.lorem.lines(4),
+  bio: RichContentFactory.build(),
   socials: SocialsFactory.build(),
   image: ImageFactory.build()
 }));

@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 
 import { Button, SectionHeading } from '@atoms';
 import { PostCard } from '@molecules';
-import { Post } from '@/types';
+import { Post } from '@types';
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -19,6 +19,9 @@ const fetchHomepageData = async ({
         profiles {
           name
           roles
+          bio {
+            raw
+          }
           image {
             alt
             image {

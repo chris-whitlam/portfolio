@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "eslint \"**/*.ts*\" --fix",
     "test": "jest",
+    "test:coverage": "jest --collectCoverage",
     "test:ci": "jest --collectCoverage --silent --findRelatedTests"
   },
   "dependencies": {

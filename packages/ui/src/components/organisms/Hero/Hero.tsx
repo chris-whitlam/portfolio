@@ -9,7 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 import { Image } from '@atoms';
 import { theme } from '@styles';
-import { Profile } from '@/types';
+import { Profile } from '@types';
 
 const useStyles = makeStyles(
   () => ({

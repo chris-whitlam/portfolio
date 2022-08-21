@@ -3,6 +3,7 @@ import { Factory } from 'fishery';
 import { faker } from '@faker-js/faker';
 
 import GraphQLImageFactory from './GraphQLImageFactory';
+import RichContentFactory from './RichContentFactory';
 
 class GraphQLProfileDataObjectFactory extends Factory<GraphQLProfile> {}
 
@@ -13,7 +14,9 @@ const GraphQLProfileFactory = GraphQLProfileDataObjectFactory.define(() => ({
     'Guitarist',
     'Song Writer'
   ]),
-  bio: faker.lorem.lines(3),
+  bio: {
+    raw: RichContentFactory.build()
+  },
   socials: {
     githubUrl: faker.internet.url(),
     linkedInUrl: faker.internet.url(),

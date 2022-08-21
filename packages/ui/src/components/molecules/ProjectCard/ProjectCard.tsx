@@ -10,7 +10,7 @@ import { makeStyles } from '@mui/styles';
 
 import { theme } from '@styles';
 import { Button, Image } from '@atoms';
-import { Project } from '@/types';
+import { Project } from '@types';
 
 const useStyles = makeStyles(
   () => ({

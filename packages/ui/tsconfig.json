@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
+    "incremental": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -20,76 +21,75 @@
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "jsx": "preserve",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@atoms": [
-        "components/atoms"
+        "src/components/atoms"
       ],
       "@atoms/*": [
-        "components/atoms/*"
+        "src/components/atoms/*"
       ],
       "@organisms": [
-        "components/organisms"
+        "src/components/organisms"
       ],
       "@organisms/*": [
-        "components/organisms/*"
+        "src/components/organisms/*"
       ],
       "@molecules": [
-        "components/molecules"
+        "src/components/molecules"
       ],
       "@molecules/*": [
-        "components/molecules/*"
+        "src/components/molecules/*"
       ],
       "@templates": [
-        "components/templates"
+        "src/components/templates"
       ],
       "@templates/*": [
-        "components/templates/*"
+        "src/components/templates/*"
       ],
       "@pages/*": [
-        "pages/*"
+        "src/pages/*"
       ],
       "@styles": [
-        "styles"
+        "src/styles"
       ],
       "@styles/*": [
-        "styles/*"
+        "src/styles/*"
       ],
       "@hooks": [
-        "hooks"
+        "src/hooks"
       ],
       "@hooks/*": [
-        "hooks/*"
+        "src/hooks/*"
       ],
       "@utils": [
-        "utils"
+        "src/utils"
       ],
       "@utils/*": [
-        "utils/*"
+        "src/utils/*"
       ],
       "@types": [
-        "types"
+        "src/types"
       ],
       "@types/*": [
-        "types/*"
+        "src/types/*"
       ],
       "@graphql": [
-        "graphql"
+        "src/graphql"
       ],
       "@graphql/*": [
-        "graphql/*"
+        "src/graphql/*"
       ],
       "@test": [
-        "../test"
+        "test"
       ],
       "@test/*": [
-        "../test/*"
+        "test/*"
       ],
       "@/*": [
         "./*"
       ]
-    },
-    "incremental": true
+    }
   },
   "include": [
     "packages/ui/next-env.d.ts",

@@ -10,6 +10,7 @@ describe('Utils -> Transformers -> Profile Transformer', () => {
 
       expect(result).toStrictEqual({
         ...profile,
+        bio: profile.bio.raw,
         image: {
           alt: profile.image.alt,
           ...profile.image.image
