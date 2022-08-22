@@ -22,7 +22,7 @@ const useStyles = makeStyles(
   { name: 'SkillList' }
 );
 
-interface SkillListProps {
+export interface SkillListProps {
   heading: string;
   skills: SkillType[];
 }

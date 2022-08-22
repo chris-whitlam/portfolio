@@ -1,5 +1,8 @@
+import dynamic from 'next/dynamic';
+
 /* istanbul ignore file */
-export { default as ProjectCard } from './ProjectCard/ProjectCard';
-export { default as PostCard } from './PostCard/PostCard';
-export { default as Carousel } from './Carousel/Carousel';
-export { default as SkillList } from './SkillList/SkillList';
+
+export const ProjectCard = dynamic(() => import('./ProjectCard/ProjectCard'));
+export const PostCard = dynamic(() => import('./PostCard/PostCard'));
+export const Carousel = dynamic(() => import('./Carousel/Carousel'));
+export const SkillList = dynamic(() => import('./SkillList/SkillList'));

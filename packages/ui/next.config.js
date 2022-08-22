@@ -1,5 +1,14 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+const shouldAnalyze = process.env.ANALYZE === 'true';
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: shouldAnalyze,
+  openAnalyzer: shouldAnalyze
+});
+
+module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   images: {
     loader: 'custom',
@@ -10,6 +19,4 @@ const nextConfig = {
   typescript: {
     tsconfigPath: './tsconfig.json'
   }
-};
-
-module.exports = nextConfig;
+});

@@ -5,7 +5,7 @@ import { Profile } from '@types';
 import { componentMap } from '@utils';
 import { FC } from 'react';
 
-interface AboutProps {
+export interface AboutProps {
   profile: Profile;
 }
 

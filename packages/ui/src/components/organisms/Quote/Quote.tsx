@@ -31,7 +31,7 @@ const useStyles = makeStyles(
   { name: 'Quote' }
 );
 
-interface QuoteProps {
+export interface QuoteProps {
   children: ReactNode;
   speaker: string;
 }

@@ -111,7 +111,7 @@ const useStyles = makeStyles(
   { name: 'Hero' }
 );
 
-interface HeroProps {
+export interface HeroProps {
   profile: Profile;
 }
 

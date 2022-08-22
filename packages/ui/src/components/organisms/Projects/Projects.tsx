@@ -31,7 +31,7 @@ const useStyles = makeStyles(
   { name: 'Projects' }
 );
 
-interface ProjectsProps {
+export interface ProjectsProps {
   projects: Project[];
 }
 

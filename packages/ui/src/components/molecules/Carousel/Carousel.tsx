@@ -53,7 +53,7 @@ const useStyles = makeStyles(
   { name: 'Carousel' }
 );
 
-interface CarouselProps {
+export interface CarouselProps {
   images: ImageType[];
   initialImageIndex?: number;
   autoPlay?: boolean;

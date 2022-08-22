@@ -22,7 +22,7 @@ const useStyles = makeStyles(
   { name: 'Posts' }
 );
 
-interface PostsProps {
+export interface PostsProps {
   posts: Post[];
 }
 

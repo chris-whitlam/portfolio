@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "postbuild": "next-sitemap",
     "export": "yarn build && next export",
     "start": "next start",
@@ -37,6 +38,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^12.2.5",
     "@faker-js/faker": "^7.4.0",
     "@graphcms/rich-text-types": "^0.5.0",
     "@next/eslint-plugin-next": "^12.2.5",

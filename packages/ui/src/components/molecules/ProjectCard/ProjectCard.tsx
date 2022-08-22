@@ -61,7 +61,7 @@ const useStyles = makeStyles(
   { name: 'ProjectCard' }
 );
 
-interface ProjectCardProps {
+export interface ProjectCardProps {
   project: Project;
   sx?: SxProps<Theme>;
 }

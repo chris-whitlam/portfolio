@@ -14,7 +14,7 @@ import { makeStyles } from '@mui/styles';
 import { Image } from '@atoms';
 import { Post } from '@types';
 
-interface PostCardProps {
+export interface PostCardProps {
   post: Post;
 }
 
