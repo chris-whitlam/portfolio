@@ -10,3 +10,4 @@ export { default as Dots } from './Dots/Dots';
 export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';
 export { default as Socials } from './Socials/Socials';
 export { default as Skill } from './Skill/Skill';
+export { default as Spinner } from './Spinner/Spinner';

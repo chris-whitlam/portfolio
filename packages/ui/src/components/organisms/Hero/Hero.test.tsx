@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { theme } from '@styles';
 import { ProfileFactory } from '@test/factories';
@@ -18,6 +19,10 @@ const render = (profile = ProfileFactory.build()) =>
   );
 
 describe('Components -> Organisms -> Quote', () => {
+  beforeAll(async () => {
+    await preloadAll();
+  });
+
   afterEach(jest.resetAllMocks);
   afterAll(jest.restoreAllMocks);
 

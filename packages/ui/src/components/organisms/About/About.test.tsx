@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { ProfileFactory } from '@test/factories';
@@ -14,6 +15,10 @@ const render = (profile = ProfileFactory.build()) =>
   );
 
 describe('Components -> Organisms -> About', () => {
+  beforeAll(async () => {
+    await preloadAll();
+  });
+
   it('should render component correctly', () => {
     const profile = ProfileFactory.build();
     const bio = profile.bio as RichTextContent;

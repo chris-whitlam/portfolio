@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import fetchMock from 'jest-fetch-mock';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
@@ -54,6 +55,10 @@ const render = () =>
   );
 
 describe('Components -> Organisms -> Contact Form', () => {
+  beforeAll(async () => {
+    await preloadAll();
+  });
+
   beforeEach(() => {
     fetchMock.mockResponse(JSON.stringify({ message: 'Success' }), {
       headers: {

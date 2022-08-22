@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { ProjectFactory } from '@test/factories';
@@ -13,6 +14,10 @@ const render = (projects = ProjectFactory.buildList(2)) =>
   );
 
 describe('Components -> Organisms -> Projects', () => {
+  beforeAll(async () => {
+    await preloadAll();
+  });
+
   it('should render component correctly', () => {
     const numOfProjects = 3;
     const projects = ProjectFactory.buildList(numOfProjects);

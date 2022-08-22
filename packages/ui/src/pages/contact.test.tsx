@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { ProfileFactory } from '@test/factories';
@@ -23,6 +24,10 @@ const render = (props: ContactPageProps = defaultProps) =>
 
 describe('Pages -> Contact', () => {
   describe('Component', () => {
+    beforeAll(async () => {
+      await preloadAll();
+    });
+
     it('should render page correctly', () => {
       const { getByTestId } = render();
 

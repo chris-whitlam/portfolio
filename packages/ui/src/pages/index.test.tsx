@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { render as rtlRender } from '@testing-library/react';
@@ -24,6 +25,10 @@ const render = (props: HomePageProps = defaultProps) =>
   );
 
 describe('Pages -> Index', () => {
+  beforeAll(async () => {
+    await preloadAll();
+  });
+
   describe('Component', () => {
     it('should render page correctly', () => {
       const { getByTestId, getAllByTestId } = render();

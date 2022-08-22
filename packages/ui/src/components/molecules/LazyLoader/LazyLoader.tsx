@@ -1,11 +1,24 @@
-import { useRef, useState, useEffect, FC, ReactNode } from 'react';
+import { Spinner } from '@atoms';
+import {
+  useRef,
+  useState,
+  useEffect,
+  FC,
+  ReactNode,
+  CSSProperties
+} from 'react';
 
 interface LazyLoaderProps {
   children: ReactNode;
-  height?: string;
+  inheritFromParent?: boolean;
+  style?: CSSProperties;
 }
 
-const LazyLoader: FC<LazyLoaderProps> = ({ children, height }) => {
+const LazyLoader: FC<LazyLoaderProps> = ({
+  children,
+  style = {},
+  inheritFromParent = false
+}) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const [isVisible, setVisible] = useState(false);
@@ -17,16 +30,13 @@ const LazyLoader: FC<LazyLoaderProps> = ({ children, height }) => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // In your case there's only one element to observe:
         if (entries[0].isIntersecting) {
-          // Not possible to set it back to false like this:
           setVisible(true);
 
           if (!ref.current) {
             return;
           }
 
-          // No need to keep observing:
           observer.unobserve(ref.current);
         }
       },
@@ -47,14 +57,16 @@ const LazyLoader: FC<LazyLoaderProps> = ({ children, height }) => {
     <div
       ref={ref}
       style={{
-        all: 'inherit',
-        width: '100%',
+        all: inheritFromParent ? 'inherit' : 'unset',
+        minWidth: '100%',
         padding: 0,
         margin: 0,
-        minHeight: height || '100px'
+        minHeight: '100px',
+        ...style
       }}
+      data-test-id="lazy-loader-container"
     >
-      {isVisible && children}
+      {isVisible ? children : <Spinner />}
     </div>
   );
 };

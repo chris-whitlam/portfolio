@@ -5,6 +5,10 @@ import React from 'react';
 
 fetchMock.enableMocks();
 configure({ testIdAttribute: 'data-test-id' });
-// whatever else you need in here
+
+jest.mock('@molecules', () => ({
+  ...jest.requireActual('@molecules'),
+  LazyLoader: ({ children }: any) => children
+}));
 
 global.React = React;

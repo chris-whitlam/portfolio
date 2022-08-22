@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import NextLink from 'next/link';
 
 import { Button, SectionHeading } from '@atoms';
-import { PostCard } from '@molecules';
+import { LazyLoader, PostCard } from '@molecules';
 import { Post } from '@types';
 
 const useStyles = makeStyles(
@@ -34,7 +34,9 @@ const Posts: FC<PostsProps> = ({ posts }) => {
       <SectionHeading href="/blog">Recent Posts</SectionHeading>
       <Box>
         {posts.map((post) => (
-          <PostCard key={post.title} post={post} />
+          <LazyLoader key={post.title}>
+            <PostCard key={post.title} post={post} />
+          </LazyLoader>
         ))}
       </Box>
       <Box

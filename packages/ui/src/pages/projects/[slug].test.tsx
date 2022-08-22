@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { theme } from '@styles';
 import { ProjectFactory } from '@test/factories';
@@ -38,6 +39,10 @@ const render = (props: ProjectPageProps = defaultProps) =>
 
 describe('Pages -> Projects -> Slug (Individual Projects)', () => {
   describe('Component', () => {
+    beforeAll(async () => {
+      await preloadAll();
+    });
+
     const project = ProjectFactory.build();
     const projectDescription = project.description as RichTextContent;
 

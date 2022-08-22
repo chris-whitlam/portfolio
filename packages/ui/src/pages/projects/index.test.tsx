@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { ProjectFactory } from '@test/factories';
@@ -27,6 +28,10 @@ const render = (props: ProjectPageProps = defaultProps) =>
 
 describe('Pages -> Projects -> Index', () => {
   describe('Component', () => {
+    beforeAll(async () => {
+      await preloadAll();
+    });
+
     it('should render page correctly', () => {
       const { getByTestId, getAllByTestId } = render();
 

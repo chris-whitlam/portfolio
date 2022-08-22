@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { theme } from '@styles';
 import { fireEvent, render as rtlRender } from '@testing-library/react';
@@ -18,6 +19,9 @@ const render = () =>
   );
 
 describe('Components -> Organisms -> Header', () => {
+  beforeAll(async () => {
+    await preloadAll();
+  });
   afterEach(jest.resetAllMocks);
   afterAll(jest.restoreAllMocks);
 

@@ -1,3 +1,4 @@
+import preloadAll from 'jest-next-dynamic';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '@styles';
 import { PostFactory } from '@test/factories';
@@ -38,6 +39,10 @@ const render = (props: BlogPostProps = defaultProps) =>
 
 describe('Pages -> Blog -> Slug (Individual Blog Post)', () => {
   describe('Component', () => {
+    beforeAll(async () => {
+      await preloadAll();
+    });
+
     const post = PostFactory.build();
     const postContent = post.content as RichTextContent;
 
