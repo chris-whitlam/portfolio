@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import NextLink from 'next/link';
 
 import { SectionHeading, Button } from '@atoms';
-import { LazyLoader, ProjectCard } from '@molecules';
+import { ProjectCard } from '@molecules';
 import { Project } from '@types';
 
 const useStyles = makeStyles(
@@ -43,9 +43,7 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
       <SectionHeading href="/projects">Projects</SectionHeading>
       <Box className={styles.grid}>
         {projects.map((project: Project) => (
-          <LazyLoader key={project.name}>
-            <ProjectCard project={project} />
-          </LazyLoader>
+          <ProjectCard project={project} />
         ))}
       </Box>
       <Box

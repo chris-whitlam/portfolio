@@ -35,7 +35,7 @@ const Posts: FC<PostsProps> = ({ posts }) => {
       <Box>
         {posts.map((post) => (
           <LazyLoader key={post.title}>
-            <PostCard key={post.title} post={post} />
+            <PostCard post={post} />
           </LazyLoader>
         ))}
       </Box>
