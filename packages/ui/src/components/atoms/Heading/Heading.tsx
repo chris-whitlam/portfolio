@@ -20,7 +20,7 @@ const SectionHeadingText: FC<BaseProps> = ({ children }) => (
     fontWeight={800}
     sx={{
       fontFamily: `'Bungee Hairline', cursive;`,
-      fontSize: { xs: '1.4rem', md: '1.6rem' }
+      fontSize: '2rem'
     }}
   >
     {children}
@@ -49,11 +49,32 @@ export const SectionHeading: FC<SectionHeadingProps> = ({
   </Box>
 );
 
+export const SubSectionHeading: FC<SectionHeadingProps> = ({
+  children,
+  sx = {},
+  ...rest
+}) => (
+  <Typography
+    variant="h3"
+    fontWeight={800}
+    sx={{
+      fontFamily: `'Bungee Hairline', cursive;`,
+      fontSize: '1.4rem',
+      marginBottom: () => theme.spacing(2),
+      ...sx
+    }}
+    data-test-id="sub-section-heading"
+    {...rest}
+  >
+    {children}
+  </Typography>
+);
+
 export const PageTitle: FC<BaseProps> = ({ children, ...rest }) => (
   <Typography
     variant="h2"
     fontWeight={800}
-    fontSize={35}
+    fontSize="2.5rem"
     sx={{
       fontFamily: `'Bungee Hairline', cursive;`,
       marginBottom: theme.spacing(4)

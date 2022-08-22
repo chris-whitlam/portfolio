@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { PageTitle, SectionHeading } from './Heading';
+import { PageTitle, SectionHeading, SubSectionHeading } from './Heading';
 
 describe('Components -> Atoms -> Heading', () => {
   describe('Page Title', () => {
@@ -35,6 +35,20 @@ describe('Components -> Atoms -> Heading', () => {
 
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId('arrow-link')).toBeInTheDocument();
+    });
+  });
+
+  describe('Sub-Section Heading', () => {
+    const testId = 'sub-section-heading';
+
+    it('should render component', () => {
+      const { getByTestId } = render(
+        <SubSectionHeading data-test-id={testId}>
+          Sub-Section Heading
+        </SubSectionHeading>
+      );
+
+      expect(getByTestId(testId)).toBeInTheDocument();
     });
   });
 });

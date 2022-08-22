@@ -30,7 +30,7 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
       <Posts posts={posts} />
     </LazyLoader>
     <LazyLoader inheritFromParent>
-      <ContactForm />
+      <ContactForm sx={{ width: { sm: '100%', md: '80%' } }} />
     </LazyLoader>
   </>
 );

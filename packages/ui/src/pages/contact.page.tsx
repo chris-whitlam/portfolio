@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import { PageTitle, Socials } from '@atoms';
+import { BackLink, PageTitle, Socials } from '@atoms';
 import { ContactForm } from '@organisms';
 import { FC } from 'react';
 import { getProfile } from '@graphql';
 import { Profile } from '@types';
+import { Box } from '@mui/material';
 
 export interface ContactPageProps {
   profile: Profile;
@@ -13,15 +14,18 @@ const Contact: FC<ContactPageProps> = ({ profile: { socials } }) => {
   return (
     <>
       <Head>
-        <title>Contact Me - Chris Whitlam</title>
+        <title>Contact - Chris Whitlam</title>
         <meta
           name="description"
           content="You can easily contact me via this form or via LinkedIn or email"
         />
       </Head>
-      <PageTitle>Let&apos;s get in contact</PageTitle>
-      <Socials socials={socials} />
-      <ContactForm />
+      <Box sx={{ width: { sm: '100%', md: '80%' } }}>
+        <BackLink />
+        <PageTitle>Let&apos;s get in contact</PageTitle>
+        <Socials socials={socials} />
+        <ContactForm heading="" sx={{ width: '100%' }} />
+      </Box>
     </>
   );
 };

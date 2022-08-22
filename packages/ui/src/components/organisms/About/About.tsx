@@ -18,14 +18,14 @@ const useStyles = makeStyles(
       }
     }
   }),
-  { name: 'Dots' }
+  { name: 'About' }
 );
 
 const About: FC<AboutProps> = ({ profile }) => {
   const styles = useStyles();
 
   return (
-    <Box className={styles.container}>
+    <Box className={styles.container} data-test-id="about">
       <Box data-test-id="bio">
         <RichText content={profile.bio} renderers={componentMap} />
       </Box>

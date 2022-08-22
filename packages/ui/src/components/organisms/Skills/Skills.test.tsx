@@ -18,9 +18,15 @@ describe('Components -> Atoms -> Skill', () => {
   });
 
   it('should render component correctly', () => {
-    const { getByTestId } = render();
+    const { getByTestId, getAllByTestId } = render();
 
-    expect(getByTestId('page-title')).toHaveTextContent('My Skills');
+    const subSectionHeadings = getAllByTestId('sub-section-heading');
+
+    expect(getByTestId('section-heading')).toHaveTextContent('My Skills');
+    expect(subSectionHeadings[0]).toHaveTextContent('Front-end');
+    expect(subSectionHeadings[1]).toHaveTextContent('Back-end');
+    expect(subSectionHeadings[2]).toHaveTextContent('DevOps');
+    expect(subSectionHeadings[3]).toHaveTextContent('Other');
     expect(getByTestId('front-end-skills')).toBeInTheDocument();
     expect(getByTestId('back-end-skills')).toBeInTheDocument();
     expect(getByTestId('devops-skills')).toBeInTheDocument();
