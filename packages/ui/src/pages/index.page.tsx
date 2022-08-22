@@ -4,6 +4,7 @@ import type { NextPage } from 'next';
 import { Hero, Projects, Posts, ContactForm, Quote } from '@organisms';
 import { getHomepageData } from '@graphql';
 import { Project, Post, Profile } from '@types';
+import { LazyLoader } from '../components/hoc';
 
 export interface HomePageProps {
   profile: Profile;
@@ -25,8 +26,12 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
       Make it work, make it right, make it fast.
     </Quote>
     <Projects projects={projects} />
-    <Posts posts={posts} />
-    <ContactForm />
+    <LazyLoader>
+      <Posts posts={posts} />
+    </LazyLoader>
+    <LazyLoader>
+      <ContactForm />
+    </LazyLoader>
   </>
 );
 
