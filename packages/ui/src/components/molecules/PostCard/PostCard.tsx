@@ -21,7 +21,7 @@ interface PostCardProps {
 const useStyles = makeStyles(
   () => ({
     container: {
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(3),
       position: 'relative',
       width: '100%',
       transition: 'all .1s ease-in-out',
