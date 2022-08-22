@@ -1,19 +1,31 @@
-import { PageTitle } from '@atoms';
+import Head from 'next/head';
+import { PageTitle, BackLink } from '@atoms';
 import { getProfile } from '@graphql';
 import { About, Skills } from '@organisms';
 import { Profile } from '@types';
 import { FC } from 'react';
+import { Box } from '@mui/material';
 
-interface AboutPageProps {
+export interface AboutPageProps {
   profile: Profile;
 }
 
 const AboutPage: FC<AboutPageProps> = ({ profile }) => {
   return (
     <>
-      <PageTitle>About</PageTitle>
-      <About profile={profile} />
-      <Skills />
+      <Head>
+        <title>About - Chris Whitlam</title>
+        <meta
+          name="description"
+          content="How I got into programming and a list of my skills"
+        />
+      </Head>
+      <Box>
+        <BackLink />
+        <PageTitle>About</PageTitle>
+        <About profile={profile} />
+        <Skills />
+      </Box>
     </>
   );
 };

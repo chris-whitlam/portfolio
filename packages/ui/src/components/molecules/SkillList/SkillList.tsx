@@ -1,4 +1,4 @@
-import { Skill, SectionHeading } from '@atoms';
+import { Skill, SubSectionHeading } from '@atoms';
 import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { theme } from '@styles';
@@ -7,6 +7,9 @@ import { Skill as SkillType } from '@types';
 
 const useStyles = makeStyles(
   () => ({
+    container: {
+      paddingBottom: theme.spacing(8)
+    },
     skillsContainer: {
       display: 'grid',
       gridGap: theme.spacing(2),
@@ -22,7 +25,7 @@ const useStyles = makeStyles(
   { name: 'SkillList' }
 );
 
-interface SkillListProps {
+export interface SkillListProps {
   heading: string;
   skills: SkillType[];
 }
@@ -31,10 +34,10 @@ const SkillList: FC<SkillListProps> = ({ heading, skills, ...rest }) => {
   const styles = useStyles();
 
   return (
-    <Box data-test-id="skill-list" {...rest}>
-      <SectionHeading sx={{ marginTop: theme.spacing(3) }}>
+    <Box data-test-id="skill-list" className={styles.container} {...rest}>
+      <SubSectionHeading sx={{ marginTop: theme.spacing(3) }}>
         {heading}
-      </SectionHeading>
+      </SubSectionHeading>
       <Box className={styles.skillsContainer}>
         {skills.map((skill) => (
           <Skill key={skill.label} skill={skill} />

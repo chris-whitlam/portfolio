@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Box, Theme, Grid, Typography, Collapse } from '@mui/material';
+import { Box, Theme, Grid, Typography, Collapse, SxProps } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import SendIcon from '@mui/icons-material/Send';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -38,7 +38,6 @@ const useStyles = makeStyles(
       justifyContent: 'flex-end'
     },
     button: {
-      marginTop: theme.spacing(2),
       boxSizing: 'content-box',
       width: 'fit-content',
       paddingX: theme.spacing(4)
@@ -73,7 +72,12 @@ const schema = Yup.object({
 
 const url = `${process.env.NEXT_PUBLIC_API_URL}/contact`;
 
-const ContactForm: FC = () => {
+export interface ContactFormProps {
+  heading?: string;
+  sx?: SxProps;
+}
+
+const ContactForm: FC<ContactFormProps> = ({ heading = 'Contact me', sx }) => {
   const styles = useStyles();
   const [{ loading, data, error }, submit] = useLazyPostRequest(url);
 
@@ -90,110 +94,113 @@ const ContactForm: FC = () => {
   });
 
   return (
-    <form
-      className={styles.container}
-      onSubmit={formik.handleSubmit}
-      data-test-id="contact-form"
-    >
-      <SectionHeading>Contact me</SectionHeading>
-      <Grid container columns={{ xs: 1, md: 4 }} spacing="20px">
-        <Grid item xs={4} md={2}>
-          <TextField
-            label="Name"
-            name="name"
-            placeholder="Jane Doe"
-            onChange={formik.handleChange}
-            value={formik.values.name}
-            error={formik.errors.name}
-            sx={{
-              gridColumn: 'span 4',
-              gridRow: 'span 1'
-            }}
-            data-test-id="contact-form-name-field"
-          />
-        </Grid>
-        <Grid item xs={4} md={2}>
-          <TextField
-            label="Your email"
-            name="email"
-            placeholder="jane.doe@example.com"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            error={formik.errors.email}
-            sx={{
-              gridColumn: 'span 4',
-              gridRow: 'span 1'
-            }}
-            data-test-id="contact-form-email-field"
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextArea
-            placeholder="Enter your message here"
-            name="message"
-            onChange={formik.handleChange}
-            value={formik.values.message}
-            error={formik.errors.message}
-            sx={{
-              gridColumn: 'span 4',
-              gridRow: 'span 1'
-            }}
-            data-test-id="contact-form-message-field"
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <Collapse in={!!error}>
-            <Typography
-              variant="body2"
-              className={styles.errorMessage}
-              data-test-id="contact-form-error-message"
-              aria-hidden={!error}
-            >
-              {error}
-            </Typography>
-          </Collapse>
-        </Grid>
-
-        <Grid item xs={4}>
-          <Collapse in={!!data}>
-            <Box
+    <Box sx={{ margin: '0 auto', ...sx }}>
+      <form
+        className={styles.container}
+        onSubmit={formik.handleSubmit}
+        data-test-id="contact-form"
+        style={{ width: '100%' }}
+      >
+        <SectionHeading>{heading}</SectionHeading>
+        <Grid container columns={{ xs: 1, md: 4 }} spacing="20px">
+          <Grid item xs={4} md={2}>
+            <TextField
+              label="Name"
+              name="name"
+              placeholder="Jane Doe"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+              error={formik.errors.name}
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
+                gridColumn: 'span 4',
+                gridRow: 'span 1'
               }}
-            >
+              data-test-id="contact-form-name-field"
+            />
+          </Grid>
+          <Grid item xs={4} md={2}>
+            <TextField
+              label="Your email"
+              name="email"
+              placeholder="jane.doe@example.com"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              error={formik.errors.email}
+              sx={{
+                gridColumn: 'span 4',
+                gridRow: 'span 1'
+              }}
+              data-test-id="contact-form-email-field"
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextArea
+              placeholder="Enter your message here"
+              name="message"
+              onChange={formik.handleChange}
+              value={formik.values.message}
+              error={formik.errors.message}
+              sx={{
+                gridColumn: 'span 4',
+                gridRow: 'span 1'
+              }}
+              data-test-id="contact-form-message-field"
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <Collapse in={!!error}>
               <Typography
                 variant="body2"
-                className={styles.successMessage}
-                data-test-id="contact-form-success-message"
-                aria-hidden={!data}
+                className={styles.errorMessage}
+                data-test-id="contact-form-error-message"
+                aria-hidden={!error}
               >
-                Message sent
+                {error}
               </Typography>
-              <CheckCircleIcon color="primary" />
-            </Box>
-          </Collapse>
-        </Grid>
+            </Collapse>
+          </Grid>
 
-        <Grid item xs={4}>
-          <Box
-            className={styles.buttonsContainer}
-            sx={{ gridColumn: 'span 4' }}
-          >
-            <Button
-              className={styles.button}
-              endIcon={<SendIcon />}
-              type="submit"
-              isLoading={loading}
-              data-test-id="contact-form-submit-button"
+          <Grid item xs={4}>
+            <Collapse in={!!data}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  className={styles.successMessage}
+                  data-test-id="contact-form-success-message"
+                  aria-hidden={!data}
+                >
+                  Message sent
+                </Typography>
+                <CheckCircleIcon color="primary" />
+              </Box>
+            </Collapse>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Box
+              className={styles.buttonsContainer}
+              sx={{ gridColumn: 'span 4' }}
             >
-              Send
-            </Button>
-          </Box>
+              <Button
+                className={styles.button}
+                endIcon={<SendIcon />}
+                type="submit"
+                isLoading={loading}
+                data-test-id="contact-form-submit-button"
+              >
+                Send
+              </Button>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </form>
+      </form>
+    </Box>
   );
 };
 

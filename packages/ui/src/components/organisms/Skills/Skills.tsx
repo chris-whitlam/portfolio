@@ -1,5 +1,5 @@
-import { PageTitle } from '@atoms';
 import { SkillList } from '@molecules';
+import { SectionHeading } from '@atoms';
 import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { theme } from '@styles';
@@ -27,8 +27,8 @@ const Skills: FC = () => {
   const styles = useStyles();
 
   return (
-    <Box className={styles.container}>
-      <PageTitle>My Skills</PageTitle>
+    <Box className={styles.container} data-test-id="skills">
+      <SectionHeading>My Skills</SectionHeading>
       <SkillList
         heading="Front-end"
         skills={frontEnd}

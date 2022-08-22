@@ -26,7 +26,7 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
     </Quote>
     <Projects projects={projects} />
     <Posts posts={posts} />
-    <ContactForm />
+    <ContactForm sx={{ width: { sm: '100%', md: '80%' } }} />
   </>
 );
 

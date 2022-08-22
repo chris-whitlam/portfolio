@@ -3,6 +3,8 @@ import { theme } from '@styles';
 import { ProfileFactory } from '@test/factories';
 import { render as rtlRender } from '@testing-library/react';
 import { getProfile } from '@graphql';
+import { RouterContext } from 'next/dist/shared/lib/router-context';
+import createMockRouter from '@test/utils/createMockRouter';
 
 import Contact, { ContactPageProps, getStaticProps } from './contact.page';
 
@@ -17,7 +19,9 @@ const defaultProps: ContactPageProps = {
 const render = (props: ContactPageProps = defaultProps) =>
   rtlRender(
     <ThemeProvider theme={theme}>
-      <Contact {...props} />
+      <RouterContext.Provider value={createMockRouter()}>
+        <Contact {...props} />
+      </RouterContext.Provider>
     </ThemeProvider>
   );
 
@@ -26,6 +30,7 @@ describe('Pages -> Contact', () => {
     it('should render page correctly', () => {
       const { getByTestId } = render();
 
+      expect(getByTestId('back-link')).toBeInTheDocument();
       expect(getByTestId('page-title')).toBeInTheDocument();
       expect(getByTestId('page-title')).toHaveTextContent(
         "Let's get in contact"
