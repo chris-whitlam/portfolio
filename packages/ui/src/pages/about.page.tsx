@@ -20,7 +20,7 @@ const AboutPage: FC<AboutPageProps> = ({ profile }) => {
           content="How I got into programming and a list of my skills"
         />
       </Head>
-      <Box>
+      <Box sx={{ width: { sm: '100%', md: '80%' } }}>
         <BackLink />
         <PageTitle>About</PageTitle>
         <About profile={profile} />

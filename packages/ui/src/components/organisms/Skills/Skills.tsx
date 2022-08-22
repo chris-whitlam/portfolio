@@ -10,10 +10,7 @@ const useStyles = makeStyles(
   () => ({
     container: {
       marginTop: theme.spacing(5),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '80%'
-      }
+      width: '100%'
     },
     skillsContainer: {
       display: 'flex',

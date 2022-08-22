@@ -12,7 +12,6 @@ interface AboutProps {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      width: '80%',
       [theme.breakpoints.down('md')]: {
         width: '100%'
       }
