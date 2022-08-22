@@ -16,23 +16,9 @@ export default class MyDocument extends Document {
             href="/img/favicon.svg"
           />
           <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin=""
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Aldrich&family=Bayon&family=Bungee+Hairline&family=Electrolize&family=Iceland&family=K2D:wght@600&family=Megrim&family=Oxanium:wght@300&family=Raleway:wght@800&family=Righteous&family=Turret+Road:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:wght@300;400;500;700&display=swap"
             rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Code+Pro:wght@200;300&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
         </Head>
         <body>
