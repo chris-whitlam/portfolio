@@ -8,23 +8,18 @@
     "packages/*"
   ],
   "scripts": {
-    "build:api": "yarn --cwd packages/api build",
     "build:ui": "yarn --cwd packages/ui build",
-    "build": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn build:ui\" \"yarn build:api\"",
+    "build": "concurrently -n ui -c magenta --kill-others \"yarn build:ui\"",
     "export:ui": "yarn --cwd packages/ui export",
-    "dev:api": "yarn --cwd packages/api dev",
     "dev:ui": "yarn --cwd packages/ui dev",
-    "dev": "concurrently -n ui,api -c blue,magenta --kill-others \"yarn dev:ui\" \"yarn dev:api\"",
-    "lint:api": "yarn --cwd packages/api lint",
+    "dev": "concurrently -n ui -c magenta --kill-others \"yarn dev:ui\"",
     "lint:ui": "yarn --cwd packages/ui lint",
-    "lint": "concurrently -n ui,api -c blue,magenta -m 1 \"yarn lint:ui\" \"yarn lint:api\"",
+    "lint": "concurrently -n ui -c magenta -m 1 \"yarn lint:ui\"",
     "prepare": "husky install",
-    "test:api": "yarn --cwd packages/api test",
-    "test:api:ci": "yarn --cwd packages/api test:ci",
     "test:ui": "yarn --cwd packages/ui test",
     "test:ui:ci": "yarn --cwd packages/ui test:ci",
-    "test": "concurrently -n api,ui -c blue,magenta -m 1 \"yarn test:api\" \"yarn test:ui\"",
-    "test:ci": "concurrently -n api,ui -c blue,magenta -m 1 \"yarn test:api:ci\" \"yarn test:ui:ci\""
+    "test": "concurrently -n ui -c magenta -m 1 \"yarn test:ui\"",
+    "test:ci": "concurrently -n ui -c magenta -m 1 \"yarn test:ui:ci\""
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 
-import { Hero, Projects, Posts, ContactForm, Quote } from '@organisms';
+import { Hero, Projects, Posts, Quote } from '@organisms';
 import { getHomepageData } from '@graphql';
 import { Project, Post, Profile } from '@types';
 
@@ -26,7 +26,6 @@ const Home: NextPage<HomePageProps> = ({ profile, projects, posts }) => (
     </Quote>
     <Projects projects={projects} />
     <Posts posts={posts} />
-    <ContactForm sx={{ width: { sm: '100%', md: '80%' } }} />
   </>
 );
 
