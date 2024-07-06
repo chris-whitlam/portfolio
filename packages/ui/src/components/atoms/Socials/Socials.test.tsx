@@ -28,7 +28,6 @@ describe('Components -> Atoms -> Socials', () => {
 
     assertLink('socials-github', socials.githubUrl);
     assertLink('socials-linkedIn', socials.linkedInUrl);
-    assertLink('socials-email', `mailto:${socials.email}`);
   });
 
   it('should use default links if none provided', () => {
@@ -41,6 +40,5 @@ describe('Components -> Atoms -> Socials', () => {
       'socials-linkedIn',
       'https://www.linkedin.com/in/christopher-whitlam'
     );
-    assertLink('socials-email', 'mailto:contact@chriswhitlam.dev');
   });
 });

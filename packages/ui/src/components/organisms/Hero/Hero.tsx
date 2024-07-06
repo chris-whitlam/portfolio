@@ -5,7 +5,6 @@ import Typed from 'react-typed';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
 
 import { Image } from '@atoms';
 import { theme } from '@styles';
@@ -70,14 +69,17 @@ const useStyles = makeStyles(
       margin: theme.spacing(1)
     },
     socialsContainer: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(3),
       width: '100%',
       display: 'flex',
       justifyContent: 'center'
     },
     socialIcon: {
-      margin: `${theme.spacing(2)} ${theme.spacing(2)} 0  ${theme.spacing(2)}`,
+      margin: `0 ${theme.spacing(2)}`,
       transition: 'all .1s ease-in-out',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
 
       '&:hover': {
         color: theme.palette.primary.main,
@@ -122,7 +124,7 @@ const Hero: FC<HeroProps> = ({ profile }) => {
   const {
     image,
     roles,
-    socials: { githubUrl, linkedInUrl, email }
+    socials: { githubUrl, linkedInUrl }
   } = profile;
 
   return (
@@ -166,7 +168,7 @@ const Hero: FC<HeroProps> = ({ profile }) => {
           rel="noopener noreferrer"
           className={styles.socialIcon}
         >
-          <GitHubIcon />
+          <GitHubIcon style={{ height: 40, width: 40 }} />
         </a>
         <a
           href={linkedInUrl}
@@ -175,16 +177,7 @@ const Hero: FC<HeroProps> = ({ profile }) => {
           rel="noopener noreferrer"
           className={styles.socialIcon}
         >
-          <LinkedInIcon />
-        </a>
-        <a
-          href={`mailto:${email}`}
-          aria-label="Email"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.socialIcon}
-        >
-          <EmailIcon />
+          <LinkedInIcon style={{ height: 45, width: 45 }} />
         </a>
       </Box>
     </Box>

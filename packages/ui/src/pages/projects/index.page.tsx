@@ -48,7 +48,7 @@ const ProjectsPage: FC<ProjectPageProps> = ({ projects }) => {
         />
       </Head>
       <Box>
-        <BackLink />
+        <BackLink href="/" />
         <PageTitle>Projects</PageTitle>
         <Box className={styles.grid}>
           {projects.map((project: Project) => (

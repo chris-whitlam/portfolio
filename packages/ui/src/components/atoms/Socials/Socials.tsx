@@ -3,13 +3,12 @@ import { FC } from 'react';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
 import { makeStyles } from '@mui/styles';
 
-import { Socials } from '@types';
+import { Socials as SocialsType } from '@types';
 
 interface SocialsProps {
-  socials?: Socials;
+  socials?: SocialsType;
 }
 
 const useStyles = makeStyles(
@@ -33,14 +32,13 @@ const useStyles = makeStyles(
   { name: 'ContactPage' }
 );
 
-const defaultSocials: Socials = {
+const defaultSocials: SocialsType = {
   linkedInUrl: 'https://www.linkedin.com/in/christopher-whitlam',
-  githubUrl: 'https://github.com/chris-whitlam',
-  email: 'contact@chriswhitlam.dev'
+  githubUrl: 'https://github.com/chris-whitlam'
 };
 
 const Socials: FC<SocialsProps> = ({
-  socials: { linkedInUrl, githubUrl, email } = defaultSocials,
+  socials: { linkedInUrl, githubUrl } = defaultSocials,
   ...rest
 }) => {
   const styles = useStyles();
@@ -66,16 +64,6 @@ const Socials: FC<SocialsProps> = ({
         data-test-id="socials-linkedIn"
       >
         <LinkedInIcon />
-      </a>
-      <a
-        href={`mailto:${email}`}
-        aria-label="Email"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.socialIcon}
-        data-test-id="socials-email"
-      >
-        <EmailIcon />
       </a>
     </Box>
   );

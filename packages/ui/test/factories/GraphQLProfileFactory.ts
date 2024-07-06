@@ -19,8 +19,7 @@ const GraphQLProfileFactory = GraphQLProfileDataObjectFactory.define(() => ({
   },
   socials: {
     githubUrl: faker.internet.url(),
-    linkedInUrl: faker.internet.url(),
-    email: faker.internet.url()
+    linkedInUrl: faker.internet.url()
   },
   image: GraphQLImageFactory.build()
 }));

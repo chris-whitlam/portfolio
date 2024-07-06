@@ -3,13 +3,17 @@ import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-const BackLink: FC = ({ ...rest }) => {
+interface BackLinkProps {
+  href?: string;
+}
+
+const BackLink: FC<BackLinkProps> = ({ href, ...rest }) => {
   const router = useRouter();
 
   return (
     <Button
       startIcon={<ChevronLeftIcon />}
-      onClick={router.back}
+      onClick={href ? () => router.push(href) : router.back}
       data-test-id="back-link"
       {...rest}
     >

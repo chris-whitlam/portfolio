@@ -23,7 +23,6 @@ export const getProfile = async () => {
           socials {
             githubUrl
             linkedInUrl
-            email
           }
         }
       }

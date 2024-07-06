@@ -6,8 +6,7 @@ class SocialsDataObjectFactory extends Factory<Socials> {}
 
 const SocialsFactory = SocialsDataObjectFactory.define(() => ({
   githubUrl: faker.internet.url(),
-  linkedInUrl: faker.internet.url(),
-  email: faker.internet.email()
+  linkedInUrl: faker.internet.url()
 }));
 
 export default SocialsFactory;

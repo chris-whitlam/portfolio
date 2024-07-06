@@ -21,8 +21,8 @@ const AboutPage: FC<AboutPageProps> = ({ profile }) => {
         />
       </Head>
       <Box sx={{ width: { sm: '100%', md: '80%' } }}>
-        <BackLink />
-        <PageTitle>About</PageTitle>
+        <BackLink href="/" />
+        <PageTitle>About Me</PageTitle>
         <About profile={profile} />
         <Skills />
       </Box>

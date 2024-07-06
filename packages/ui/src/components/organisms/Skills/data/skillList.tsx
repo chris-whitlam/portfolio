@@ -15,7 +15,10 @@ import {
   SiCsharp,
   SiRedux,
   SiConcourse,
-  SiGnubash
+  SiGnubash,
+  SiNestjs,
+  SiGodotengine,
+  SiMysql
 } from 'react-icons/si';
 import { DiGit } from 'react-icons/di';
 
@@ -76,12 +79,20 @@ export const backEnd: Skill[] = [
     Icon: SiExpress
   },
   {
+    label: 'NestJS',
+    Icon: SiNestjs
+  },
+  {
     label: 'GraphQL',
     Icon: SiGraphql
   },
   {
     label: 'PostgreSQL',
     Icon: SiPostgresql
+  },
+  {
+    label: 'MySQL',
+    Icon: SiMysql
   }
 ];
 
@@ -116,5 +127,9 @@ export const other: Skill[] = [
   {
     label: 'Git',
     Icon: DiGit
+  },
+  {
+    label: 'Godot',
+    Icon: SiGodotengine
   }
 ];

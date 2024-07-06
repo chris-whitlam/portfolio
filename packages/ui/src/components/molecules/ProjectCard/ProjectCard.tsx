@@ -30,7 +30,7 @@ const useStyles = makeStyles(
     techStack: {
       fontSize: 12,
       marginBottom: theme.spacing(2),
-      color: theme.palette.grey[500]
+      color: theme.palette.secondary.main
     },
     content: {
       flex: '0 0 auto'
@@ -42,9 +42,6 @@ const useStyles = makeStyles(
       padding: `${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(
         1
       )} ${theme.spacing(2)}`
-    },
-    projectType: {
-      color: theme.palette.secondary.main
     },
     summary: {
       display: '-webkit-box',
@@ -69,17 +66,8 @@ interface ProjectCardProps {
 const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
   const styles = useStyles();
 
-  const {
-    summary,
-    tags,
-    projectType,
-    name,
-    images,
-    isApp,
-    demo,
-    sourceCode,
-    slug
-  } = project;
+  const { summary, tags, name, images, isApp, demo, sourceCode, slug } =
+    project;
 
   const [image] = images;
 
@@ -109,9 +97,6 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, sx }) => {
           </Link>
         </Box>
         <CardContent className={styles.content}>
-          <Typography variant="overline" className={styles.projectType}>
-            <i>{projectType} Project</i>
-          </Typography>
           <Typography variant="h5" component="div">
             <Link href={link}>{name}</Link>
           </Typography>

@@ -33,7 +33,6 @@ const fetchHomepageData = async ({
           socials {
             githubUrl
             linkedInUrl
-            email
           }
         }
         projects(first: ${numOfFeaturedProjects}) {

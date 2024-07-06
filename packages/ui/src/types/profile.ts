@@ -4,7 +4,6 @@ import { Image, GraphQLImage } from './image';
 export interface Socials {
   githubUrl: string;
   linkedInUrl: string;
-  email: string;
 }
 
 interface ProfileBase {

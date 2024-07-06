@@ -20,7 +20,7 @@ const BlogPage: FC<BlogPageProps> = ({ posts }) => (
       />
     </Head>
     <Box>
-      <BackLink />
+      <BackLink href="/" />
       <PageTitle>Blog Posts</PageTitle>
       <Box>
         {posts.map((post) => (
